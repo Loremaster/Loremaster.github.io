@@ -8,7 +8,7 @@ categories:
 
 If you love Sublime Text 2 as I do then you probably would like to change default git editor (which is Vim nowadays). I suppose that you have installed Sublime text.
 
-First of all, you should install `subl` shortcut. To do that open your shell and print
+First of all, you should install `subl` shortcut. To do that open your shell and print (if you already have `~/bin` directory, then just use the last line of my code):
 
 {% codeblock Terminal lang:bash %}
 $ cd ~
@@ -16,7 +16,7 @@ $ mkdir bin
 $ ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ~/bin/subl
 {% endcodeblock %}
 
-If you already have `~/bin` directory, then just use the last line of my code. Now restart your shell and try that:
+Now restart your shell and try that:
 
 {% codeblock Terminal lang:bash %}
 $ subl -h
@@ -44,7 +44,16 @@ Filenames may be given a :line or :line:column suffix to open at a specific
 location.
 {% endcodeblock %}
 
-If you have the same output, then everything works great. To set up sublime as default editor just print in your shell that:
+If you have the same output, then everything works great. Otherwise you should add `~/bin` to your $PATH. To do that open your `~.bash_profile` and append these lines to the end of the file:
+
+{% codeblock .bash_profile lang:bash %}
+PATH=$PATH:~/bin
+export PATH
+{% endcodeblock %}
+
+And I think that you should restart your shell again.
+
+Finally, to set up sublime as default editor just print in your shell that:
 
 {% codeblock Terminal lang:bash %}
 $ git config --global core.editor "subl -n -w"
