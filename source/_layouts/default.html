@@ -8,7 +8,10 @@
       {{ content | expand_urls: root_url }}
     </div>
   </div>
-  <footer role="contentinfo">{% include footer.html %}</footer>
+  <footer role="contentinfo">
+    {% include footer.html %}
+    {% include google_analytics.html %}
+  </footer>
   {% include after_footer.html %}
 </body>
 </html>
