@@ -4,7 +4,7 @@
   <title><![CDATA[Loremaster's blog]]></title>
   <link href="http://bloginius.com/atom.xml" rel="self"/>
   <link href="http://bloginius.com/"/>
-  <updated>2013-12-26T13:39:18+04:00</updated>
+  <updated>2013-12-26T16:00:20+04:00</updated>
   <id>http://bloginius.com/</id>
   <author>
     <name><![CDATA[Serj L aka Loremaster]]></name>
@@ -12,6 +12,73 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How Upgrade Devise 2 to 3.2]]></title>
+    <link href="http://bloginius.com/blog/2013/12/26/how-upgrade-devise-2-dot-x-to-3-dot-2-x/"/>
+    <updated>2013-12-26T15:37:53+04:00</updated>
+    <id>http://bloginius.com/blog/2013/12/26/how-upgrade-devise-2-dot-x-to-3-dot-2-x</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/plataformatec/devise">Devise</a> is a great gem! It really helps you, taking all authentication jobs away from you. However, upgrading Devise up to version 3.x can be a little bit tricky. In this post I&rsquo;ll show you how to do that.</p>
+
+<p>First of all, update your gem via <code>bundle update</code> OR specify version in your Gemfile:</p>
+
+<figure class='code'><figcaption><span>Gemfile </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s2">&quot;devise&quot;</span><span class="p">,</span> <span class="s2">&quot;~&gt; 3.2.2&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And run <code>bundle install</code>.</p>
+
+<p>Since devise 3.1 platformatec <a href="http://blog.plataformatec.com.br/2013/08/devise-3-1-now-with-more-secure-defaults/">announced</a> few security improvements. One of them is <code>secret_key</code>. To add it open devise config and add:</p>
+
+<figure class='code'><figcaption><span>config/initializers/devise.rb </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># The secret key used by Devise. Devise uses this key to generate</span>
+</span><span class='line'><span class="c1"># random tokens. Changing this key will render invalid all existing</span>
+</span><span class='line'><span class="c1"># confirmation, reset password and unlock tokens in the database.</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">secret_key</span> <span class="o">=</span> <span class="s1">&#39;2710f15f11771d6692a3015d7e3dba2cb05539c1f72i6u345df5433hg535kj5x56v6er56if2566c63c2ad670d6859e536b40d87e6543b115609f0464bdd99502abbe241c4&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Of course, you should use your own secret key, so change my example to be more secure.</p>
+
+<p>If you have ever generated devise&rsquo;s views, then you should change it&rsquo;s mailers to use <code>@token</code> instead of <code>@resource.*_token</code>:</p>
+
+<figure class='code'><figcaption><span>views/devise/mailer/confirmation_instructions.html.haml </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haml'><span class='line'># ...
+</span><span class='line'><span class="p">=</span> <span class="n">link_to</span> <span class="n">t</span><span class="p">(</span><span class="s1">&#39;devise.mailer.confirmation_instructions.submit&#39;</span><span class="p">),</span> <span class="n">confirmation_url</span><span class="p">(</span><span class="vi">@resource</span><span class="p">,</span> <span class="n">confirmation_token</span><span class="p">:</span> <span class="vi">@token</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>views/devise/mailer/reset_password_instructions.html.haml </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haml'><span class='line'># ...
+</span><span class='line'><span class="p">=</span> <span class="n">link_to</span> <span class="n">t</span><span class="p">(</span><span class="s1">&#39;devise.mailer.reset_password_instructions.reset_link&#39;</span><span class="p">),</span> <span class="n">edit_password_url</span><span class="p">(</span><span class="vi">@resource</span><span class="p">,</span> <span class="n">reset_password_token</span><span class="p">:</span> <span class="vi">@token</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>views/devise/mailer/unlock_instructions.html.haml </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haml'><span class='line'># ...
+</span><span class='line'><span class="p">=</span> <span class="n">link_to</span> <span class="n">t</span><span class="p">(</span><span class="s1">&#39;devise.mailer.unlock_instructions.unlock_link&#39;</span><span class="p">),</span> <span class="n">unlock_url</span><span class="p">(</span><span class="vi">@resource</span><span class="p">,</span> <span class="n">unlock_token</span><span class="p">:</span> <span class="vi">@token</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After that everything should works. But take a look into your terminal: you may have deprecation errors, which you should fix!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How Set Up Sublime Text 2 as Your Default Git Editor]]></title>
