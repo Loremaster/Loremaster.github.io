@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Loremaster's blog]]></title>
+  <link href="http://bloginius.com/atom.xml" rel="self"/>
+  <link href="http://bloginius.com/"/>
+  <updated>2013-12-26T12:50:25+04:00</updated>
+  <id>http://bloginius.com/</id>
+  <author>
+    <name><![CDATA[Serj L aka Loremaster]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How Set Up Sublime Text 2 as Your Default Git Editor]]></title>
+    <link href="http://bloginius.com/blog/2013/12/25/how-set-up-sublime-text-2-as-default-git-editor/"/>
+    <updated>2013-12-25T12:42:58+04:00</updated>
+    <id>http://bloginius.com/blog/2013/12/25/how-set-up-sublime-text-2-as-default-git-editor</id>
+    <content type="html"><![CDATA[<p>If you love Sublime Text 2 as I do then you probably would like to change default git editor (which is Vim nowadays). I suppose that you have installed Sublime text.</p>
+
+<p>First of all, you should install <code>subl</code> shortcut. To do that open your shell and print (if you already have <code>~/bin</code> directory, then just use the last line of my code):</p>
+
+<figure class='code'><figcaption><span>Terminal </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="nb">cd</span> ~
+</span><span class='line'><span class="nv">$ </span>mkdir bin
+</span><span class='line'><span class="nv">$ </span>ln -s <span class="s2">&quot;/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl&quot;</span> ~/bin/subl
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now restart your shell and try that:</p>
+
+<figure class='code'><figcaption><span>Terminal </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>subl -h
+</span><span class='line'>Sublime Text 2 Build 2221
+</span><span class='line'>
+</span><span class='line'>Usage: subl <span class="o">[</span>arguments<span class="o">]</span> <span class="o">[</span>files<span class="o">]</span>         edit the given files
+</span><span class='line'>   or: subl <span class="o">[</span>arguments<span class="o">]</span> <span class="o">[</span>directories<span class="o">]</span>   open the given directories
+</span><span class='line'>   or: subl <span class="o">[</span>arguments<span class="o">]</span> -               edit stdin
+</span><span class='line'>
+</span><span class='line'>Arguments:
+</span><span class='line'>  --project &lt;project&gt;: Load the given project
+</span><span class='line'>  --command &lt;<span class="nb">command</span>&gt;: Run the given <span class="nb">command</span>
+</span><span class='line'>  -n or --new-window:  Open a new window
+</span><span class='line'>  -a or --add:         Add folders to the current window
+</span><span class='line'>  -w or --wait:        Wait <span class="k">for </span>the files to be closed before returning
+</span><span class='line'>  -b or --background:  Don<span class="err">&#39;</span>t activate the application
+</span><span class='line'>  -s or --stay:        Keep the application activated after closing the file
+</span><span class='line'>  -h or --help:        Show <span class="nb">help</span> <span class="o">(</span>this message<span class="o">)</span> and <span class="nb">exit</span>
+</span><span class='line'>  -v or --version:     Show version and <span class="nb">exit</span>
+</span><span class='line'>
+</span><span class='line'>--wait is implied <span class="k">if </span>reading from stdin. Use --stay to not switch back
+</span><span class='line'>to the terminal when a file is closed <span class="o">(</span>only relevant <span class="k">if </span>waiting <span class="k">for </span>a file<span class="o">)</span>.
+</span><span class='line'>
+</span><span class='line'>Filenames may be given a :line or :line:column suffix to open at a specific
+</span><span class='line'>location.
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you have the same output, then everything works great. Otherwise you should add <code>~/bin</code> to your $PATH. To do that open your <code>~.bash_profile</code> and append these lines to the end of the file:</p>
+
+<figure class='code'><figcaption><span>.bash_profile </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:~/bin
+</span><span class='line'><span class="nb">export </span>PATH
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And I think that you should restart your shell again.</p>
+
+<p>Finally, to set up sublime as default editor just print in your shell that:</p>
+
+<figure class='code'><figcaption><span>Terminal </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git config --global core.editor <span class="s2">&quot;subl -n -w&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And that is all!</p>
+]]></content>
+  </entry>
+  
+</feed>
