@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How integrate Acts As Taggable On with Jquery Token Input (with Rails 3)"
+title: "How integrate ActsAsTaggableOn with Jquery Token Input (with Rails 3)"
 date: 2013-12-31 16:53:11 +0400
 comments: true
 categories:
