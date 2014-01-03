@@ -9,9 +9,9 @@
   <meta name="author" content="Serj L aka Loremaster">
 
   
-  <meta name="description" content="Blog Archive 2013 How Upgrade Devise 2 to 3.2
-Dec 26 2013 How Set Up Sublime Text 2 as Your Default Git Editor
-Dec 25 2013 Recent Posts How Upgrade &hellip;">
+  <meta name="description" content="Blog Archive 2013 How Integrate ActsAsTaggableOn With Jquery Token Input (With Rails 3)
+Dec 31 2013 How Upgrade Devise 2 to 3.2
+Dec 26 2013 How Set &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -94,6 +94,16 @@ Dec 25 2013 Recent Posts How Upgrade &hellip;">
 
 <article>
   
+<h1><a href="/blog/2013/12/31/how-integrate-acts-as-taggable-on-with-jquery-token-input-with-rails-3/">How Integrate ActsAsTaggableOn With Jquery Token Input (With Rails 3)</a></h1>
+<time datetime="2013-12-31T16:53:11+04:00" pubdate><span class='month'>Dec</span> <span class='day'>31</span> <span class='year'>2013</span></time>
+
+
+</article>
+
+
+
+<article>
+  
 <h1><a href="/blog/2013/12/26/how-upgrade-devise-2-dot-x-to-3-dot-2-x/">How Upgrade Devise 2 to 3.2</a></h1>
 <time datetime="2013-12-26T15:37:53+04:00" pubdate><span class='month'>Dec</span> <span class='day'>26</span> <span class='year'>2013</span></time>
 
@@ -124,6 +134,10 @@ Dec 25 2013 Recent Posts How Upgrade &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/31/how-integrate-acts-as-taggable-on-with-jquery-token-input-with-rails-3/">How Integrate ActsAsTaggableOn With Jquery Token Input (With Rails 3)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/26/how-upgrade-devise-2-dot-x-to-3-dot-2-x/">How Upgrade Devise 2 to 3.2</a>
       </li>
     
@@ -132,6 +146,35 @@ Dec 25 2013 Recent Posts How Upgrade &hellip;">
       </li>
     
   </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/Loremaster">@Loremaster</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'Loremaster',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 
@@ -145,7 +188,7 @@ Dec 25 2013 Recent Posts How Upgrade &hellip;">
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Serj L aka Loremaster -
+  Copyright &copy; 2014 - Serj L aka Loremaster -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

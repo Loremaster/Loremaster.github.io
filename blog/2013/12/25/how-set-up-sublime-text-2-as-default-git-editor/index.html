@@ -254,6 +254,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/31/how-integrate-acts-as-taggable-on-with-jquery-token-input-with-rails-3/">How Integrate ActsAsTaggableOn With Jquery Token Input (With Rails 3)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/26/how-upgrade-devise-2-dot-x-to-3-dot-2-x/">How Upgrade Devise 2 to 3.2</a>
       </li>
     
@@ -262,6 +266,35 @@
       </li>
     
   </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/Loremaster">@Loremaster</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'Loremaster',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 
@@ -275,7 +308,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Serj L aka Loremaster -
+  Copyright &copy; 2014 - Serj L aka Loremaster -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
