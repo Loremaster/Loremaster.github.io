@@ -4,7 +4,7 @@
   <title><![CDATA[Loremaster's blog]]></title>
   <link href="http://bloginius.com/atom.xml" rel="self"/>
   <link href="http://bloginius.com/"/>
-  <updated>2014-01-01T21:18:45+04:00</updated>
+  <updated>2014-01-17T12:53:11+04:00</updated>
   <id>http://bloginius.com/</id>
   <author>
     <name><![CDATA[Serj L aka Loremaster]]></name>
@@ -12,6 +12,159 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How Install Thinking Sphinx With PostgreSQL's Support on Mac OS X]]></title>
+    <link href="http://bloginius.com/blog/2014/01/10/how-install-thinking-sphinx-with-postgresqls-support-on-mac-os-x/"/>
+    <updated>2014-01-10T13:05:00+04:00</updated>
+    <id>http://bloginius.com/blog/2014/01/10/how-install-thinking-sphinx-with-postgresqls-support-on-mac-os-x</id>
+    <content type="html"><![CDATA[<p>Thinking Sphinx is a library, which allows you use Sphinx &ndash; full text search server. But setup can be tricky, if you use PostgreSQL. In this post I will show you you how setup it.</p>
+
+<p>First of all, make sure that you have installed Mysql. The best way to install it is just use homebrew:</p>
+
+<figure class='code'><figcaption><span>Terminal </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>brew install <span class="nv">mysql</span>
+</span><span class='line'><span class="o">==</span>&gt; Downloading https://downloads.sf.net/project/machomebrew/Bottles/mysql-5.6.15.mavericks.bottle.tar.gz
+</span><span class='line'><span class="c">######################################################################## 100.0%</span>
+</span><span class='line'><span class="o">==</span>&gt; Pouring mysql-5.6.15.mavericks.bottle.tar.gz
+</span><span class='line'><span class="o">==</span>&gt; Caveats
+</span><span class='line'>A <span class="s2">&quot;/etc/my.cnf&quot;</span> from another install may interfere with a Homebrew-built
+</span><span class='line'>server starting up correctly.
+</span><span class='line'>
+</span><span class='line'>To connect:
+</span><span class='line'>    mysql -uroot
+</span><span class='line'>
+</span><span class='line'>To have launchd start mysql at login:
+</span><span class='line'>    ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
+</span><span class='line'>Then to load mysql now:
+</span><span class='line'>    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</span><span class='line'>Or, <span class="k">if </span>you don<span class="err">&#39;</span>t want/need launchctl, you can just run:
+</span><span class='line'>    mysql.server start
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I recommend you to copy and past commands from homebrew&rsquo;s output after installation.</p>
+
+<p>If you don&rsquo;t want to use homebrew (but i strongly recommend to <strong>use</strong> homebrew), then you should install x64 MySQL server from <a href="http://dev.mysql.com/downloads/mysql/">official site</a>. Make sure to use x64, you don&rsquo;t want to get any weird errors (I guess that you use at least OS X 10.6).</p>
+
+<p>Now you should install Sphinx. And it&rsquo;s a tricky part. If you would install it without any flag or with just mysql support, you would get such weird errors:</p>
+
+<figure class='code'><figcaption><span>Terminal </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rake ts:index
+</span><span class='line'>Generating configuration to /Users/serj/Projects/gearup/config/development.sphinx.conf
+</span><span class='line'>Sphinx 2.1.3-dev <span class="o">(</span>r4319<span class="o">)</span>
+</span><span class='line'>Copyright <span class="o">(</span>c<span class="o">)</span> 2001-2013, Andrew Aksyonoff
+</span><span class='line'>Copyright <span class="o">(</span>c<span class="o">)</span> 2008-2013, Sphinx Technologies Inc <span class="o">(</span>http://sphinxsearch.com<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>using config file <span class="s1">&#39;/Users/serj/Projects/gearup/config/development.sphinx.conf&#39;</span>...
+</span><span class='line'>indexing index <span class="s1">&#39;service_core&#39;</span>...
+</span><span class='line'>ERROR: <span class="nb">source</span> <span class="s1">&#39;service_core_0&#39;</span>: unknown <span class="nb">type</span> <span class="s1">&#39;pgsql&#39;</span>; skipping.
+</span><span class='line'>ERROR: index <span class="s1">&#39;service_core&#39;</span>: failed to configure some of the sources, will not index.
+</span><span class='line'>total 0 reads, 0.000 sec, 0.0 kb/call avg, 0.0 msec/call avg
+</span><span class='line'>total 0 writes, 0.000 sec, 0.0 kb/call avg, 0.0 msec/call avg
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To avoid them you should instal sphinx with mysql <strong>and</strong> postgres support:</p>
+
+<figure class='code'><figcaption><span>Terminal </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>brew install sphinx --mysql --pgsql
+</span><span class='line'><span class="o">==</span>&gt; Downloading http://sphinxsearch.com/files/sphinx-2.1.3-release.tar.gz
+</span><span class='line'>Already downloaded: /Library/Caches/Homebrew/sphinx-2.1.3.tar.gz
+</span><span class='line'><span class="o">==</span>&gt; Downloading http://snowball.tartarus.org/dist/libstemmer_c.tgz
+</span><span class='line'>Already downloaded: /Library/Caches/Homebrew/sphinx--stemmer-c.tgz
+</span><span class='line'><span class="o">==</span>&gt; ./configure --prefix<span class="o">=</span>/usr/local/Cellar/sphinx/2.1.3 --localstatedir<span class="o">=</span>/usr/local/var --with-libstemmer --with-mysql --with-pgsql
+</span><span class='line'><span class="o">==</span>&gt; make <span class="nv">install</span>
+</span><span class='line'><span class="o">==</span>&gt; Caveats
+</span><span class='line'>Sphinx has been compiled with libstemmer support.
+</span><span class='line'>
+</span><span class='line'>Sphinx depends on either MySQL or PostreSQL as a datasource.
+</span><span class='line'>
+</span><span class='line'>You can install these with Homebrew with:
+</span><span class='line'>  brew install mysql
+</span><span class='line'>    For MySQL server.
+</span><span class='line'>
+</span><span class='line'>  brew install mysql-connector-c
+</span><span class='line'>    For MySQL client libraries only.
+</span><span class='line'>
+</span><span class='line'>  brew install postgresql
+</span><span class='line'>    For PostgreSQL server.
+</span><span class='line'>
+</span><span class='line'>We don<span class="s1">&#39;t install these for you when you install this formula, as</span>
+</span><span class='line'><span class="s1">we don&#39;</span>t know which datasource you intend to use.
+</span><span class='line'><span class="o">==</span>&gt; Summary
+</span><span class='line'>🍺  /usr/local/Cellar/sphinx/2.1.3: 16 files, 18M, built in 17 seconds
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After that you can install Thinking Sphinx:</p>
+
+<figure class='code'><figcaption><span>Gemfile </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;mysql2&#39;</span><span class="p">,</span>          <span class="s1">&#39;0.3.13&#39;</span><span class="p">,</span> <span class="ss">:platform</span> <span class="o">=&gt;</span> <span class="ss">:ruby</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;thinking-sphinx&#39;</span><span class="p">,</span> <span class="s1">&#39;3.1.0&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And everything should be ok!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How Integrate ActsAsTaggableOn With Jquery Token Input (With Rails 3)]]></title>
