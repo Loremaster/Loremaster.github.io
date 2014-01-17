@@ -85,8 +85,8 @@ we don't know which datasource you intend to use.
 After that you can install Thinking Sphinx:
 
 {% codeblock Gemfile lang:ruby %}
-gem 'mysql2',          '0.3.13'
-gem 'thinking-sphinx', '3.0.6'
+gem 'mysql2',          '0.3.13', :platform => :ruby
+gem 'thinking-sphinx', '3.1.0'
 {% endcodeblock %}
 
 And everything should be ok!
