@@ -87,6 +87,8 @@ I patched few gems so it would work with Rails 4, here is the list:
 2. https://github.com/Loremaster/simple-captcha - i added a patch for support `attr_accessible` only in Rails 4, use gem ‘simple_captcha2' if you are on StrongParams.
 3. https://github.com/Loremaster/impressionist - i added a patch for support `attr_accessible` only in Rails 4, use original gem ‘impressionist' if you are on StrongParams.
 
+https://github.com/kenjione/nested-hstore/tree/rails4_fix - my colleague fixed this gem for rails 4.
+
 Wow, so much work is done! And I didn't even ask to launch your specs! I guess now its a good time to run it! I suppose that you'll have a ton of deprecation messages and red tests. Check their errors, they may happen because of mostly old gems, or their incapability to work with Rails 4 and attr_accessible. You also may want to check section below about deprecation messages.
 
 Ok, now lets fix configs. Firstly you should edit `config/application.rb` and `config/environmens/*`, check out [railsdiff](http://railsdiff.org/html/v3.2.16-v4.0.2.html) for that purpose. Keep in mind my notes about cancan!
