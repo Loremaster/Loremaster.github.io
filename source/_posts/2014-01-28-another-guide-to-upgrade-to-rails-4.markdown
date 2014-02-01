@@ -56,6 +56,8 @@ gem 'rails-observers'
 gem 'actionpack-page_caching'
 gem 'actionpack-action_caching'
 gem 'activerecord-session_store'
+gem 'actionpack-xml_parser'
+gem 'actionview-encoded_mail_to' # protecting mail-to form bots
 {% endcodeblock %}
 
 Yeap, you should remove assets group, bump rails, sass-rails, coffee-rails and uglifier. And you want to add gems above to have smooth transition. As you remember, i asked you to make a list of gems which have their own version for Rails 4 and which should be removed. It's probably a good time to specify their version and remove unused gems according to your list. After that run `bundle install` and make sure that bundle'll evaluate and not throw errors.
