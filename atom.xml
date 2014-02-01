@@ -4,7 +4,7 @@
   <title><![CDATA[Loremaster's blog]]></title>
   <link href="http://bloginius.com/atom.xml" rel="self"/>
   <link href="http://bloginius.com/"/>
-  <updated>2014-01-29T12:29:54+04:00</updated>
+  <updated>2014-02-01T20:07:47+04:00</updated>
   <id>http://bloginius.com/</id>
   <author>
     <name><![CDATA[Serj L aka Loremaster]]></name>
@@ -78,6 +78,8 @@
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.2&#39;</span>
 </span><span class='line'>
 </span><span class='line'><span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span><span class="p">,</span>   <span class="s1">&#39;~&gt; 4.0.0&#39;</span>
@@ -90,6 +92,8 @@
 </span><span class='line'><span class="n">gem</span> <span class="s1">&#39;actionpack-page_caching&#39;</span>
 </span><span class='line'><span class="n">gem</span> <span class="s1">&#39;actionpack-action_caching&#39;</span>
 </span><span class='line'><span class="n">gem</span> <span class="s1">&#39;activerecord-session_store&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;actionpack-xml_parser&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;actionview-encoded_mail_to&#39;</span> <span class="c1"># protecting mail-to form bots</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
