@@ -61,3 +61,52 @@ role :app, "web1", "web2", "web3"
 {% endcodeblock %}
 
 Check out [readme](https://github.com/wayneeseguin/rvm-capistrano) for more details about this hero.
+
+###capistrano-notifier
+
+If you use heroku then you receive email when deploy finishes. A like this feature and it is very cool that you can have the same with capistrano. So, meet the second hero: [capistrano-notifier](https://github.com/cramerdev/capistrano-notifier).
+
+The superpower of this hero is sending email with commits which has been deployed, for example:
+
+```
+Obi-Wan Kenobi deployed
+Power branch
+stage to
+staging on
+02/24/2014 at
+02:37 PM MSK
+
+https://github.com/jedis/power/compare/8fc335c...e3a999c
+8e8b39c The force is strong with this one (Serj L)
+b17e255 New lightsaber
+```
+
+Looks pretty cool, huh? To install gem add it:
+
+{% codeblock Gemfile lang:ruby %}
+group :development do
+  gem 'capistrano-notifier'
+end
+{% endcodeblock %}
+
+After that you should add some settings to be able to send mail. Here is example for gmail:
+
+{% codeblock config/deploy.rb lang:ruby %}
+set :notifier_mail_options, {
+  :method => :smtp,
+  :from   => 'capistrano@domain.com',
+  :to     => ['john@doe.com', 'jane@doe.com'],
+  :github => 'MyCompany/project-name',
+  :smtp_settings => {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "gmail.com",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: MY_USERNAME,
+    password: MY_PASSWORD
+  }
+}
+{% endcodeblock %}
+
+After that each person, whose email has been provided in `:to` section will receive the email after deploy. Of course, you man need some time to set thins up properly, but afterwards this feature may be very handy for a lot of people.
