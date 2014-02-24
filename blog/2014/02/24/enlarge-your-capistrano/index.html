@@ -1,37 +1,4 @@
-
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>Enlarge Your Capistrano - Loremaster's blog</title>
-  <meta name="author" content="Serj L aka Loremaster">
-
-  
-  <meta name="description" content="I would like to tell you about few gems, which would make your deployment life a little bit easier. Well, it worked for me. rvm-capistrano Our first &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://bloginius.com/blog/2014/02/24/enlarge-your-capistrano">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Loremaster's blog" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-  <script type="text/javascript">
+<!DOCTYPE html> <!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]--> <!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]--> <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]--> <head> <meta charset="utf-8"> <title>Enlarge Your Capistrano - Loremaster's blog</title> <meta name="author" content="Serj L aka Loremaster"> <meta name="description" content="I would like to tell you about few gems, which would make your deployment life a little bit easier. Well, it worked for me. rvm-capistrano Our first &hellip;"> <meta name="HandheldFriendly" content="True"> <meta name="MobileOptimized" content="320"> <meta name="viewport" content="width=device-width, initial-scale=1"> <link rel="canonical" href="http://bloginius.com/blog/2014/02/24/enlarge-your-capistrano"> <link href="/favicon.png" rel="icon"> <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css"> <link href="/atom.xml" rel="alternate" title="Loremaster's blog" type="application/atom+xml"> <script src="/javascripts/modernizr-2.0.js"></script> <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script> <script src="/javascripts/octopress.js" type="text/javascript"></script> <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-46710684-1']);
     _gaq.push(['_trackPageview']);
@@ -41,86 +8,7 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
-  </script>
-
-
-</head>
-
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Loremaster's blog</a></h1>
-  
-    <h2>Blog of Rails developer.</h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:bloginius.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
-  
-  <header>
-    
-      <h1 class="entry-title">Enlarge Your Capistrano</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-24T14:58:45+04:00" pubdate data-updated="true">Feb 24<span>th</span>, 2014</time>
-        
-           | <a href="#disqus_thread"
-             data-disqus-identifier="http://bloginius.com">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-<div class="entry-content"><p>I would like to tell you about few gems, which would make your deployment life a little bit easier. Well, it worked for me.</p>
-
-<h3>rvm-capistrano</h3>
-
-<p>Our first hero on the scene is <a href="https://github.com/wayneeseguin/rvm-capistrano">rvm-capistrano</a>. This hero is special, he prefers only capistrano №2. But time is changing and capistrano №3 is walking on streets of our computers, so, if you have seen it and even use it then you may select another hero: <a href="https://github.com/rvm/rvm1-capistrano3#readme">rvm1-capistrano3</a>.</p>
-
-<p>But I will talk about oldies here. What does this gem actually do? It brings integration between Rvm and capistrano. There are some discusses in the internet what to use, some people prefer <a href="https://github.com/sstephenson/rbenv">rbenv</a>, other use <a href="https://rvm.io/">Rvm</a>. Actually, rbenv is very small and it has very small code base, but it doesn&rsquo;t have power of Rvm, so your choice should depend on your situation. But let me talk about hero, he is waiting to be presented!</p>
-
-<!-- more -->
-
-
-<p>Installation is simple, because you already use capistrano, do you?</p>
-
-<figure class='code'><figcaption><span>Gemfile </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+  </script> </head> <body> <header role="banner"><hgroup> <h1><a href="/">Loremaster's blog</a></h1> <h2>Blog of Rails developer.</h2> </hgroup> </header> <nav role="navigation"><ul class="subscription" data-subscription="rss"> <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li> </ul> <form action="http://google.com/search" method="get"> <fieldset role="search"> <input type="hidden" name="q" value="site:bloginius.com"/> <input class="search" type="text" name="q" results="0" placeholder="Search"/> </fieldset> </form> <ul class="main-navigation"> <li><a href="/">Blog</a></li> <li><a href="/blog/archives">Archives</a></li> </ul> </nav> <div id="main"> <div id="content"> <div> <article class="hentry" role="article"> <header> <h1 class="entry-title">Enlarge Your Capistrano</h1> <p class="meta"> <time datetime="2014-02-24T14:58:45+04:00" pubdate data-updated="true">Feb 24<span>th</span>, 2014</time> | <a href="#disqus_thread" data-disqus-identifier="http://bloginius.com">Comments</a> </p> </header> <div class="entry-content"><p>I would like to tell you about few gems, which would make your deployment life a little bit easier. Well, it worked for me.</p> <h3>rvm-capistrano</h3> <p>Our first hero on the scene is <a href="https://github.com/wayneeseguin/rvm-capistrano">rvm-capistrano</a>. This hero is special, he prefers only capistrano №2. But time is changing and capistrano №3 is walking on streets of our computers, so, if you have seen it and even use it then you may select another hero: <a href="https://github.com/rvm/rvm1-capistrano3#readme">rvm1-capistrano3</a>.</p> <p>But I will talk about oldies here. What does this gem actually do? It brings integration between Rvm and capistrano. There are some discusses in the internet what to use, some people prefer <a href="https://github.com/sstephenson/rbenv">rbenv</a>, other use <a href="https://rvm.io/">Rvm</a>. Actually, rbenv is very small and it has very small code base, but it doesn&rsquo;t have power of Rvm, so your choice should depend on your situation. But let me talk about hero, he is waiting to be presented!</p> <p>Installation is simple, because you already use capistrano, do you?</p> <figure class='code'><figcaption><span>Gemfile </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -128,35 +16,9 @@
 </span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;capistrano&#39;</span>
 </span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;rvm-capistrano&#39;</span>
 </span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now you should call the hero, to do that just place this line somewhere in the top of your capistrano&rsquo;s deploy file:</p>
-
-<figure class='code'><figcaption><span>config/deploy.rb </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>Now you should call the hero, to do that just place this line somewhere in the top of your capistrano&rsquo;s deploy file:</p> <figure class='code'><figcaption><span>config/deploy.rb </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rvm/capistrano&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This will bring to you few things. First of all, it extends <code>base</code> to automatically <code>set :default_shell</code>. Also it adds these tasks:</p>
-
-<ul>
-<li><code>rvm:info</code> &ndash; show rvm info</li>
-<li><code>rvm:list</code> &ndash; list rvm rubies</li>
-<li><code>rvm:info_list</code> &ndash; show info and list rubies</li>
-<li><code>rvm:install_rvm</code> &ndash; install RVM of the given choice to the server.</li>
-<li><code>rvm:install_ruby</code> &ndash; install RVM ruby to the server, create gemset if needed</li>
-<li><code>rvm:create_gemset</code> &ndash; create gemset</li>
-</ul>
-
-
-<p>If you forget about correct syntax you can always run <code>cap -T rvm</code> to list all tasks which gem provides. There are some additional tasks which you may include you can check them out in <a href="https://github.com/wayneeseguin/rvm-capistrano#modules">readme</a>.</p>
-
-<p>With this gem you may, for example, update Rvm on each deploy and make sure that ruby is installed:</p>
-
-<figure class='code'><figcaption><span>config/deploy.rb </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>This will bring to you few things. First of all, it extends <code>base</code> to automatically <code>set :default_shell</code>. Also it adds these tasks:</p> <ul> <li><code>rvm:info</code> &ndash; show rvm info</li> <li><code>rvm:list</code> &ndash; list rvm rubies</li> <li><code>rvm:info_list</code> &ndash; show info and list rubies</li> <li><code>rvm:install_rvm</code> &ndash; install RVM of the given choice to the server.</li> <li><code>rvm:install_ruby</code> &ndash; install RVM ruby to the server, create gemset if needed</li> <li><code>rvm:create_gemset</code> &ndash; create gemset</li> </ul> <p>If you forget about correct syntax you can always run <code>cap -T rvm</code> to list all tasks which gem provides. There are some additional tasks which you may include you can check them out in <a href="https://github.com/wayneeseguin/rvm-capistrano#modules">readme</a>.</p> <p>With this gem you may, for example, update Rvm on each deploy and make sure that ruby is installed:</p> <figure class='code'><figcaption><span>config/deploy.rb </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -168,21 +30,9 @@
 </span><span class='line'>
 </span><span class='line'><span class="n">before</span> <span class="s1">&#39;deploy&#39;</span><span class="p">,</span> <span class="s1">&#39;rvm:install_rvm&#39;</span>  <span class="c1"># install/update RVM</span>
 </span><span class='line'><span class="n">before</span> <span class="s1">&#39;deploy&#39;</span><span class="p">,</span> <span class="s1">&#39;rvm:install_ruby&#39;</span> <span class="c1"># install Ruby and create gemset (both if missing)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Or set default ruby version and gemset:</p>
-
-<figure class='code'><figcaption><span>config/deploy.rb </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>Or set default ruby version and gemset:</p> <figure class='code'><figcaption><span>config/deploy.rb </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">set</span> <span class="ss">:rvm_ruby_string</span><span class="p">,</span> <span class="s1">&#39;2.0.0@gemset_name&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Or even restrict Rvm on some servers!</p>
-
-<figure class='code'><figcaption><span>config/deploy.rb </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>Or even restrict Rvm on some servers!</p> <figure class='code'><figcaption><span>config/deploy.rb </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -190,18 +40,7 @@
 </span><span class='line'><span class="nb">require</span> <span class="s2">&quot;rvm/capistrano/selector_mixed&quot;</span>
 </span><span class='line'><span class="n">role</span> <span class="ss">:rvm</span><span class="p">,</span> <span class="s2">&quot;web1&quot;</span><span class="p">,</span> <span class="s2">&quot;web2&quot;</span>
 </span><span class='line'><span class="n">role</span> <span class="ss">:app</span><span class="p">,</span> <span class="s2">&quot;web1&quot;</span><span class="p">,</span> <span class="s2">&quot;web2&quot;</span><span class="p">,</span> <span class="s2">&quot;web3&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Check out <a href="https://github.com/wayneeseguin/rvm-capistrano#readme">readme</a> for more details about this hero.</p>
-
-<h3>capistrano-notifier</h3>
-
-<p>If you use heroku then you receive email when deploy finishes. A like this feature and it is very cool that you can have the same functionality with capistrano. So, meet the second hero: <a href="https://github.com/cramerdev/capistrano-notifier">capistrano-notifier</a>.</p>
-
-<p>The superpower of this hero is sending email with commits, which has been deployed, for example:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>Check out <a href="https://github.com/wayneeseguin/rvm-capistrano#readme">readme</a> for more details about this hero.</p> <h3>capistrano-notifier</h3> <p>If you use heroku then you receive email when deploy finishes. A like this feature and it is very cool that you can have the same functionality with capistrano. So, meet the second hero: <a href="https://github.com/cramerdev/capistrano-notifier">capistrano-notifier</a>.</p> <p>The superpower of this hero is sending email with commits, which has been deployed, for example:</p> <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -220,25 +59,13 @@
 </span><span class='line'>
 </span><span class='line'>https://github.com/jedis/stage/compare/8fc335c...e3a999c
 </span><span class='line'>8e8b39c The force is strong with this one (Obi-Wan Kenobi)
-</span><span class='line'>b17e255 New lightsaber (Obi-Wan Kenobi)</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Looks pretty cool, huh? To install gem add it:</p>
-
-<figure class='code'><figcaption><span>Gemfile </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span><span class='line'>b17e255 New lightsaber (Obi-Wan Kenobi)</span></code></pre></td></tr></table></div></figure> <p>Looks pretty cool, huh? To install gem add it:</p> <figure class='code'><figcaption><span>Gemfile </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
 </span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;capistrano-notifier&#39;</span>
 </span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>After that you should add some settings to be able to send mails. Here is example for gmail:</p>
-
-<figure class='code'><figcaption><span>config/deploy.rb </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>After that you should add some settings to be able to send mails. Here is example for gmail:</p> <figure class='code'><figcaption><span>config/deploy.rb </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -268,148 +95,21 @@
 </span><span class='line'>    <span class="ss">password</span><span class="p">:</span> <span class="no">MY_PASSWORD</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>After that each person, whose email has been provided in <code>:to</code> section will receive the email after deploy. Of course, you may need some time to set thins up properly, but afterwards this feature may be very handy for a lot of people.</p>
-
-<h3>capistrano_deploy_lock</h3>
-
-<p>Last, but not least hero is <a href="https://github.com/ndbroadbent/capistrano_deploy_lock">capistrano_deploy_lock</a>. I think you should know that nothing good will ever come out of two (and more) simultaneously deploys. This modest hero helps to fight with such evil.</p>
-
-<p>Installation is simple:</p>
-
-<figure class='code'><figcaption><span>Gemfile </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>After that each person, whose email has been provided in <code>:to</code> section will receive the email after deploy. Of course, you may need some time to set thins up properly, but afterwards this feature may be very handy for a lot of people.</p> <h3>capistrano_deploy_lock</h3> <p>Last, but not least hero is <a href="https://github.com/ndbroadbent/capistrano_deploy_lock">capistrano_deploy_lock</a>. I think you should know that nothing good will ever come out of two (and more) simultaneously deploys. This modest hero helps to fight with such evil.</p> <p>Installation is simple:</p> <figure class='code'><figcaption><span>Gemfile </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
 </span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;capistrano_deploy_lock&#39;</span>
 </span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Call the hero:</p>
-
-<figure class='code'><figcaption><span>config/deploy.rb </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>Call the hero:</p> <figure class='code'><figcaption><span>config/deploy.rb </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/deploy_lock&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Make sure that all developers have this gem and config to protect your deploys. Now each deploy would be locked during deploy and would be unlocked afterwards. This protects each your deploy from simultaneously deploys of other people. Each person, who would try to deploy during current deploy would receive this message (or something like this):</p>
-
-<figure class='code'><figcaption><span>Terminal </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>Make sure that all developers have this gem and config to protect your deploys. Now each deploy would be locked during deploy and would be unlocked afterwards. This protects each your deploy from simultaneously deploys of other people. Each person, who would try to deploy during current deploy would receive this message (or something like this):</p> <figure class='code'><figcaption><span>Terminal </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>*** Deploy locked 3 minutes ago by <span class="s1">&#39;dark side&#39;</span>
 </span><span class='line'>*** Message: Deploying master branch
 </span><span class='line'>*** Expires in 12 minutes
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This gem also helps in situations when your deploy fails, which gives you time to fix it (by default it is 15 minutes). This feature helped me few times. You can find more details in <a href="https://github.com/ndbroadbent/capistrano_deploy_lock#readme">readme</a></p>
-
-<p>That is all for today, thank you for your patience.</p>
-
-<p>P.S. All these gems have been tested with Rails 4 and they work.</p>
-</div>
-
-
-  <footer>
-    <p class="meta">
-      
-  
-
-<span class="byline author vcard">Posted by <span class="fn">Serj L aka Loremaster</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-24T14:58:45+04:00" pubdate data-updated="true">Feb 24<span>th</span>, 2014</time>
-      
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://bloginius.com/blog/2014/02/24/enlarge-your-capistrano/" data-via="" data-counturl="http://bloginius.com/blog/2014/02/24/enlarge-your-capistrano/" >Tweet</a>
-  
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2014/01/28/another-guide-to-upgrade-to-rails-4/" title="Previous Post: Another guide to upgrade to Rails 4">&laquo; Another guide to upgrade to Rails 4</a>
-      
-      
-    </p>
-  </footer>
-</article>
-
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-  </section>
-
-</div>
-
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2014/02/24/enlarge-your-capistrano/">Enlarge Your Capistrano</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/28/another-guide-to-upgrade-to-rails-4/">Another Guide to Upgrade to Rails 4</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/10/how-install-thinking-sphinx-with-postgresqls-support-on-mac-os-x/">How Install Thinking Sphinx With PostgreSQL's Support on Mac OS X</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/31/how-integrate-acts-as-taggable-on-with-jquery-token-input-with-rails-3/">How Integrate ActsAsTaggableOn With Jquery Token Input (With Rails 3)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/26/how-upgrade-devise-2-dot-x-to-3-dot-2-x/">How Upgrade Devise 2 to 3.2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/25/how-set-up-sublime-text-2-as-default-git-editor/">How Set Up Sublime Text 2 as Your Default Git Editor</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
-  </ul>
-  
-  <a href="https://github.com/Loremaster">@Loremaster</a> on GitHub
-  
-  <script type="text/javascript">
+</span></code></pre></td></tr></table></div></figure> <p>This gem also helps in situations when your deploy fails, which gives you time to fix it (by default it is 15 minutes). This feature helped me few times. You can find more details in <a href="https://github.com/ndbroadbent/capistrano_deploy_lock#readme">readme</a></p> <p>That is all for today, thank you for your patience.</p> <p>P.S. All these gems have been tested with Rails 4 and they work.</p> </div> <footer> <p class="meta"> <span class="byline author vcard">Posted by <span class="fn">Serj L aka Loremaster</span></span> <time datetime="2014-02-24T14:58:45+04:00" pubdate data-updated="true">Feb 24<span>th</span>, 2014</time> </p> <div class="sharing"> <a href="//twitter.com/share" class="twitter-share-button" data-url="http://bloginius.com/blog/2014/02/24/enlarge-your-capistrano/" data-via="" data-counturl="http://bloginius.com/blog/2014/02/24/enlarge-your-capistrano/">Tweet</a> </div> <p class="meta"> <a class="basic-alignment left" href="/blog/2014/01/28/another-guide-to-upgrade-to-rails-4/" title="Previous Post: Another guide to upgrade to Rails 4">&laquo; Another guide to upgrade to Rails 4</a> </p> </footer> </article> <section> <h1>Comments</h1> <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> </div> </section> </div> <aside class="sidebar"> <section> <h1>Recent Posts</h1> <ul id="recent_posts"> <li class="post"> <a href="/blog/2014/02/24/enlarge-your-capistrano/">Enlarge Your Capistrano</a> </li> <li class="post"> <a href="/blog/2014/01/28/another-guide-to-upgrade-to-rails-4/">Another Guide to Upgrade to Rails 4</a> </li> <li class="post"> <a href="/blog/2014/01/10/how-install-thinking-sphinx-with-postgresqls-support-on-mac-os-x/">How Install Thinking Sphinx With PostgreSQL's Support on Mac OS X</a> </li> <li class="post"> <a href="/blog/2013/12/31/how-integrate-acts-as-taggable-on-with-jquery-token-input-with-rails-3/">How Integrate ActsAsTaggableOn With Jquery Token Input (With Rails 3)</a> </li> <li class="post"> <a href="/blog/2013/12/26/how-upgrade-devise-2-dot-x-to-3-dot-2-x/">How Upgrade Devise 2 to 3.2</a> </li> <li class="post"> <a href="/blog/2013/12/25/how-set-up-sublime-text-2-as-default-git-editor/">How Set Up Sublime Text 2 as Your Default Git Editor</a> </li> </ul> </section> <section> <h1>GitHub Repos</h1> <ul id="gh_repos"> <li class="loading">Status updating...</li> </ul> <a href="https://github.com/Loremaster">@Loremaster</a> on GitHub <script type="text/javascript">
     $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
@@ -426,29 +126,7 @@
             target: '#gh_repos'
         });
     });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-
-
-
-  
-</aside>
-
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Serj L aka Loremaster -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-<script type="text/javascript">
+  </script> <script src="/javascripts/github.js" type="text/javascript"> </script> </section> </aside> </div> </div> <footer role="contentinfo"><p> Copyright &copy; 2014 - Serj L aka Loremaster - <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> </p> </footer> <script type="text/javascript">
       var disqus_shortname = 'httploremastergithubio';
       
         
@@ -462,15 +140,7 @@
       dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
-</script>
-
-
-
-
-
-
-
-  <script type="text/javascript">
+</script> <script type="text/javascript">
     (function(){
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
@@ -478,11 +148,4 @@
       twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
-  </script>
-
-
-
-
-
-</body>
-</html>
+  </script> </body> </html>

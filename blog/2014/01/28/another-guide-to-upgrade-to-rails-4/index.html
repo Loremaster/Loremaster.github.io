@@ -1,37 +1,4 @@
-
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>Another Guide to Upgrade to Rails 4 - Loremaster's blog</title>
-  <meta name="author" content="Serj L aka Loremaster">
-
-  
-  <meta name="description" content="Yep, this is another guide, which will help you, i hope, to upgrade your app to Rails 4. Before start, please make sure that you are running latest &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://bloginius.com/blog/2014/01/28/another-guide-to-upgrade-to-rails-4">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Loremaster's blog" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-  <script type="text/javascript">
+<!DOCTYPE html> <!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]--> <!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]--> <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]--> <head> <meta charset="utf-8"> <title>Another Guide to Upgrade to Rails 4 - Loremaster's blog</title> <meta name="author" content="Serj L aka Loremaster"> <meta name="description" content="Yep, this is another guide, which will help you, i hope, to upgrade your app to Rails 4. Before start, please make sure that you are running latest &hellip;"> <meta name="HandheldFriendly" content="True"> <meta name="MobileOptimized" content="320"> <meta name="viewport" content="width=device-width, initial-scale=1"> <link rel="canonical" href="http://bloginius.com/blog/2014/01/28/another-guide-to-upgrade-to-rails-4"> <link href="/favicon.png" rel="icon"> <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css"> <link href="/atom.xml" rel="alternate" title="Loremaster's blog" type="application/atom+xml"> <script src="/javascripts/modernizr-2.0.js"></script> <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script> <script src="/javascripts/octopress.js" type="text/javascript"></script> <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-46710684-1']);
     _gaq.push(['_trackPageview']);
@@ -41,85 +8,7 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
-  </script>
-
-
-</head>
-
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Loremaster's blog</a></h1>
-  
-    <h2>Blog of Rails developer.</h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:bloginius.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
-  
-  <header>
-    
-      <h1 class="entry-title">Another Guide to Upgrade to Rails 4</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-28T15:53:10+04:00" pubdate data-updated="true">Jan 28<span>th</span>, 2014</time>
-        
-           | <a href="#disqus_thread"
-             data-disqus-identifier="http://bloginius.com">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-<div class="entry-content"><p>Yep, this is another guide, which will help you, i hope, to upgrade your app to Rails 4. Before start, please make sure that you are running latest Rails 3 release, i think it is 3.2.16 nowadays. Yes, i&rsquo;m sorry, Rails 2 guys, but this guide&rsquo;ll not help a lot, you have a lot of work to do, sorry! :)</p>
-
-<!-- more -->
-
-
-<p>What should you do next? You should upgrade <strong>all</strong> of your gems to their latest versions for rails 3, which can be a little bit hard, but good test coverage will help you a lot! If you don&rsquo;t have test coverage, then take a deep breath and… And create your test suit (i prefer Rspec for unit tests and Capybara, Capybara-webkit and Cucumber &ndash; for integration tests). You don&rsquo;t have to get 100% test coverage for your app, covering a main logic should be enough. Believe me, it&rsquo;s very important &ndash; at least you&rsquo;ll be sure that libs upgrade and fresh code base&rsquo;ll not break your app.</p>
-
-<p>Make sure that you read <code>changelog</code> (this file also may be known as <code>history</code>) of each gem to get to know if gem&rsquo;ll break anything. Good news is that upgrading of gems is not Rails 4 specific, so you can deploy your app when your gems&rsquo;ll be up to date.</p>
-
-<p>When your upgrade of gems is complete and all tests pass then you may push updated app to your test server and after testing to the production (it depends, of course, how your system is set up). Then you should wait for some time (day or more) to make sure that everything works great and upgrade of libs hasn&rsquo;t brake anything. Yes, tests may miss something, its okey, just write new tests and fix the problem to avoid regressions.</p>
-
-<p>When you upgrade gems then you should make a note for yourself where you should specify which of the gems have new version for Rails 4 and which gems are not working in Rails 4 (so you may remove them after upgrade). Here is my example:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+  </script> </head> <body> <header role="banner"><hgroup> <h1><a href="/">Loremaster's blog</a></h1> <h2>Blog of Rails developer.</h2> </hgroup> </header> <nav role="navigation"><ul class="subscription" data-subscription="rss"> <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li> </ul> <form action="http://google.com/search" method="get"> <fieldset role="search"> <input type="hidden" name="q" value="site:bloginius.com"/> <input class="search" type="text" name="q" results="0" placeholder="Search"/> </fieldset> </form> <ul class="main-navigation"> <li><a href="/">Blog</a></li> <li><a href="/blog/archives">Archives</a></li> </ul> </nav> <div id="main"> <div id="content"> <div> <article class="hentry" role="article"> <header> <h1 class="entry-title">Another Guide to Upgrade to Rails 4</h1> <p class="meta"> <time datetime="2014-01-28T15:53:10+04:00" pubdate data-updated="true">Jan 28<span>th</span>, 2014</time> | <a href="#disqus_thread" data-disqus-identifier="http://bloginius.com">Comments</a> </p> </header> <div class="entry-content"><p>Yep, this is another guide, which will help you, i hope, to upgrade your app to Rails 4. Before start, please make sure that you are running latest Rails 3 release, i think it is 3.2.16 nowadays. Yes, i&rsquo;m sorry, Rails 2 guys, but this guide&rsquo;ll not help a lot, you have a lot of work to do, sorry! :)</p> <p>What should you do next? You should upgrade <strong>all</strong> of your gems to their latest versions for rails 3, which can be a little bit hard, but good test coverage will help you a lot! If you don&rsquo;t have test coverage, then take a deep breath and… And create your test suit (i prefer Rspec for unit tests and Capybara, Capybara-webkit and Cucumber &ndash; for integration tests). You don&rsquo;t have to get 100% test coverage for your app, covering a main logic should be enough. Believe me, it&rsquo;s very important &ndash; at least you&rsquo;ll be sure that libs upgrade and fresh code base&rsquo;ll not break your app.</p> <p>Make sure that you read <code>changelog</code> (this file also may be known as <code>history</code>) of each gem to get to know if gem&rsquo;ll break anything. Good news is that upgrading of gems is not Rails 4 specific, so you can deploy your app when your gems&rsquo;ll be up to date.</p> <p>When your upgrade of gems is complete and all tests pass then you may push updated app to your test server and after testing to the production (it depends, of course, how your system is set up). Then you should wait for some time (day or more) to make sure that everything works great and upgrade of libs hasn&rsquo;t brake anything. Yes, tests may miss something, its okey, just write new tests and fix the problem to avoid regressions.</p> <p>When you upgrade gems then you should make a note for yourself where you should specify which of the gems have new version for Rails 4 and which gems are not working in Rails 4 (so you may remove them after upgrade). Here is my example:</p> <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -138,23 +27,7 @@
 </span><span class='line'>Remove in rails 4:
 </span><span class='line'>activerecord-postgres-hstore
 </span><span class='line'>sextant
-</span><span class='line'>turbo-sprockets-rails3</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Are gems ready for rails 4?</h2>
-
-<p>Next step is to check out <a href="http://ready4rails4.net/">ready4rails4</a>, this site allow you to upload your Gemfile and check if your app is fully ready for Rails 4. Of course, you may not find your gems statusesor even gems. It&rsquo;s okay, you should check out repos of these gems (the easiest way is to find in on <a href="http://rubygems.org/">rubygems</a>) and then search in Readme, History/Changes or issues for any mentions of Rails 4. If you don&rsquo;t find anything, then you should just create an issue and ask about Rails 4 support. Actually, if gem is supported by an author, then it may have support for Rails 4. If repo is abandoned for a long time then you should probably search for forks or alternatives via <a href="https://www.ruby-toolbox.com/">ruby-toolbox</a> or create your own fork.</p>
-
-<p>If you found any data about Rails 4&rsquo;s support for your gem/gems then you should definitely post your discover on <a href="http://ready4rails4.net/">ready4rails4</a>, it&rsquo;ll help other people a lot!</p>
-
-<p>All these steps can take a long time, because you may have a lot gems with unknown or even “not ready” statuses so you&rsquo;ll do a long research. But i&rsquo;m absolutely sure that you must do these preparation steps, because it&rsquo;ll really help you a lot during the actual rails 4 upgrade.</p>
-
-<h2>Actual bump of rails</h2>
-
-<p>So, you did all these steps and now you are ready to bump. Open the <code>Gemfile</code>:</p>
-
-<figure class='code'><figcaption><span>Gemfile </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span><span class='line'>turbo-sprockets-rails3</span></code></pre></td></tr></table></div></figure> <h2>Are gems ready for rails 4?</h2> <p>Next step is to check out <a href="http://ready4rails4.net/">ready4rails4</a>, this site allow you to upload your Gemfile and check if your app is fully ready for Rails 4. Of course, you may not find your gems statusesor even gems. It&rsquo;s okay, you should check out repos of these gems (the easiest way is to find in on <a href="http://rubygems.org/">rubygems</a>) and then search in Readme, History/Changes or issues for any mentions of Rails 4. If you don&rsquo;t find anything, then you should just create an issue and ask about Rails 4 support. Actually, if gem is supported by an author, then it may have support for Rails 4. If repo is abandoned for a long time then you should probably search for forks or alternatives via <a href="https://www.ruby-toolbox.com/">ruby-toolbox</a> or create your own fork.</p> <p>If you found any data about Rails 4&rsquo;s support for your gem/gems then you should definitely post your discover on <a href="http://ready4rails4.net/">ready4rails4</a>, it&rsquo;ll help other people a lot!</p> <p>All these steps can take a long time, because you may have a lot gems with unknown or even “not ready” statuses so you&rsquo;ll do a long research. But i&rsquo;m absolutely sure that you must do these preparation steps, because it&rsquo;ll really help you a lot during the actual rails 4 upgrade.</p> <h2>Actual bump of rails</h2> <p>So, you did all these steps and now you are ready to bump. Open the <code>Gemfile</code>:</p> <figure class='code'><figcaption><span>Gemfile </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -182,15 +55,7 @@
 </span><span class='line'><span class="n">gem</span> <span class="s1">&#39;activerecord-session_store&#39;</span>
 </span><span class='line'><span class="n">gem</span> <span class="s1">&#39;actionpack-xml_parser&#39;</span>
 </span><span class='line'><span class="n">gem</span> <span class="s1">&#39;actionview-encoded_mail_to&#39;</span> <span class="c1"># protecting mail-to form bots</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Yeap, you should remove assets group, bump rails, sass-rails, coffee-rails and uglifier. And you want to add gems above to have smooth transition. As you remember, i asked you to make a list of gems which have their own version for Rails 4 and which should be removed. It&rsquo;s probably a good time to specify their version and remove unused gems according to your list. After that run <code>bundle install</code> and make sure that bundle&rsquo;ll evaluate and not throw errors.</p>
-
-<p>Here i want to add my two cents about <a href="https://github.com/ryanb/cancan">cancan</a>. This gem is a great tool and i&rsquo;m sure that you may use it in your app. Well, here are good <a href="news:">news:</a> it&rsquo;s latest version (1.6.10) works if you keep attr_accessible (via “protected_attributes” gem). This also means that you shouldn&rsquo;t remove some options in your configs and you shouldn&rsquo;t start to use StrongParams (which is used by a lot of gems with Rails 4 support). So, you should keep these options in your configs:</p>
-
-<figure class='code'><figcaption><span>config/application.rb </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>Yeap, you should remove assets group, bump rails, sass-rails, coffee-rails and uglifier. And you want to add gems above to have smooth transition. As you remember, i asked you to make a list of gems which have their own version for Rails 4 and which should be removed. It&rsquo;s probably a good time to specify their version and remove unused gems according to your list. After that run <code>bundle install</code> and make sure that bundle&rsquo;ll evaluate and not throw errors.</p> <p>Here i want to add my two cents about <a href="https://github.com/ryanb/cancan">cancan</a>. This gem is a great tool and i&rsquo;m sure that you may use it in your app. Well, here are good <a href="news:">news:</a> it&rsquo;s latest version (1.6.10) works if you keep attr_accessible (via “protected_attributes” gem). This also means that you shouldn&rsquo;t remove some options in your configs and you shouldn&rsquo;t start to use StrongParams (which is used by a lot of gems with Rails 4 support). So, you should keep these options in your configs:</p> <figure class='code'><figcaption><span>config/application.rb </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -200,67 +65,17 @@
 </span><span class='line'><span class="c1"># in your app. As such, your models will need to explicitly whitelist or blacklist accessible</span>
 </span><span class='line'><span class="c1"># parameters by using an attr_accessible or attr_protected declaration.</span>
 </span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">active_record</span><span class="o">.</span><span class="n">whitelist_attributes</span> <span class="o">=</span> <span class="kp">true</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>config/environments/* </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <figure class='code'><figcaption><span>config/environments/* </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Raise exception on mass assignment protection for Active Record models</span>
 </span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">active_record</span><span class="o">.</span><span class="n">mass_assignment_sanitizer</span> <span class="o">=</span> <span class="ss">:strict</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Here <code>config/environments/*</code> means all filed in that directory. That should be enough for cancan to work properly with Rails 4 until you&rsquo;d move to StrongParams completely.</p>
-
-<p>But i want to warn you about few things. First of all, almost all of the gems which support Rails 4 are not working with <code>attr_accessible</code>. It is bad for you because you want to have a smooth transition (who doesn&rsquo;t?). So, you need to fork gems which generate mass-assigment errors and monkey-patch them so they&rsquo;d work with your app without StrongParams. This is not a bad solution, because if you have a big app with a lot of logic or you just use Cancan then integration of StrongParams&rsquo;ll be pain in the ass.</p>
-
-<p>Of course, if you are not depend on Cancan and/or your app is not so big then you might integrate StrongParams during Rails 4 upgrade and don&rsquo;t think a lot about forks and patches. But even then you may need to patch something (welcome to opensourse)!</p>
-
-<p>I patched few gems so it would work with Rails 4, here is the list:</p>
-
-<ol>
-<li><a href="https://github.com/Loremaster/rails_admin">https://github.com/Loremaster/rails_admin</a> &ndash; it has problems with paper_trail 3 (which is for rails 4 only), so i patched it.</li>
-<li><a href="https://github.com/Loremaster/simple-captcha">https://github.com/Loremaster/simple-captcha</a> &ndash; i added a patch for support <code>attr_accessible</code> only in Rails 4, use gem ‘simple_captcha2&#8217; if you are on StrongParams.</li>
-<li><a href="https://github.com/Loremaster/impressionist">https://github.com/Loremaster/impressionist</a> &ndash; i added a patch for support <code>attr_accessible</code> only in Rails 4, use original gem ‘impressionist&#8217; if you are on StrongParams.</li>
-</ol>
-
-
-<p><a href="https://github.com/kenjione/nested-hstore/tree/rails4_fix">https://github.com/kenjione/nested-hstore/tree/rails4_fix</a> &ndash; my colleague fixed this gem for rails 4.</p>
-
-<p>Wow, so much work is done! And I didn&rsquo;t even ask to launch your specs! I guess now its a good time to run it! I suppose that you&rsquo;ll have a ton of deprecation messages and red tests. Check their errors, they may happen because of mostly old gems, or their incapability to work with Rails 4 and attr_accessible. You also may want to check section below about deprecation messages.</p>
-
-<p>Ok, now lets fix configs. Firstly you should edit <code>config/application.rb</code> and <code>config/environmens/*</code>, check out <a href="http://railsdiff.org/html/v3.2.16-v4.0.2.html">railsdiff</a> for that purpose. Keep in mind my notes about cancan!</p>
-
-<p>When you finish with <code>config/</code> directory then you might want to apply edits to other files. Again, use <a href="http://railsdiff.org/html/v3.2.16-v4.0.2.html">railsdiff</a> for that. And don&rsquo;t forget to add <code>secret_key_base</code> in your secret_token.rb!</p>
-
-<p>After all edits in configs you need to generate <code>bin</code> directory:</p>
-
-<figure class='code'><figcaption><span>Terminal </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>Here <code>config/environments/*</code> means all filed in that directory. That should be enough for cancan to work properly with Rails 4 until you&rsquo;d move to StrongParams completely.</p> <p>But i want to warn you about few things. First of all, almost all of the gems which support Rails 4 are not working with <code>attr_accessible</code>. It is bad for you because you want to have a smooth transition (who doesn&rsquo;t?). So, you need to fork gems which generate mass-assigment errors and monkey-patch them so they&rsquo;d work with your app without StrongParams. This is not a bad solution, because if you have a big app with a lot of logic or you just use Cancan then integration of StrongParams&rsquo;ll be pain in the ass.</p> <p>Of course, if you are not depend on Cancan and/or your app is not so big then you might integrate StrongParams during Rails 4 upgrade and don&rsquo;t think a lot about forks and patches. But even then you may need to patch something (welcome to opensourse)!</p> <p>I patched few gems so it would work with Rails 4, here is the list:</p> <ol> <li><a href="https://github.com/Loremaster/rails_admin">https://github.com/Loremaster/rails_admin</a> &ndash; it has problems with paper_trail 3 (which is for rails 4 only), so i patched it.</li> <li><a href="https://github.com/Loremaster/simple-captcha">https://github.com/Loremaster/simple-captcha</a> &ndash; i added a patch for support <code>attr_accessible</code> only in Rails 4, use gem ‘simple_captcha2&#8217; if you are on StrongParams.</li> <li><a href="https://github.com/Loremaster/impressionist">https://github.com/Loremaster/impressionist</a> &ndash; i added a patch for support <code>attr_accessible</code> only in Rails 4, use original gem ‘impressionist&#8217; if you are on StrongParams.</li> </ol> <p><a href="https://github.com/kenjione/nested-hstore/tree/rails4_fix">https://github.com/kenjione/nested-hstore/tree/rails4_fix</a> &ndash; my colleague fixed this gem for rails 4.</p> <p>Wow, so much work is done! And I didn&rsquo;t even ask to launch your specs! I guess now its a good time to run it! I suppose that you&rsquo;ll have a ton of deprecation messages and red tests. Check their errors, they may happen because of mostly old gems, or their incapability to work with Rails 4 and attr_accessible. You also may want to check section below about deprecation messages.</p> <p>Ok, now lets fix configs. Firstly you should edit <code>config/application.rb</code> and <code>config/environmens/*</code>, check out <a href="http://railsdiff.org/html/v3.2.16-v4.0.2.html">railsdiff</a> for that purpose. Keep in mind my notes about cancan!</p> <p>When you finish with <code>config/</code> directory then you might want to apply edits to other files. Again, use <a href="http://railsdiff.org/html/v3.2.16-v4.0.2.html">railsdiff</a> for that. And don&rsquo;t forget to add <code>secret_key_base</code> in your secret_token.rb!</p> <p>After all edits in configs you need to generate <code>bin</code> directory:</p> <figure class='code'><figcaption><span>Terminal </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rake rails:update:bin
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This will generate bin/ folder with bundle, rails and rake. You also might want to generate binstubs for spec and cucumber:</p>
-
-<figure class='code'><figcaption><span>Terminal </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>This will generate bin/ folder with bundle, rails and rake. You also might want to generate binstubs for spec and cucumber:</p> <figure class='code'><figcaption><span>Terminal </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>bundle binstubs rspec-core
 </span><span class='line'><span class="nv">$ </span>bundle binstubs cucumber
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Deprecations</h2>
-
-<p>I will not mention all possible deprecation messages, but i want to tell you about an important ones.</p>
-
-<p>1) Dynamic methods. Here is short list (old method &ndash;> new method):</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <h2>Deprecations</h2> <p>I will not mention all possible deprecation messages, but i want to tell you about an important ones.</p> <p>1) Dynamic methods. Here is short list (old method &ndash;> new method):</p> <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -272,78 +87,21 @@
 </span><span class='line'><span class="n">find_or_initialize_by_</span><span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="o">-&gt;</span> <span class="n">where</span><span class="p">(</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span><span class="o">.</span><span class="n">first_or_initialize</span>
 </span><span class='line'><span class="n">find_or_create_by_</span><span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="o">-&gt;</span> <span class="n">find_or_create_by</span><span class="p">(</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span> <span class="ow">or</span> <span class="n">where</span><span class="p">(</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span><span class="o">.</span><span class="n">first_or_create</span>
 </span><span class='line'><span class="n">find_or_create_by_</span><span class="o">.</span><span class="n">.</span><span class="o">.!</span> <span class="o">-&gt;</span> <span class="n">find_or_create_by!</span><span class="p">(</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span> <span class="ow">or</span> <span class="n">where</span><span class="p">(</span><span class="err">…</span><span class="p">)</span><span class="o">.</span><span class="n">first_or_create!</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>2) Match can&rsquo;t be used in routes anymore. So, instead of:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>2) Match can&rsquo;t be used in routes anymore. So, instead of:</p> <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">match</span> <span class="s1">&#39;home/index&#39;</span><span class="p">,</span> <span class="ss">to</span><span class="p">:</span><span class="s1">&#39;home#index&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You should use this one (if want to show page, of course):</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>You should use this one (if want to show page, of course):</p> <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">get</span> <span class="s1">&#39;home/index&#39;</span><span class="p">,</span> <span class="ss">to</span><span class="p">:</span><span class="s1">&#39;home#index&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You can use <code>get</code>, <code>post</code>, <code>put</code>, <code>delete</code> or even <code>patch</code> depending on what you want to achieve.</p>
-
-<p>3) Eager loading table(s) that are referenced in a string SQL snippet. That means that this will work great:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>You can use <code>get</code>, <code>post</code>, <code>put</code>, <code>delete</code> or even <code>patch</code> depending on what you want to achieve.</p> <p>3) Eager loading table(s) that are referenced in a string SQL snippet. That means that this will work great:</p> <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="ss">:comments</span><span class="p">)</span><span class="o">.</span><span class="n">first</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>But that:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>But that:</p> <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="ss">:comments</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s2">&quot;comments.title = ‘foo&#39;&quot;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Should be rewritten to use reference:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>Should be rewritten to use reference:</p> <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="ss">:comments</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s2">&quot;comments.title = ‘foo&#39;”).references(:comments)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Here is note why:</p>
-
-<p><code>Currently, Active Record recognizes the table in the string, and knows to JOIN the comments table to the query, rather than loading comments in a separate query. However, doing this without writing a full-blown SQL parser is inherently flawed. Since we don't want to write an SQL parser, we are removing this functionality. From now on, you must explicitly tell Active Record when you are referencing a table from a string</code></p>
-
-<p>4) New scopes. You should pass callable object to the scope (lambda, for example). So you need change that:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>Here is note why:</p> <p><code>Currently, Active Record recognizes the table in the string, and knows to JOIN the comments table to the query, rather than loading comments in a separate query. However, doing this without writing a full-blown SQL parser is inherently flawed. Since we don't want to write an SQL parser, we are removing this functionality. From now on, you must explicitly tell Active Record when you are referencing a table from a string</code></p> <p>4) New scopes. You should pass callable object to the scope (lambda, for example). So you need change that:</p> <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">scope</span> <span class="ss">:order_by_name</span><span class="p">,</span> <span class="n">order</span><span class="p">(</span><span class="s1">&#39;brands.name ASC&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>To that:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>To that:</p> <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">scope</span> <span class="ss">:order_by_name</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">order</span><span class="p">(</span><span class="s1">&#39;brands.name ASC&#39;</span><span class="p">)</span> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>5) <code>.all</code> instead of <code>.scoped</code></p>
-
-<p>In Rails 3 you could use Model.scoped to return Rails&rsquo;s relation of all Model&rsquo;s objects. In Rails 4 <code>.all</code> returns Rails Relation by default, so you should replace .scoped by <code>.all</code>.</p>
-
-<h2>Deployment</h2>
-
-<p>I have deployed my apps via capistrano 2.15.5 and i recommend you to use this version or higher. First of all, make sure that your Gemfile doesn&rsquo;t include gems which works with Rails 3 only, for example turbo-sprockets-rails3. In my case, i forgot to remove this gem so i had really weird error during first deploy with Rails 4.</p>
-
-<p>Also, you should use <code>deploy:finalize_update</code> instead of <code>deploy:update_code</code>, i had an issue in Capistrano 2 with this thing, and this simple fix helped a lot.</p>
-
-<p>And last note. You can get this error during the deploy:</p>
-
-<figure class='code'><figcaption><span>Terminal </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</span></code></pre></td></tr></table></div></figure> <p>5) <code>.all</code> instead of <code>.scoped</code></p> <p>In Rails 3 you could use Model.scoped to return Rails&rsquo;s relation of all Model&rsquo;s objects. In Rails 4 <code>.all</code> returns Rails Relation by default, so you should replace .scoped by <code>.all</code>.</p> <h2>Deployment</h2> <p>I have deployed my apps via capistrano 2.15.5 and i recommend you to use this version or higher. First of all, make sure that your Gemfile doesn&rsquo;t include gems which works with Rails 3 only, for example turbo-sprockets-rails3. In my case, i forgot to remove this gem so i had really weird error during first deploy with Rails 4.</p> <p>Also, you should use <code>deploy:finalize_update</code> instead of <code>deploy:update_code</code>, i had an issue in Capistrano 2 with this thing, and this simple fix helped a lot.</p> <p>And last note. You can get this error during the deploy:</p> <figure class='code'><figcaption><span>Terminal </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -351,108 +109,7 @@
 </span><span class='line'><span class="s1">More than one asset manifest file was found in &#39;</span>/srv/stage/shared/assets<span class="err">&#39;</span>.
 </span><span class='line'>If you are upgrading a Rails 3 application to Rails 4, follow these instructions:
 </span><span class='line'>http://github.com/capistrano/capistrano/wiki/Upgrading-to-Rails-4#asset-pipeline <span class="o">(</span>RuntimeError<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This error appears because Rails 3 has its own asset&rsquo;s manifest and Rails 4 has it&rsquo;s own. I just renamed assets directory and created the new one (empty). After that deployment was successful. Also you might just remove manifests and repeat your deploy but it&rsquo;ll make much harder to rollback so i don&rsquo;t recommend you to do that.</p>
-</div>
-
-
-  <footer>
-    <p class="meta">
-      
-  
-
-<span class="byline author vcard">Posted by <span class="fn">Serj L aka Loremaster</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-28T15:53:10+04:00" pubdate data-updated="true">Jan 28<span>th</span>, 2014</time>
-      
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://bloginius.com/blog/2014/01/28/another-guide-to-upgrade-to-rails-4/" data-via="" data-counturl="http://bloginius.com/blog/2014/01/28/another-guide-to-upgrade-to-rails-4/" >Tweet</a>
-  
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2014/01/10/how-install-thinking-sphinx-with-postgresqls-support-on-mac-os-x/" title="Previous Post: How install Thinking Sphinx with PostgreSQL's support on Mac OS X">&laquo; How install Thinking Sphinx with PostgreSQL's support on Mac OS X</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2014/02/24/enlarge-your-capistrano/" title="Next Post: Enlarge your capistrano">Enlarge your capistrano &raquo;</a>
-      
-    </p>
-  </footer>
-</article>
-
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-  </section>
-
-</div>
-
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2014/02/24/enlarge-your-capistrano/">Enlarge Your Capistrano</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/28/another-guide-to-upgrade-to-rails-4/">Another Guide to Upgrade to Rails 4</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/10/how-install-thinking-sphinx-with-postgresqls-support-on-mac-os-x/">How Install Thinking Sphinx With PostgreSQL's Support on Mac OS X</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/31/how-integrate-acts-as-taggable-on-with-jquery-token-input-with-rails-3/">How Integrate ActsAsTaggableOn With Jquery Token Input (With Rails 3)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/26/how-upgrade-devise-2-dot-x-to-3-dot-2-x/">How Upgrade Devise 2 to 3.2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/25/how-set-up-sublime-text-2-as-default-git-editor/">How Set Up Sublime Text 2 as Your Default Git Editor</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
-  </ul>
-  
-  <a href="https://github.com/Loremaster">@Loremaster</a> on GitHub
-  
-  <script type="text/javascript">
+</span></code></pre></td></tr></table></div></figure> <p>This error appears because Rails 3 has its own asset&rsquo;s manifest and Rails 4 has it&rsquo;s own. I just renamed assets directory and created the new one (empty). After that deployment was successful. Also you might just remove manifests and repeat your deploy but it&rsquo;ll make much harder to rollback so i don&rsquo;t recommend you to do that.</p> </div> <footer> <p class="meta"> <span class="byline author vcard">Posted by <span class="fn">Serj L aka Loremaster</span></span> <time datetime="2014-01-28T15:53:10+04:00" pubdate data-updated="true">Jan 28<span>th</span>, 2014</time> </p> <div class="sharing"> <a href="//twitter.com/share" class="twitter-share-button" data-url="http://bloginius.com/blog/2014/01/28/another-guide-to-upgrade-to-rails-4/" data-via="" data-counturl="http://bloginius.com/blog/2014/01/28/another-guide-to-upgrade-to-rails-4/">Tweet</a> </div> <p class="meta"> <a class="basic-alignment left" href="/blog/2014/01/10/how-install-thinking-sphinx-with-postgresqls-support-on-mac-os-x/" title="Previous Post: How install Thinking Sphinx with PostgreSQL's support on Mac OS X">&laquo; How install Thinking Sphinx with PostgreSQL's support on Mac OS X</a> <a class="basic-alignment right" href="/blog/2014/02/24/enlarge-your-capistrano/" title="Next Post: Enlarge your capistrano">Enlarge your capistrano &raquo;</a> </p> </footer> </article> <section> <h1>Comments</h1> <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> </div> </section> </div> <aside class="sidebar"> <section> <h1>Recent Posts</h1> <ul id="recent_posts"> <li class="post"> <a href="/blog/2014/02/24/enlarge-your-capistrano/">Enlarge Your Capistrano</a> </li> <li class="post"> <a href="/blog/2014/01/28/another-guide-to-upgrade-to-rails-4/">Another Guide to Upgrade to Rails 4</a> </li> <li class="post"> <a href="/blog/2014/01/10/how-install-thinking-sphinx-with-postgresqls-support-on-mac-os-x/">How Install Thinking Sphinx With PostgreSQL's Support on Mac OS X</a> </li> <li class="post"> <a href="/blog/2013/12/31/how-integrate-acts-as-taggable-on-with-jquery-token-input-with-rails-3/">How Integrate ActsAsTaggableOn With Jquery Token Input (With Rails 3)</a> </li> <li class="post"> <a href="/blog/2013/12/26/how-upgrade-devise-2-dot-x-to-3-dot-2-x/">How Upgrade Devise 2 to 3.2</a> </li> <li class="post"> <a href="/blog/2013/12/25/how-set-up-sublime-text-2-as-default-git-editor/">How Set Up Sublime Text 2 as Your Default Git Editor</a> </li> </ul> </section> <section> <h1>GitHub Repos</h1> <ul id="gh_repos"> <li class="loading">Status updating...</li> </ul> <a href="https://github.com/Loremaster">@Loremaster</a> on GitHub <script type="text/javascript">
     $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
@@ -469,29 +126,7 @@
             target: '#gh_repos'
         });
     });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-
-
-
-  
-</aside>
-
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Serj L aka Loremaster -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-<script type="text/javascript">
+  </script> <script src="/javascripts/github.js" type="text/javascript"> </script> </section> </aside> </div> </div> <footer role="contentinfo"><p> Copyright &copy; 2014 - Serj L aka Loremaster - <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> </p> </footer> <script type="text/javascript">
       var disqus_shortname = 'httploremastergithubio';
       
         
@@ -505,15 +140,7 @@
       dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
-</script>
-
-
-
-
-
-
-
-  <script type="text/javascript">
+</script> <script type="text/javascript">
     (function(){
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
@@ -521,11 +148,4 @@
       twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
-  </script>
-
-
-
-
-
-</body>
-</html>
+  </script> </body> </html>
