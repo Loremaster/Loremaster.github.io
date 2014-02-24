@@ -17,4 +17,6 @@ group :development do
   gem 'directory_watcher', '1.4.1'
 end
 
+gem 'yui-compressor'
+gem 'html_compressor'
 gem 'sinatra', '~> 1.4.2'
