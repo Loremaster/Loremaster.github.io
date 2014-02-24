@@ -6,13 +6,15 @@ comments: true
 categories:
 ---
 
-I would like to tell you about few gems, which would make your deployment a little bit easier. Well, it worked for me.
+I would like to tell you about few gems, which would make your deployment life a little bit easier. Well, it worked for me.
 
 ###rvm-capistrano
 
 Our first hero on the scene is [rvm-capistrano](https://github.com/wayneeseguin/rvm-capistrano). This hero is special, he prefers only capistrano №2. But time is changing and capistrano №3 is walking on streets of our computers, so, if you have seen it and even use it then you may select another hero: [rvm1-capistrano3](https://github.com/rvm/rvm1-capistrano3#readme).
 
 But I will talk about oldies here. What does this gem actually do? It brings integration between Rvm and capistrano. There are some discusses in the internet what to use, some people prefer [rbenv](https://github.com/sstephenson/rbenv), other use [Rvm](https://rvm.io/). Actually, rbenv is very small and it has very small code base, but it doesn't have power of Rvm, so your choice should depend on your situation. But let me talk about hero, he is waiting to be presented!
+
+<!-- more -->
 
 Installation is simple, because you already use capistrano, do you?
 
@@ -29,7 +31,7 @@ Now you should call the hero, to do that just place this line somewhere in the t
 require 'rvm/capistrano'
 {% endcodeblock %}
 
-This will bring to you few things. First of all, it extends `base` to automatically `set :default_shell`. Also it adds this tasks:
+This will bring to you few things. First of all, it extends `base` to automatically `set :default_shell`. Also it adds these tasks:
 
 * `rvm:info` - show rvm info
 * `rvm:list` - list rvm rubies
@@ -38,7 +40,7 @@ This will bring to you few things. First of all, it extends `base` to automatica
 * `rvm:install_ruby` - install RVM ruby to the server, create gemset if needed
 * `rvm:create_gemset` - create gemset
 
-If you forget about correct syntax you can always run `cap -T rvm` to list all tasks which gem has added. There are some additional tasks which you may include you can check them out in [readme](https://github.com/wayneeseguin/rvm-capistrano#modules).
+If you forget about correct syntax you can always run `cap -T rvm` to list all tasks which gem provides. There are some additional tasks which you may include you can check them out in [readme](https://github.com/wayneeseguin/rvm-capistrano#modules).
 
 With this gem you may, for example, update Rvm on each deploy and make sure that ruby is installed:
 
@@ -51,6 +53,12 @@ before 'deploy', 'rvm:install_rvm'  # install/update RVM
 before 'deploy', 'rvm:install_ruby' # install Ruby and create gemset (both if missing)
 {% endcodeblock %}
 
+Or set default ruby version and gemset:
+
+{% codeblock config/deploy.rb lang:ruby %}
+set :rvm_ruby_string, '2.0.0@gemset_name'
+{% endcodeblock %}
+
 Or even restrict Rvm on some servers!
 
 {% codeblock config/deploy.rb lang:ruby %}
@@ -60,13 +68,13 @@ role :rvm, "web1", "web2"
 role :app, "web1", "web2", "web3"
 {% endcodeblock %}
 
-Check out [readme](https://github.com/wayneeseguin/rvm-capistrano) for more details about this hero.
+Check out [readme](https://github.com/wayneeseguin/rvm-capistrano#readme) for more details about this hero.
 
 ###capistrano-notifier
 
-If you use heroku then you receive email when deploy finishes. A like this feature and it is very cool that you can have the same with capistrano. So, meet the second hero: [capistrano-notifier](https://github.com/cramerdev/capistrano-notifier).
+If you use heroku then you receive email when deploy finishes. A like this feature and it is very cool that you can have the same functionality with capistrano. So, meet the second hero: [capistrano-notifier](https://github.com/cramerdev/capistrano-notifier).
 
-The superpower of this hero is sending email with commits which has been deployed, for example:
+The superpower of this hero is sending email with commits, which has been deployed, for example:
 
 ```
 Obi-Wan Kenobi deployed
@@ -76,9 +84,9 @@ staging on
 02/24/2014 at
 02:37 PM MSK
 
-https://github.com/jedis/power/compare/8fc335c...e3a999c
-8e8b39c The force is strong with this one (Serj L)
-b17e255 New lightsaber
+https://github.com/jedis/stage/compare/8fc335c...e3a999c
+8e8b39c The force is strong with this one (Obi-Wan Kenobi)
+b17e255 New lightsaber (Obi-Wan Kenobi)
 ```
 
 Looks pretty cool, huh? To install gem add it:
@@ -89,7 +97,7 @@ group :development do
 end
 {% endcodeblock %}
 
-After that you should add some settings to be able to send mail. Here is example for gmail:
+After that you should add some settings to be able to send mails. Here is example for gmail:
 
 {% codeblock config/deploy.rb lang:ruby %}
 set :notifier_mail_options, {
@@ -109,4 +117,36 @@ set :notifier_mail_options, {
 }
 {% endcodeblock %}
 
-After that each person, whose email has been provided in `:to` section will receive the email after deploy. Of course, you man need some time to set thins up properly, but afterwards this feature may be very handy for a lot of people.
+After that each person, whose email has been provided in `:to` section will receive the email after deploy. Of course, you may need some time to set thins up properly, but afterwards this feature may be very handy for a lot of people.
+
+###capistrano_deploy_lock
+
+Last, but not least hero is [capistrano_deploy_lock](https://github.com/ndbroadbent/capistrano_deploy_lock). I think you should know that nothing good will ever come out of two (and more) simultaneously deploys. This modest hero helps to fight with such evil.
+
+Installation is simple:
+
+{% codeblock Gemfile lang:ruby %}
+group :development do
+  gem 'capistrano_deploy_lock'
+end
+{% endcodeblock %}
+
+Call the hero:
+
+{% codeblock config/deploy.rb lang:ruby %}
+require 'capistrano/deploy_lock'
+{% endcodeblock %}
+
+Make sure that all developers have this gem and config to protect your deploys. Now each deploy would be locked during deploy and would be unlocked afterwards. This protects each your deploy from simultaneously deploys of other people. Each person, who would try to deploy during current deploy would receive this message (or something like this):
+
+{% codeblock Terminal lang:bash %}
+*** Deploy locked 3 minutes ago by 'dark side'
+*** Message: Deploying master branch
+*** Expires in 12 minutes
+{% endcodeblock %}
+
+This gem also helps in situations when your deploy fails, which gives you time to fix it (by default it is 15 minutes). This feature helped me few times. You can find more details in [readme](https://github.com/ndbroadbent/capistrano_deploy_lock#readme)
+
+That is all for today, thank you for your patience.
+
+P.S. All these gems have been tested with Rails 4 and they work.
