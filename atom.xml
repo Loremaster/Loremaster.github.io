@@ -4,7 +4,7 @@
   <title><![CDATA[Loremaster's blog]]></title>
   <link href="http://bloginius.com/atom.xml" rel="self"/>
   <link href="http://bloginius.com/"/>
-  <updated>2014-02-01T20:07:47+04:00</updated>
+  <updated>2014-02-24T17:11:57+04:00</updated>
   <id>http://bloginius.com/</id>
   <author>
     <name><![CDATA[Serj L aka Loremaster]]></name>
@@ -12,6 +12,222 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Enlarge Your Capistrano]]></title>
+    <link href="http://bloginius.com/blog/2014/02/24/enlarge-your-capistrano/"/>
+    <updated>2014-02-24T14:58:45+04:00</updated>
+    <id>http://bloginius.com/blog/2014/02/24/enlarge-your-capistrano</id>
+    <content type="html"><![CDATA[<p>I would like to tell you about few gems, which would make your deployment life a little bit easier. Well, it worked for me.</p>
+
+<h3>rvm-capistrano</h3>
+
+<p>Our first hero on the scene is <a href="https://github.com/wayneeseguin/rvm-capistrano">rvm-capistrano</a>. This hero is special, he prefers only capistrano №2. But time is changing and capistrano №3 is walking on streets of our computers, so, if you have seen it and even use it then you may select another hero: <a href="https://github.com/rvm/rvm1-capistrano3#readme">rvm1-capistrano3</a>.</p>
+
+<p>But I will talk about oldies here. What does this gem actually do? It brings integration between Rvm and capistrano. There are some discusses in the internet what to use, some people prefer <a href="https://github.com/sstephenson/rbenv">rbenv</a>, other use <a href="https://rvm.io/">Rvm</a>. Actually, rbenv is very small and it has very small code base, but it doesn&rsquo;t have power of Rvm, so your choice should depend on your situation. But let me talk about hero, he is waiting to be presented!</p>
+
+<!-- more -->
+
+
+<p>Installation is simple, because you already use capistrano, do you?</p>
+
+<figure class='code'><figcaption><span>Gemfile </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;capistrano&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;rvm-capistrano&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now you should call the hero, to do that just place this line somewhere in the top of your capistrano&rsquo;s deploy file:</p>
+
+<figure class='code'><figcaption><span>config/deploy.rb </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rvm/capistrano&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will bring to you few things. First of all, it extends <code>base</code> to automatically <code>set :default_shell</code>. Also it adds these tasks:</p>
+
+<ul>
+<li><code>rvm:info</code> &ndash; show rvm info</li>
+<li><code>rvm:list</code> &ndash; list rvm rubies</li>
+<li><code>rvm:info_list</code> &ndash; show info and list rubies</li>
+<li><code>rvm:install_rvm</code> &ndash; install RVM of the given choice to the server.</li>
+<li><code>rvm:install_ruby</code> &ndash; install RVM ruby to the server, create gemset if needed</li>
+<li><code>rvm:create_gemset</code> &ndash; create gemset</li>
+</ul>
+
+
+<p>If you forget about correct syntax you can always run <code>cap -T rvm</code> to list all tasks which gem provides. There are some additional tasks which you may include you can check them out in <a href="https://github.com/wayneeseguin/rvm-capistrano#modules">readme</a>.</p>
+
+<p>With this gem you may, for example, update Rvm on each deploy and make sure that ruby is installed:</p>
+
+<figure class='code'><figcaption><span>config/deploy.rb </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s2">&quot;rvm/capistrano&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">set</span> <span class="ss">:rvm_ruby_string</span><span class="p">,</span> <span class="ss">:local</span>        <span class="c1"># use the same ruby as used locally for deployment</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">before</span> <span class="s1">&#39;deploy&#39;</span><span class="p">,</span> <span class="s1">&#39;rvm:install_rvm&#39;</span>  <span class="c1"># install/update RVM</span>
+</span><span class='line'><span class="n">before</span> <span class="s1">&#39;deploy&#39;</span><span class="p">,</span> <span class="s1">&#39;rvm:install_ruby&#39;</span> <span class="c1"># install Ruby and create gemset (both if missing)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Or set default ruby version and gemset:</p>
+
+<figure class='code'><figcaption><span>config/deploy.rb </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">set</span> <span class="ss">:rvm_ruby_string</span><span class="p">,</span> <span class="s1">&#39;2.0.0@gemset_name&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Or even restrict Rvm on some servers!</p>
+
+<figure class='code'><figcaption><span>config/deploy.rb </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">set</span> <span class="ss">:rvm_require_role</span><span class="p">,</span> <span class="ss">:rvm</span>
+</span><span class='line'><span class="nb">require</span> <span class="s2">&quot;rvm/capistrano/selector_mixed&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:rvm</span><span class="p">,</span> <span class="s2">&quot;web1&quot;</span><span class="p">,</span> <span class="s2">&quot;web2&quot;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:app</span><span class="p">,</span> <span class="s2">&quot;web1&quot;</span><span class="p">,</span> <span class="s2">&quot;web2&quot;</span><span class="p">,</span> <span class="s2">&quot;web3&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Check out <a href="https://github.com/wayneeseguin/rvm-capistrano#readme">readme</a> for more details about this hero.</p>
+
+<h3>capistrano-notifier</h3>
+
+<p>If you use heroku then you receive email when deploy finishes. A like this feature and it is very cool that you can have the same functionality with capistrano. So, meet the second hero: <a href="https://github.com/cramerdev/capistrano-notifier">capistrano-notifier</a>.</p>
+
+<p>The superpower of this hero is sending email with commits, which has been deployed, for example:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Obi-Wan Kenobi deployed
+</span><span class='line'>Power branch
+</span><span class='line'>stage to
+</span><span class='line'>staging on
+</span><span class='line'>02/24/2014 at
+</span><span class='line'>02:37 PM MSK
+</span><span class='line'>
+</span><span class='line'>https://github.com/jedis/stage/compare/8fc335c...e3a999c
+</span><span class='line'>8e8b39c The force is strong with this one (Obi-Wan Kenobi)
+</span><span class='line'>b17e255 New lightsaber (Obi-Wan Kenobi)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Looks pretty cool, huh? To install gem add it:</p>
+
+<figure class='code'><figcaption><span>Gemfile </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;capistrano-notifier&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After that you should add some settings to be able to send mails. Here is example for gmail:</p>
+
+<figure class='code'><figcaption><span>config/deploy.rb </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">set</span> <span class="ss">:notifier_mail_options</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="ss">:method</span> <span class="o">=&gt;</span> <span class="ss">:smtp</span><span class="p">,</span>
+</span><span class='line'>  <span class="ss">:from</span>   <span class="o">=&gt;</span> <span class="s1">&#39;capistrano@domain.com&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="ss">:to</span>     <span class="o">=&gt;</span> <span class="o">[</span><span class="s1">&#39;john@doe.com&#39;</span><span class="p">,</span> <span class="s1">&#39;jane@doe.com&#39;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>  <span class="ss">:github</span> <span class="o">=&gt;</span> <span class="s1">&#39;MyCompany/project-name&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="ss">:smtp_settings</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>    <span class="ss">address</span><span class="p">:</span> <span class="s2">&quot;smtp.gmail.com&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="ss">port</span><span class="p">:</span> <span class="mi">587</span><span class="p">,</span>
+</span><span class='line'>    <span class="ss">domain</span><span class="p">:</span> <span class="s2">&quot;gmail.com&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="ss">authentication</span><span class="p">:</span> <span class="s2">&quot;plain&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">enable_starttls_auto</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">user_name</span><span class="p">:</span> <span class="no">MY_USERNAME</span><span class="p">,</span>
+</span><span class='line'>    <span class="ss">password</span><span class="p">:</span> <span class="no">MY_PASSWORD</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After that each person, whose email has been provided in <code>:to</code> section will receive the email after deploy. Of course, you may need some time to set thins up properly, but afterwards this feature may be very handy for a lot of people.</p>
+
+<h3>capistrano_deploy_lock</h3>
+
+<p>Last, but not least hero is <a href="https://github.com/ndbroadbent/capistrano_deploy_lock">capistrano_deploy_lock</a>. I think you should know that nothing good will ever come out of two (and more) simultaneously deploys. This modest hero helps to fight with such evil.</p>
+
+<p>Installation is simple:</p>
+
+<figure class='code'><figcaption><span>Gemfile </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;capistrano_deploy_lock&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Call the hero:</p>
+
+<figure class='code'><figcaption><span>config/deploy.rb </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;capistrano/deploy_lock&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Make sure that all developers have this gem and config to protect your deploys. Now each deploy would be locked during deploy and would be unlocked afterwards. This protects each your deploy from simultaneously deploys of other people. Each person, who would try to deploy during current deploy would receive this message (or something like this):</p>
+
+<figure class='code'><figcaption><span>Terminal </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>*** Deploy locked 3 minutes ago by <span class="s1">&#39;dark side&#39;</span>
+</span><span class='line'>*** Message: Deploying master branch
+</span><span class='line'>*** Expires in 12 minutes
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This gem also helps in situations when your deploy fails, which gives you time to fix it (by default it is 15 minutes). This feature helped me few times. You can find more details in <a href="https://github.com/ndbroadbent/capistrano_deploy_lock#readme">readme</a></p>
+
+<p>That is all for today, thank you for your patience.</p>
+
+<p>P.S. All these gems have been tested with Rails 4 and they work.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Another Guide to Upgrade to Rails 4]]></title>
