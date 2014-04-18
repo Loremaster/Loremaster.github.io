@@ -31,16 +31,22 @@
         <lastmod>2014-02-24T17:11:57+04:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://bloginius.com/blog/2014/04/18/useful-gems-for-rails-developer-part-1-development/
+        </loc>
+        <lastmod>2014-04-18T17:58:25+04:00</lastmod>
+    </url>
+    <url>
         <loc>http://bloginius.com/about-me/</loc>
         <lastmod>2014-04-10T20:42:40+04:00</lastmod>
     </url>
     <url>
         <loc>http://bloginius.com/blog/archives/</loc>
-        <lastmod>2014-02-24T17:11:57+04:00</lastmod>
+        <lastmod>2014-04-18T17:58:25+04:00</lastmod>
     </url>
     <url>
         <loc>http://bloginius.com/</loc>
-        <lastmod>2014-02-24T17:11:57+04:00</lastmod>
+        <lastmod>2014-04-18T17:58:25+04:00</lastmod>
     </url>
     <url>
         <loc>http://bloginius.com/robots.txt</loc>
