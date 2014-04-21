@@ -4,7 +4,7 @@
   <title><![CDATA[Serj L aka Loremaster]]></title>
   <link href="http://bloginius.com/atom.xml" rel="self"/>
   <link href="http://bloginius.com/"/>
-  <updated>2014-04-18T17:58:26+04:00</updated>
+  <updated>2014-04-21T15:42:17+04:00</updated>
   <id>http://bloginius.com/</id>
   <author>
     <name><![CDATA[Serj L aka Loremaster]]></name>
@@ -63,7 +63,7 @@
 
 <p><img class="center" src="http://bloginius.com/images/doge-meme.jpg"></p>
 
-<p>Thanks to guy… Oh well, it is company. Thanks to guys from the company Evrone this pain is over. Install the gem:</p>
+<p>Thanks to guy… Oh well, it is company. Thanks to guys from the company <em>Evrone</em> this pain is over. Install the gem:</p>
 
 <figure class='code'><figcaption><span>Gemfile </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -116,7 +116,7 @@ Okay, it is a little bit long. It is kinda boring repeat this movement again and
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Lists of such requests kill performance of your app. Users are angry, they leave you site, it generates less many, boss is angry, you are fired… What a nice picture!</p>
+<p>Lists of such requests kill performance of your app. Users are angry, they leave your site, it generates less money, boss is angry, you are fired… What a nice picture!</p>
 
 <p><img class="center" src="http://bloginius.com/images/hawkward.png"></p>
 
