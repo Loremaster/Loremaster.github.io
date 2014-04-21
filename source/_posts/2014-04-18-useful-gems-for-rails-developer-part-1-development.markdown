@@ -41,7 +41,7 @@ I really hate the fact, that vanilla Rails is so noisy with assets. Such long lo
 
 {% img center /images/doge-meme.jpg %}
 
-Thanks to guy… Oh well, it is company. Thanks to guys from the company Evrone this pain is over. Install the gem:
+Thanks to guy… Oh well, it is company. Thanks to guys from the company *Evrone* this pain is over. Install the gem:
 
 {% codeblock Gemfile lang:ruby %}
 group :development do
@@ -83,7 +83,7 @@ SELECT "owners".* FROM "owners" WHERE "owners"."id" = $1 ORDER BY "owners"."id" 
 …
 {% endcodeblock %}
 
-Lists of such requests kill performance of your app. Users are angry, they leave you site, it generates less many, boss is angry, you are fired… What a nice picture!
+Lists of such requests kill performance of your app. Users are angry, they leave your site, it generates less money, boss is angry, you are fired… What a nice picture!
 
 {% img center /images/hawkward.png %}
 
