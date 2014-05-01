@@ -4,7 +4,7 @@
   <title><![CDATA[Serj L aka Loremaster]]></title>
   <link href="http://bloginius.com/atom.xml" rel="self"/>
   <link href="http://bloginius.com/"/>
-  <updated>2014-04-21T15:42:17+04:00</updated>
+  <updated>2014-05-01T23:58:50+04:00</updated>
   <id>http://bloginius.com/</id>
   <author>
     <name><![CDATA[Serj L aka Loremaster]]></name>
@@ -421,18 +421,18 @@ Okay, it is a little bit long. It is kinda boring repeat this movement again and
     <link href="http://bloginius.com/blog/2014/01/28/another-guide-to-upgrade-to-rails-4/"/>
     <updated>2014-01-28T15:53:10+04:00</updated>
     <id>http://bloginius.com/blog/2014/01/28/another-guide-to-upgrade-to-rails-4</id>
-    <content type="html"><![CDATA[<p>Yep, this is another guide, which will help you, i hope, to upgrade your app to Rails 4. Before start, please make sure that you are running latest Rails 3 release, i think it is 3.2.16 nowadays. Yes, i&rsquo;m sorry, Rails 2 guys, but this guide&rsquo;ll not help a lot, you have a lot of work to do, sorry! :)</p>
+    <content type="html"><![CDATA[<p>Yep, this is another guide, which&rsquo;ll help you (i hope!) to upgrade your app to the Rails 4. Before start, please make sure that you are running latest Rails 3 release, i think it is 3.2.17 nowadays. Yes, i&rsquo;m sorry, Rails 2 guys, but this guide&rsquo;ll not help a lot, you have a lot of work to do, sorry! :)</p>
 
 <!-- more -->
 
 
-<p>What should you do next? You should upgrade <strong>all</strong> of your gems to their latest versions for rails 3, which can be a little bit hard, but good test coverage will help you a lot! If you don&rsquo;t have test coverage, then take a deep breath and… And create your test suit (i prefer Rspec for unit tests and Capybara, Capybara-webkit and Cucumber &ndash; for integration tests). You don&rsquo;t have to get 100% test coverage for your app, covering a main logic should be enough. Believe me, it&rsquo;s very important &ndash; at least you&rsquo;ll be sure that libs upgrade and fresh code base&rsquo;ll not break your app.</p>
+<p>What should you do next? You should upgrade <strong>all</strong> of your gems to their latest versions with support for rails 3, which can be a little bit hard, but good test coverage will help you a lot! If you don&rsquo;t have test coverage, then take a deep breath and… And create your test suit (i prefer Rspec for unit tests and Capybara, Capybara-webkit and Cucumber &ndash; for integration tests). You don&rsquo;t have to get 100% test coverage for your app, covering a main logic should be enough. Believe me, it&rsquo;s very important &ndash; at least you&rsquo;ll be sure that new libs and fresh code base&rsquo;ll not break your app.</p>
 
-<p>Make sure that you read <code>changelog</code> (this file also may be known as <code>history</code>) of each gem to get to know if gem&rsquo;ll break anything. Good news is that upgrading of gems is not Rails 4 specific, so you can deploy your app when your gems&rsquo;ll be up to date.</p>
+<p>Make sure that you have read <code>changelog</code> (this file also may be known as <code>history</code>) of each gem to get to know if gem&rsquo;d break anything. Good news is that upgrading of gems is not Rails 4 specific, so you can deploy your app when your gems&rsquo;d be up to date.</p>
 
-<p>When your upgrade of gems is complete and all tests pass then you may push updated app to your test server and after testing to the production (it depends, of course, how your system is set up). Then you should wait for some time (day or more) to make sure that everything works great and upgrade of libs hasn&rsquo;t brake anything. Yes, tests may miss something, its okey, just write new tests and fix the problem to avoid regressions.</p>
+<p>When your upgrade of gems is complete and all tests pass then you may push updated app to your test server and after testing push code to the production (it depends, of course, which workflow and how you use). Then you should wait for some time (day or more) to make sure that everything works great and upgrade of libs hasn&rsquo;t broken anything. Yes, tests may miss something, its okey, just write new tests and fix the problem to avoid regressions.</p>
 
-<p>When you upgrade gems then you should make a note for yourself where you should specify which of the gems have new version for Rails 4 and which gems are not working in Rails 4 (so you may remove them after upgrade). Here is my example:</p>
+<p>When you upgrade gems then you should make a note for yourself where you should specify which of the gems have new version for Rails 4 and which gems not work with Rails 4 (so you may remove them after upgrade or you need to fix them). Here is my example:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -458,11 +458,11 @@ Okay, it is a little bit long. It is kinda boring repeat this movement again and
 
 <h2>Are gems ready for rails 4?</h2>
 
-<p>Next step is to check out <a href="http://ready4rails4.net/">ready4rails4</a>, this site allow you to upload your Gemfile and check if your app is fully ready for Rails 4. Of course, you may not find your gems statusesor even gems. It&rsquo;s okay, you should check out repos of these gems (the easiest way is to find in on <a href="http://rubygems.org/">rubygems</a>) and then search in Readme, History/Changes or issues for any mentions of Rails 4. If you don&rsquo;t find anything, then you should just create an issue and ask about Rails 4 support. Actually, if gem is supported by an author, then it may have support for Rails 4. If repo is abandoned for a long time then you should probably search for forks or alternatives via <a href="https://www.ruby-toolbox.com/">ruby-toolbox</a> or create your own fork.</p>
+<p>Next step is checking out <a href="http://ready4rails4.net/">ready4rails4</a>, this site allows you to upload your Gemfile and check if your app is fully ready for Rails 4. Of course, you may not find your gems statuses or even gems. It&rsquo;s okay, you should check out repos of these gems (the easiest way is to find them via <a href="http://rubygems.org/">rubygems</a>) and then search a Readme, History/Changes or issues for any mentions of Rails 4. If you don&rsquo;t find anything, then you should just create an issue and ask about Rails 4 support. Actually, if gem is supported by an author, then it may have support for Rails 4. If repo is abandoned for a long time then you should probably search for forks or alternatives via <a href="https://www.ruby-toolbox.com/">ruby-toolbox</a> or create your own fork.</p>
 
 <p>If you found any data about Rails 4&rsquo;s support for your gem/gems then you should definitely post your discover on <a href="http://ready4rails4.net/">ready4rails4</a>, it&rsquo;ll help other people a lot!</p>
 
-<p>All these steps can take a long time, because you may have a lot gems with unknown or even “not ready” statuses so you&rsquo;ll do a long research. But i&rsquo;m absolutely sure that you must do these preparation steps, because it&rsquo;ll really help you a lot during the actual rails 4 upgrade.</p>
+<p>All these steps can take a long time, because you may have a lot of gems with unknown or even &ldquo;not ready&rdquo; statuses so you&rsquo;ll do a long research. But i&rsquo;m absolutely sure that you must do these preparations, because it&rsquo;ll really help you a lot during the actual rails 4 upgrade.</p>
 
 <h2>Actual bump of rails</h2>
 
@@ -500,9 +500,9 @@ Okay, it is a little bit long. It is kinda boring repeat this movement again and
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Yeap, you should remove assets group, bump rails, sass-rails, coffee-rails and uglifier. And you want to add gems above to have smooth transition. As you remember, i asked you to make a list of gems which have their own version for Rails 4 and which should be removed. It&rsquo;s probably a good time to specify their version and remove unused gems according to your list. After that run <code>bundle install</code> and make sure that bundle&rsquo;ll evaluate and not throw errors.</p>
+<p>Yep, you should remove assets group, bump rails, sass-rails, coffee-rails and uglifier. And you want to add gems above to have smooth transition. As you remember, i asked you to make a list of gems (which have their own version for Rails 4 and which should be removed). It&rsquo;s probably a good time to specify their version and remove unused gems according to your list. After that run <code>bundle install</code> and make sure that bundle&rsquo;ll evaluate and not throw errors.</p>
 
-<p>Here i want to add my two cents about <a href="https://github.com/ryanb/cancan">cancan</a>. This gem is a great tool and i&rsquo;m sure that you may use it in your app. Well, here are good <a href="news:">news:</a> it&rsquo;s latest version (1.6.10) works if you keep attr_accessible (via “protected_attributes” gem). This also means that you shouldn&rsquo;t remove some options in your configs and you shouldn&rsquo;t start to use StrongParams (which is used by a lot of gems with Rails 4 support). So, you should keep these options in your configs:</p>
+<p>Here i want to add my two cents about <a href="https://github.com/ryanb/cancan">cancan</a>. This gem is a great tool and i&rsquo;m sure that you may use it in your app. Well, here are good <a href="news:">news:</a> it&rsquo;s latest version (1.6.10) works if you keep attr_accessible (via &ldquo;protected_attributes&rdquo; gem). This also means that you shouldn&rsquo;t remove some options in your configs and you shouldn&rsquo;t start to use StrongParams (which is used by a lot of gems with Rails 4 support). So, you should keep these options in your configs:</p>
 
 <figure class='code'><figcaption><span>config/application.rb </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -528,28 +528,26 @@ Okay, it is a little bit long. It is kinda boring repeat this movement again and
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Here <code>config/environments/*</code> means all filed in that directory. That should be enough for cancan to work properly with Rails 4 until you&rsquo;d move to StrongParams completely.</p>
+<p>Here <code>config/environments/*</code> means all files in that directory. That should be enough for cancan to work properly with Rails 4 until you&rsquo;d move to StrongParams completely (<a href="https://github.com/CanCanCommunity/cancancan">cancancan</a> supports Rails 4 completely, so i recommend to use it during StrongParams integration).</p>
 
-<p>But i want to warn you about few things. First of all, almost all of the gems which support Rails 4 are not working with <code>attr_accessible</code>. It is bad for you because you want to have a smooth transition (who doesn&rsquo;t?). So, you need to fork gems which generate mass-assigment errors and monkey-patch them so they&rsquo;d work with your app without StrongParams. This is not a bad solution, because if you have a big app with a lot of logic or you just use Cancan then integration of StrongParams&rsquo;ll be pain in the ass.</p>
+<p>But i want to warn you about few things. First of all, almost all of the gems which support Rails 4 are not working with <code>attr_accessible</code>. It is bad for us, because you want to have a smooth transition (who doesn&rsquo;t?). So, you need to fork gems which generate mass-assigment errors and monkey-patch them so they&rsquo;d work with your app without StrongParams. This is not a bad solution, because if you have a big app with a lot of logic or you just use Cancan then integration of StrongParams&rsquo;ll be pain in the ass.</p>
 
-<p>Of course, if you are not depend on Cancan and/or your app is not so big then you might integrate StrongParams during Rails 4 upgrade and don&rsquo;t think a lot about forks and patches. But even then you may need to patch something (welcome to opensourse)!</p>
+<p>Of course, if you are not depending on the Cancan and/or your app is not so big then you might integrate StrongParams during Rails 4 upgrade and don&rsquo;t think a lot about forks and patches. But even then you may need to patch something (welcome to the  opensourse)!</p>
 
 <p>I patched few gems so it would work with Rails 4, here is the list:</p>
 
 <ol>
-<li><a href="https://github.com/Loremaster/rails_admin">https://github.com/Loremaster/rails_admin</a> &ndash; it has problems with paper_trail 3 (which is for rails 4 only), so i patched it.</li>
-<li><a href="https://github.com/Loremaster/simple-captcha">https://github.com/Loremaster/simple-captcha</a> &ndash; i added a patch for support <code>attr_accessible</code> only in Rails 4, use gem ‘simple_captcha2&#8217; if you are on StrongParams.</li>
-<li><a href="https://github.com/Loremaster/impressionist">https://github.com/Loremaster/impressionist</a> &ndash; i added a patch for support <code>attr_accessible</code> only in Rails 4, use original gem ‘impressionist&#8217; if you are on StrongParams.</li>
+<li><a href="https://github.com/Loremaster/rails_admin">https://github.com/Loremaster/rails_admin</a> &ndash; it had problems with paper_trail 3 (which is for rails 4 only), so i patched it.</li>
+<li><a href="https://github.com/Loremaster/simple-captcha">https://github.com/Loremaster/simple-captcha</a> &ndash; i added a patch for support <code>attr_accessible</code> only in Rails 4, use gem &lsquo;simple_captcha2&rsquo; if you are on StrongParams.</li>
+<li><a href="https://github.com/Loremaster/impressionist">https://github.com/Loremaster/impressionist</a> &ndash; i added a patch for support <code>attr_accessible</code> only in Rails 4, use original gem &lsquo;impressionist&rsquo; if you are on StrongParams.</li>
 </ol>
 
 
-<p><a href="https://github.com/kenjione/nested-hstore/tree/rails4_fix">https://github.com/kenjione/nested-hstore/tree/rails4_fix</a> &ndash; my colleague fixed this gem for rails 4.</p>
-
-<p>Wow, so much work is done! And I didn&rsquo;t even ask to launch your specs! I guess now its a good time to run it! I suppose that you&rsquo;ll have a ton of deprecation messages and red tests. Check their errors, they may happen because of mostly old gems, or their incapability to work with Rails 4 and attr_accessible. You also may want to check section below about deprecation messages.</p>
+<p>Wow, so much work has been done! And I didn&rsquo;t even ask to launch your specs! I guess that now is a good time to run them! I suppose that you&rsquo;ll have a ton of deprecation messages and red tests. Check their errors, they may happen because of old gems in your Gemfile, or gems incapability to work with Rails 4 and attr_accessible. You also may want to check section below about deprecation messages.</p>
 
 <p>Ok, now lets fix configs. Firstly you should edit <code>config/application.rb</code> and <code>config/environmens/*</code>, check out <a href="http://railsdiff.org/html/v3.2.16-v4.0.2.html">railsdiff</a> for that purpose. Keep in mind my notes about cancan!</p>
 
-<p>When you finish with <code>config/</code> directory then you might want to apply edits to other files. Again, use <a href="http://railsdiff.org/html/v3.2.16-v4.0.2.html">railsdiff</a> for that. And don&rsquo;t forget to add <code>secret_key_base</code> in your secret_token.rb!</p>
+<p>When you&rsquo;ll finish with <code>config/</code> directory then you might want to apply edits to other files. Again, use <a href="http://railsdiff.org/html/v3.2.16-v4.0.2.html">railsdiff</a> for that. And don&rsquo;t forget to add <code>secret_key_base</code> in your secret_token.rb!</p>
 
 <p>After all edits in configs you need to generate <code>bin</code> directory:</p>
 
@@ -571,7 +569,7 @@ Okay, it is a little bit long. It is kinda boring repeat this movement again and
 
 <h2>Deprecations</h2>
 
-<p>I will not mention all possible deprecation messages, but i want to tell you about an important ones.</p>
+<p>I will not mention all possible deprecation messages, but i want to tell you about important ones.</p>
 
 <p>1) Dynamic methods. Here is short list (old method &ndash;> new method):</p>
 
@@ -582,11 +580,11 @@ Okay, it is a little bit long. It is kinda boring repeat this movement again and
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">find_all_by_</span><span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="o">-&gt;</span> <span class="n">where</span><span class="p">(</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span>
-</span><span class='line'><span class="n">find_last_by_</span><span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="o">-&gt;</span> <span class="n">where</span><span class="p">(</span><span class="err">…</span><span class="p">)</span><span class="o">.</span><span class="n">last</span>
+</span><span class='line'><span class="n">find_last_by_</span><span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="o">-&gt;</span> <span class="n">where</span><span class="p">(</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span><span class="o">.</span><span class="n">last</span>
 </span><span class='line'><span class="n">scoped_by_</span><span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="o">-&gt;</span> <span class="n">where</span><span class="p">(</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span>
 </span><span class='line'><span class="n">find_or_initialize_by_</span><span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="o">-&gt;</span> <span class="n">where</span><span class="p">(</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span><span class="o">.</span><span class="n">first_or_initialize</span>
 </span><span class='line'><span class="n">find_or_create_by_</span><span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="o">-&gt;</span> <span class="n">find_or_create_by</span><span class="p">(</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span> <span class="ow">or</span> <span class="n">where</span><span class="p">(</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span><span class="o">.</span><span class="n">first_or_create</span>
-</span><span class='line'><span class="n">find_or_create_by_</span><span class="o">.</span><span class="n">.</span><span class="o">.!</span> <span class="o">-&gt;</span> <span class="n">find_or_create_by!</span><span class="p">(</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span> <span class="ow">or</span> <span class="n">where</span><span class="p">(</span><span class="err">…</span><span class="p">)</span><span class="o">.</span><span class="n">first_or_create!</span>
+</span><span class='line'><span class="n">find_or_create_by_</span><span class="o">.</span><span class="n">.</span><span class="o">.!</span> <span class="o">-&gt;</span> <span class="n">find_or_create_by!</span><span class="p">(</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span> <span class="ow">or</span> <span class="n">where</span><span class="p">(</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span><span class="o">.</span><span class="n">first_or_create!</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -616,14 +614,14 @@ Okay, it is a little bit long. It is kinda boring repeat this movement again and
 <p>But that:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="ss">:comments</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s2">&quot;comments.title = ‘foo&#39;&quot;</span><span class="p">)</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="ss">:comments</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s2">&quot;comments.title = &#39;foo&#39;&quot;</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>Should be rewritten to use reference:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="ss">:comments</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s2">&quot;comments.title = ‘foo&#39;”).references(:comments)</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="ss">:comments</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s2">&quot;comments.title = &#39;foo&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">references</span><span class="p">(</span><span class="ss">:comments</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -631,7 +629,7 @@ Okay, it is a little bit long. It is kinda boring repeat this movement again and
 
 <p><code>Currently, Active Record recognizes the table in the string, and knows to JOIN the comments table to the query, rather than loading comments in a separate query. However, doing this without writing a full-blown SQL parser is inherently flawed. Since we don't want to write an SQL parser, we are removing this functionality. From now on, you must explicitly tell Active Record when you are referencing a table from a string</code></p>
 
-<p>4) New scopes. You should pass callable object to the scope (lambda, for example). So you need change that:</p>
+<p>4) New scopes. You should pass callable object to the scope (lambda, for example). So you need to change this:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">scope</span> <span class="ss">:order_by_name</span><span class="p">,</span> <span class="n">order</span><span class="p">(</span><span class="s1">&#39;brands.name ASC&#39;</span><span class="p">)</span>
@@ -647,7 +645,7 @@ Okay, it is a little bit long. It is kinda boring repeat this movement again and
 
 <p>5) <code>.all</code> instead of <code>.scoped</code></p>
 
-<p>In Rails 3 you could use Model.scoped to return Rails&rsquo;s relation of all Model&rsquo;s objects. In Rails 4 <code>.all</code> returns Rails Relation by default, so you should replace .scoped by <code>.all</code>.</p>
+<p>In Rails 3 you could use <code>Model.scoped</code> to return Rails&rsquo;s relation of all Model&rsquo;s objects. In Rails 4 <code>.all</code> returns Rails Relation by default, so you should replace <code>.scoped</code> by <code>.all</code>.</p>
 
 <h2>Deployment</h2>
 
@@ -669,7 +667,7 @@ Okay, it is a little bit long. It is kinda boring repeat this movement again and
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>This error appears because Rails 3 has its own asset&rsquo;s manifest and Rails 4 has it&rsquo;s own. I just renamed assets directory and created the new one (empty). After that deployment was successful. Also you might just remove manifests and repeat your deploy but it&rsquo;ll make much harder to rollback so i don&rsquo;t recommend you to do that.</p>
+<p>This error appears because Rails 3 has its own asset&rsquo;s manifest and Rails 4 has it&rsquo;s own. I just renamed assets directory and created the new one (empty). After that deployment was successful. Also you might just remove manifests and repeat your deploy but it&rsquo;ll make much harder to rollback to the Rails 3 so i don&rsquo;t recommend you to do that.</p>
 ]]></content>
   </entry>
   
