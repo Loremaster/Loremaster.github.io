@@ -1,0 +1,220 @@
+<!DOCTYPE html> <!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]--> <!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]--> <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]--> <head> <meta charset="utf-8"> <title>How Thor Can Help You With Your Tests (or Integration of Parallel_tests and Cucumber) - Serj L aka Loremaster</title> <meta name="author" content="Serj L aka Loremaster"> <meta name="description" content="Specs it! Today I&rsquo;d like to talk about one important (kind of) area of each RoR developer. This is testing. You may wonder, &ldquo;Why the heck &hellip;"> <meta name="HandheldFriendly" content="True"> <meta name="MobileOptimized" content="320"> <meta name="viewport" content="width=device-width, initial-scale=1"> <link rel="canonical" href="http://bloginius.com/blog/2014/05/12/how-thor-can-help-you-with-your-tests-or-integration-of-parallel-tests-and-cucumber"> <link href="/favicon.png" rel="icon"> <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css"> <link href="/atom.xml" rel="alternate" title="Serj L aka Loremaster" type="application/atom+xml"> <script src="/javascripts/modernizr-2.0.js"></script> <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script> <script src="/javascripts/octopress.js" type="text/javascript"></script> <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46710684-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script> </head> <body> <header role="banner"><hgroup> <h1><a href="/">Serj L aka Loremaster</a></h1> <h2>Blog of Rails developer.</h2> </hgroup> </header> <nav role="navigation"><ul class="subscription" data-subscription="rss"> <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li> </ul> <form action="http://google.com/search" method="get"> <fieldset role="search"> <input type="hidden" name="q" value="site:bloginius.com"/> <input class="search" type="text" name="q" results="0" placeholder="Search"/> </fieldset> </form> <ul class="main-navigation"> <li><a href="/">Blog</a></li> <li><a href="/blog/archives">Archives</a></li> <li><a href="/about-me">About me</a></li> </ul> </nav> <div id="main"> <div id="content"> <div> <article class="hentry" role="article"> <header> <h1 class="entry-title">How Thor Can Help You With Your Tests (or Integration of Parallel_tests and Cucumber)</h1> <p class="meta"> <time datetime="2014-05-12T18:05:53+04:00" pubdate data-updated="true">May 12<span>th</span>, 2014</time> | <a href="#disqus_thread" data-disqus-identifier="http://bloginius.com">Comments</a> </p> </header> <div class="entry-content"><h2>Specs it!</h2> <p>Today I&rsquo;d like to talk about one important (kind of) area of each RoR developer. This is testing. You may wonder, &ldquo;Why the heck do I even need to write these stupid tests?”. Well, first of all, you may do it because your boss wants it. Or because all other rubyists write them. What do you mean, &#8220;I&rsquo;m not satisfied?”. All right, how about making sure that your app don&rsquo;t crush each time you commit new feature or fix a bug? Tests also help you to upgrade libs, install new Rails and other funny stuff, FYI. I know the company, who can&rsquo;t upgrade to Rails 4, because it&rsquo;s app don&rsquo;t have tests.</p> <p>Let me suppose, that you are satisfied by that and you started to write tests&hellip; Firstly with Rspec, because test-unit is not popular solution. And then you open Cucumber for yourself. And write more and more tests. And in one day you look in your terminal and you start to think that waiting 10 minutes until your features&rsquo;d finish isn&rsquo;t a good idea, because you can already drink few cups of tea or coffee and with such progress soon you&rsquo;ll be able to watch a &ldquo;Big bang theory”.</p> <p><img class="center" src="/images/thor-and-parallel-tests/cucumber-running-xkcd.png"></p> <p>And you decide to make your tests faster. So, you google for a while and find <a href="https://github.com/grosser/parallel_tests">parallel_tests</a>. You try it and see that your tests run <em>n</em> times faster! Wow!</p> <p>You start use it, and use, it and use it. But after a while some of your tests <em>suddenly</em> start to fail from time to time. You fight with it, even add hacks: <code>sleep 100500</code>. And even with that some tests may fail randomly from time to time. Oh&hellip;</p> <p><img class="center" src="/images/thor-and-parallel-tests/doge-wow-cucumber.jpeg"></p> <p>Of course, you still should try to fix it. But fixing randomly failing piece of code is one of the hardest things that you can ever meet in your live as a programmer, in my humble opinion.</p> <h2>Thor with parallel</h2> <p>So, I decided to create a thor task for people, who use <a href="https://github.com/grosser/parallel_tests">parallel_tests</a>. This tool do this:</p> <ol> <li>Prepare your databases in parallel.</li> <li>Run your features in parallel.</li> <li>Rerun failed tests with vanilla cucumber.</li> </ol> <p>Here is the code:</p> <figure class='code'><figcaption><span>lib/tasks/parallel.thor </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s1">&#39;config/environment.rb&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;cucumber/cli/main&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;parallel_tests&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Parallel</span> <span class="o">&lt;</span> <span class="ss">Gearup</span><span class="p">:</span><span class="ss">:TasksBase</span>
+</span><span class='line'>  <span class="n">desc</span> <span class="s2">&quot;and_rerun&quot;</span><span class="p">,</span> <span class="s1">&#39;Prepare and run tests in parallel, and restart failed tests via vanilla cucumber. Run it like that: $ RAILS_ENV=test bundle exec thor parallel:and_rerun&#39;</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">and_rerun</span>
+</span><span class='line'>    <span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">test?</span>
+</span><span class='line'>      <span class="k">begin</span>
+</span><span class='line'>        <span class="nb">puts</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Run: rake parallel:prepare&quot;</span>
+</span><span class='line'>        <span class="nb">puts</span> <span class="sb">`rake parallel:prepare`</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">puts</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Run: rake parallel:features&quot;</span>
+</span><span class='line'>        <span class="ss">ParallelTests</span><span class="p">:</span><span class="ss">:CLI</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">[</span><span class="s2">&quot;--type&quot;</span><span class="p">,</span> <span class="s2">&quot;cucumber&quot;</span><span class="o">]</span> <span class="o">+</span> <span class="o">[</span><span class="s2">&quot;features&quot;</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">ensure</span>                                                                                        <span class="c1"># Run fail tests if ParallelTests raised error (which it does when some tests fail).</span>
+</span><span class='line'>        <span class="nb">puts</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Checking for failed tests...&quot;</span>
+</span><span class='line'>        <span class="n">rerun_with_cucumber</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="k">raise</span> <span class="s2">&quot;You didn&#39;t run task in test environment! Run it like that: $ RAILS_ENV=test bundle exec thor parallel:and_rerun&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">desc</span> <span class="s2">&quot;rerun_with_cucumber&quot;</span><span class="p">,</span> <span class="s1">&#39;Run failed tests with vanilla cucumber (non-parallel)&#39;</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">rerun_with_cucumber</span>
+</span><span class='line'>    <span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">test?</span>
+</span><span class='line'>      <span class="n">parallel_file_with_failed_features</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;tmp&quot;</span><span class="p">,</span> <span class="s2">&quot;parallel_cucumber_failures.log&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">failed_features_str</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">parallel_file_with_failed_features</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span>
+</span><span class='line'>      <span class="n">tmp_logs</span> <span class="o">=</span> <span class="no">Tempfile</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;parallel_cucumber_failures_tmp&#39;</span><span class="p">,</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;tmp&quot;</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">begin</span>
+</span><span class='line'>        <span class="n">tmp_logs</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">failed_features_str</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">tmp_logs</span><span class="o">.</span><span class="n">rewind</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1"># Running failed tests if parallel file with failed features contains something.</span>
+</span><span class='line'>        <span class="k">unless</span> <span class="n">failed_features_str</span><span class="o">.</span><span class="n">empty?</span>
+</span><span class='line'>          <span class="n">cucumber_cmd</span> <span class="o">=</span> <span class="s2">&quot;@</span><span class="si">#{</span><span class="n">tmp_logs</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>          <span class="nb">puts</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Executing failed tests: cucumber </span><span class="si">#{</span><span class="n">cucumber_cmd</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>          <span class="ss">Cucumber</span><span class="p">:</span><span class="ss">:Cli</span><span class="o">::</span><span class="no">Main</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">[</span><span class="n">cucumber_cmd</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">execute!</span>
+</span><span class='line'>        <span class="k">else</span>
+</span><span class='line'>          <span class="nb">puts</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">There are no failed tests.&quot;</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>      <span class="k">ensure</span>
+</span><span class='line'>        <span class="n">tmp_logs</span><span class="o">.</span><span class="n">close</span>
+</span><span class='line'>        <span class="n">tmp_logs</span><span class="o">.</span><span class="n">unlink</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="k">raise</span> <span class="s2">&quot;You didn&#39;t run task in test environment! Run it like that: $ RAILS_ENV=test bundle exec thor parallel:rerun_with_cucumber&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure> <p>Well, code contains 2 methods: one to actually rerun failed tests and one to prepare db, run tests in parallel and then call task to run failed features. But this is not all.</p> <p><img class="center" src="/images/thor-and-parallel-tests/evil-happy-kid.png"></p> <p>To enable features to be actually reruned when they fail, you need to enable logging failed features by parallel_tests. This functional has been merged a while ago (wow), but you need to add a specific code to enable it.</p> <p>Open config/cucumber.yml and add this <code>--format ParallelTests::Cucumber::FailuresLogger --out tmp/parallel_cucumber_failures.log</code> to std_options:</p> <figure class='code'><figcaption><span>config/cucumber.yml </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#...</span>
+</span><span class='line'><span class="n">std_opts</span> <span class="o">=</span> <span class="s2">&quot;--format </span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;CUCUMBER_FORMAT&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="s1">&#39;pretty&#39;</span><span class="si">}</span><span class="s2"> --strict --tags ~@wip --require features --format ParallelTests::Cucumber::FailuresLogger --out tmp/parallel_cucumber_failures.log”</span>
+</span><span class='line'><span class="s2">#...</span>
+</span></code></pre></td></tr></table></div></figure> <p>And after that you may run the thor task. Failed tests will be stored in <code>tmp/parallel_cucumber_failures.log</code> (where you can view them, if you want). To run the thor task print this:</p> <figure class='code'><figcaption><span>Terminal </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ RAILS_ENV</span><span class="o">=</span><span class="nb">test </span>bundle <span class="nb">exec </span>thor parallel:and_rerun
+</span></code></pre></td></tr></table></div></figure> <p>This thor task has tested under:</p> <ul> <li>Rails 4</li> <li>thor 0.18.1</li> <li>parallel_tests 0.16.8</li> <li>cucumber-rails 1.4.0</li> <li>capybara 2.2.1.</li> </ul> <p>If your cucumber or parallel_tests has lower version than the listed ones, then there is a chance that my code wouldn&rsquo;t work (make sure that you have cucumber at least <strong>1.4.0</strong>).</p> <h2>Task&rsquo;s internals</h2> <p>Now, let me talk a little about the code. You can skip this section if you are just planning to use the task and nothing more, but I encourage you to read more!</p> <p>First of all, let me look in the source code of <code>rerun_with_cucumber</code> task.</p> <figure class='code'><figcaption><span>lib/tasks/parallel.thor </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># ...</span>
+</span><span class='line'>  <span class="n">desc</span> <span class="s2">&quot;rerun_with_cucumber&quot;</span><span class="p">,</span> <span class="s1">&#39;Run failed tests with vanilla cucumber (non-parallel)&#39;</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">rerun_with_cucumber</span>
+</span><span class='line'>    <span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">test?</span>
+</span><span class='line'>      <span class="n">parallel_file_with_failed_features</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;tmp&quot;</span><span class="p">,</span> <span class="s2">&quot;parallel_cucumber_failures.log&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">failed_features_str</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">parallel_file_with_failed_features</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span>
+</span><span class='line'>      <span class="n">tmp_logs</span> <span class="o">=</span> <span class="no">Tempfile</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;parallel_cucumber_failures_tmp&#39;</span><span class="p">,</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;tmp&quot;</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">begin</span>
+</span><span class='line'>        <span class="n">tmp_logs</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">failed_features_str</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">tmp_logs</span><span class="o">.</span><span class="n">rewind</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1"># Running failed tests if parallel file with failed features contains something.</span>
+</span><span class='line'>        <span class="k">unless</span> <span class="n">failed_features_str</span><span class="o">.</span><span class="n">empty?</span>
+</span><span class='line'>          <span class="n">cucumber_cmd</span> <span class="o">=</span> <span class="s2">&quot;@</span><span class="si">#{</span><span class="n">tmp_logs</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>          <span class="nb">puts</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Executing failed tests: cucumber </span><span class="si">#{</span><span class="n">cucumber_cmd</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>          <span class="ss">Cucumber</span><span class="p">:</span><span class="ss">:Cli</span><span class="o">::</span><span class="no">Main</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">[</span><span class="n">cucumber_cmd</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">execute!</span>
+</span><span class='line'>        <span class="k">else</span>
+</span><span class='line'>          <span class="nb">puts</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">There are no failed tests.&quot;</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>      <span class="k">ensure</span>
+</span><span class='line'>        <span class="n">tmp_logs</span><span class="o">.</span><span class="n">close</span>
+</span><span class='line'>        <span class="n">tmp_logs</span><span class="o">.</span><span class="n">unlink</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="k">raise</span> <span class="s2">&quot;You didn&#39;t run task in test environment! Run it like that: $ RAILS_ENV=test bundle exec thor parallel:rerun_with_cucumber&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure> <p>A lot of code for such task, isn&rsquo;t it? First of all, you can see that it check this:</p> <figure class='code'><figcaption><span>lib/tasks/parallel.thor </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">test?</span>
+</span></code></pre></td></tr></table></div></figure> <p>Why? Because otherwise you may lose all your development data.</p> <p><img class="center" src="/images/thor-and-parallel-tests/lose-local-meme.png"></p> <p>Your task&rsquo;ll run with <code>RAILS_ENV=development</code>, because this is your current environment. This is the first thing. The second one is that you probably have <a href="https://github.com/bmabey/database_cleaner">database_cleaner</a> or you clean your test data by your own script. So, when you run your test with your current ENV (as development), you lose all data during your tests execution. That is why it&rsquo;s so important to specify <code>RAILS_ENV=test</code> when you execute the task and that is why the code is checking this case. It just protects you. Like Batman.</p> <p>Second note. You may notice that code creates temporary file and that code uses this temp file to run failed tests. Why? As you may remember, I placed logger in the standard options in <code>cucumber.yml</code>. So, if you run your cucumber to execute failed tests, you&rsquo;ll receive nothing, and list of failed tests&rsquo;ll be immediately erased. To avoid that problem temporary file is using.</p> <p>And the third note. You may wonder, why I call cucumber and parallel_tests directly and why I don&rsquo;t use ruby&rsquo;s <code>`cmd`</code> for that? Well, answer is simple. Because <code>`cmd`</code> in current case just sucks. First of all, you&rsquo;ll lose all colours in the terminal. Second thing is that <code>`cmd`</code> will return results only after command&rsquo;s finish. That means, if you have few slow tests then you&rsquo;ll just look at blank output for few minutes. And your colleagues&rsquo;d think that you are crazy. And you don&rsquo;t want that, even if you are crazy. Because, you know, you&rsquo;d listen stupid jokes about it and etc.</p> <p>That is why the code uses direct call to the API. It gives you all advantages: colours, live execution, less stupid jokes. It behaves like it should.</p> <p>That is all for today. Peace.</p> </div> <footer> <p class="meta"> <span class="byline author vcard">Posted by <span class="fn">Serj L aka Loremaster</span></span> <time datetime="2014-05-12T18:05:53+04:00" pubdate data-updated="true">May 12<span>th</span>, 2014</time> </p> <div class="sharing"> <a href="//twitter.com/share" class="twitter-share-button" data-url="http://bloginius.com/blog/2014/05/12/how-thor-can-help-you-with-your-tests-or-integration-of-parallel-tests-and-cucumber/" data-via="" data-counturl="http://bloginius.com/blog/2014/05/12/how-thor-can-help-you-with-your-tests-or-integration-of-parallel-tests-and-cucumber/">Tweet</a> </div> <p class="meta"> <a class="basic-alignment left" href="/blog/2014/04/18/useful-gems-for-rails-developer-part-1-development/" title="Previous Post: Useful gems for Rails developer. Part 1: development">&laquo; Useful gems for Rails developer. Part 1: development</a> </p> </footer> </article> <section> <h1>Comments</h1> <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> </div> </section> </div> <aside class="sidebar"> <section> <h1>Recent Posts</h1> <ul id="recent_posts"> <li class="post"> <a href="/blog/2014/05/12/how-thor-can-help-you-with-your-tests-or-integration-of-parallel-tests-and-cucumber/">How Thor Can Help You With Your Tests (or Integration of Parallel_tests and Cucumber)</a> </li> <li class="post"> <a href="/blog/2014/04/18/useful-gems-for-rails-developer-part-1-development/">Useful Gems for Rails Developer. Part 1: Development</a> </li> <li class="post"> <a href="/blog/2014/02/24/enlarge-your-capistrano/">Enlarge Your Capistrano</a> </li> <li class="post"> <a href="/blog/2014/01/28/another-guide-to-upgrade-to-rails-4/">Another Guide to Upgrade to Rails 4</a> </li> <li class="post"> <a href="/blog/2014/01/10/how-install-thinking-sphinx-with-postgresqls-support-on-mac-os-x/">How Install Thinking Sphinx With PostgreSQL's Support on Mac OS X</a> </li> <li class="post"> <a href="/blog/2013/12/31/how-integrate-acts-as-taggable-on-with-jquery-token-input-with-rails-3/">How Integrate ActsAsTaggableOn With Jquery Token Input (With Rails 3)</a> </li> <li class="post"> <a href="/blog/2013/12/26/how-upgrade-devise-2-dot-x-to-3-dot-2-x/">How Upgrade Devise 2 to 3.2</a> </li> </ul> </section> <section> <h1>GitHub Repos</h1> <ul id="gh_repos"> <li class="loading">Status updating...</li> </ul> <a href="https://github.com/Loremaster">@Loremaster</a> on GitHub <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'Loremaster',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script> <script src="/javascripts/github.js" type="text/javascript"> </script> </section> </aside> </div> </div> <footer role="contentinfo"><p> Copyright &copy; 2014 - Serj L aka Loremaster - <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> </p> </footer> <script type="text/javascript">
+      var disqus_shortname = 'httploremastergithubio';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://bloginius.com/blog/2014/05/12/how-thor-can-help-you-with-your-tests-or-integration-of-parallel-tests-and-cucumber/';
+        var disqus_url = 'http://bloginius.com/blog/2014/05/12/how-thor-can-help-you-with-your-tests-or-integration-of-parallel-tests-and-cucumber/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script> <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script> </body> </html>
