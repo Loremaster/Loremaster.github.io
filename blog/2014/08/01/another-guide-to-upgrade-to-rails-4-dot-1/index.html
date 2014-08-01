@@ -1,0 +1,272 @@
+<!DOCTYPE html> <!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]--> <!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]--> <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]--> <head> <meta charset="utf-8"> <title>Another Guide to Upgrade to Rails 4.1 - Serj L aka Loremaster</title> <meta name="author" content="Serj L aka Loremaster"> <meta name="description" content="Rails 4.1 is pretty nice release, but upgrade to this version may be pain. In this post I&rsquo;ll try to help you. First of all, you need to install &hellip;"> <meta name="HandheldFriendly" content="True"> <meta name="MobileOptimized" content="320"> <meta name="viewport" content="width=device-width, initial-scale=1"> <link rel="canonical" href="http://bloginius.com/blog/2014/08/01/another-guide-to-upgrade-to-rails-4-dot-1"> <link href="/favicon.png" rel="icon"> <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css"> <link href="/atom.xml" rel="alternate" title="Serj L aka Loremaster" type="application/atom+xml"> <script src="/javascripts/modernizr-2.0.js"></script> <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script> <script src="/javascripts/octopress.js" type="text/javascript"></script> <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46710684-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script> </head> <body> <header role="banner"><hgroup> <h1><a href="/">Serj L aka Loremaster</a></h1> <h2>Blog of Rails developer.</h2> </hgroup> </header> <nav role="navigation"><ul class="subscription" data-subscription="rss"> <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li> </ul> <form action="http://google.com/search" method="get"> <fieldset role="search"> <input type="hidden" name="q" value="site:bloginius.com"/> <input class="search" type="text" name="q" results="0" placeholder="Search"/> </fieldset> </form> <ul class="main-navigation"> <li><a href="/">Blog</a></li> <li><a href="/blog/archives">Archives</a></li> <li><a href="/about-me">About me</a></li> </ul> </nav> <div id="main"> <div id="content"> <div> <article class="hentry" role="article"> <header> <h1 class="entry-title">Another Guide to Upgrade to Rails 4.1</h1> <p class="meta"> <time datetime="2014-08-01T16:03:05+04:00" pubdate data-updated="true">Aug 1<span>st</span>, 2014</time> | <a href="#disqus_thread" data-disqus-identifier="http://bloginius.com">Comments</a> </p> </header> <div class="entry-content"><p>Rails 4.1 is pretty nice release, but upgrade to this version may be pain. In this post I&rsquo;ll try to help you.</p> <p>First of all, you need to install the latest version of Rails. Here I&rsquo;ll describe situation for <code>4.1.2</code>, because I couldn&rsquo;t bump app higher (and yes, upgrade from <code>4.1.1</code> to <code>4.1.2</code> may be pain too).</p> <figure class='code'><figcaption><span>Gemfile </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.1.2&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 4.0.3&#39;</span>
+</span></code></pre></td></tr></table></div></figure> <p>After that read <a href="http://guides.rubyonrails.org/upgrading_ruby_on_rails.html#upgrading-from-rails-4-0-to-rails-4-1">official rails guide to upgrade to rails 4.1</a>, because I don&rsquo;t want to talk about these details. Just don&rsquo;t touch section about Spring, I&rsquo;ll tell what to do with that.</p> <h3>Shoulda-matchers</h3> <p>After upgrade if you run your specs then you would see errors there if you use shoulda-matchers. To make shoulda-matchers work properly you need to install at least this version:</p> <figure class='code'><figcaption><span>Gemfile </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;shoulda-matchers&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 2.6.1&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
+</span></code></pre></td></tr></table></div></figure> <p>Only this version (and higher) is compatible with Rails 4.1. After running:</p> <figure class='code'><figcaption><span>Terminal </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>bundle
+</span></code></pre></td></tr></table></div></figure> <p>You also need to replace in spec_helper.rb this line:</p> <figure class='code'><figcaption><span>spec_helper.rb </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;shoulda/matchers/integrations/rspec&#39;</span>
+</span></code></pre></td></tr></table></div></figure> <p>By these two:</p> <figure class='code'><figcaption><span>spec_helper.rb </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s2">&quot;shoulda/matchers&quot;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s2">&quot;shoulda/matchers/integrations/rspec&quot;</span>
+</span></code></pre></td></tr></table></div></figure> <p>This fixed should be enough.</p> <h3>Bullet</h3> <p>Bullet also generates some errors. Fix is very easy:</p> <figure class='code'><figcaption><span>Gemfile </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;bullet&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 4.9.0&#39;</span>
+</span></code></pre></td></tr></table></div></figure> <h3>Squel</h3> <p>Well, by the time when I was doing the upgrade everything was <a href="https://github.com/activerecord-hackery/squeel/issues/307">baaaaaaad</a>. So I decided to remove it to exclude this dependency and to finally make the upgrade. Nowadays Squeel <a href="https://github.com/activerecord-hackery/squeel/pull/317">supports</a> Rails 4.1 (and as I know Rails 4.2 alpha). Yep, I am so lucky that when I removed Squeel from my project then it has received Rails 4.1 support. Such fail. So &lsquo;lucky&rsquo;. Wow.</p> <h3>Acts As Taggable</h3> <p>You may have such exceptions:</p> <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wrong number of arguments (1 for 2)</span></code></pre></td></tr></table></div></figure> <p>For the method <code>tagged_with</code>. To solve this problem you need to update the gem version and run new migration:</p> <figure class='code'><figcaption><span>Gemfile </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;acts-as-taggable-on&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.2.6&#39;</span>
+</span></code></pre></td></tr></table></div></figure> <figure class='code'><figcaption><span>Terminal </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>bundle
+</span><span class='line'><span class="nv">$ </span>rake acts_as_taggable_on_engine:install:migrations
+</span><span class='line'><span class="nv">$ </span>rake db:migrate
+</span></code></pre></td></tr></table></div></figure> <h3>Thinking Sphinx</h3> <p>Comment thinking sphinx after upgrade and install gems:</p> <figure class='code'><figcaption><span>Gemfile </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#gem &#39;thinking-sphinx&#39;</span>
+</span></code></pre></td></tr></table></div></figure> <figure class='code'><figcaption><span>Terminal </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>bundle
+</span></code></pre></td></tr></table></div></figure> <p>Then install this specific version from the brunch on github:</p> <figure class='code'><figcaption><span>Gemfile </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;thinking-sphinx&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.1.1&#39;</span><span class="p">,</span> <span class="ss">git</span><span class="p">:</span> <span class="s1">&#39;git://github.com/pat/thinking-sphinx.git&#39;</span><span class="p">,</span> <span class="ss">branch</span><span class="p">:</span> <span class="s1">&#39;develop&#39;</span><span class="p">,</span> <span class="ss">ref</span><span class="p">:</span> <span class="s1">&#39;c8f549f689&#39;</span>
+</span></code></pre></td></tr></table></div></figure> <p>This version includes many fixes for Rails 4.1, including fixes for polymorphic associations (yep, I found few bugs and posted them to Pat, he fixed everything, which is awesome).</p> <h3>Rails-admin</h3> <p>If you use <code>0.6.2</code> version and Rails 4.1.2 then you&rsquo;ll meet this exception if you&rsquo;ll try to create record in admin panel:</p> <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ActiveModel::ForbiddenAttributesError</span></code></pre></td></tr></table></div></figure> <p>Because new version hasn&rsquo;t been released yet you need to install specific version from master:</p> <figure class='code'><figcaption><span>Gemfile </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;rails_admin&#39;</span><span class="p">,</span> <span class="s1">&#39;0.6.2&#39;</span><span class="p">,</span> <span class="ss">git</span><span class="p">:</span> <span class="s1">&#39;git://github.com/sferik/rails_admin.git&#39;</span><span class="p">,</span> <span class="ss">branch</span><span class="p">:</span> <span class="s1">&#39;master&#39;</span><span class="p">,</span> <span class="ss">ref</span><span class="p">:</span> <span class="s1">&#39;02ba1dab32d&#39;</span>
+</span></code></pre></td></tr></table></div></figure> <h3>_attributes</h3> <p>Well, I think a lot of people used nested attributes. So, if you ever create nested params in form manually then it may be interested for you. The thing is that you can&rsquo;t pass data like:</p> <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">{</span><span class="n">some_data</span><span class="p">:</span> <span class="p">{</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">}}</span>
+</span></code></pre></td></tr></table></div></figure> <p>You need to pass it by this way:</p> <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">{</span><span class="n">some_data_attributes</span><span class="p">:</span> <span class="p">{</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">}}</span>
+</span></code></pre></td></tr></table></div></figure> <p>Yes, it&rsquo;s Rails-way and bla-bla-bla. But the thing is that key <code>some_data</code> WORKED somehow before, which is weird. But the most weird thing is that if you&rsquo;ll continue to use it then you&rsquo;ll receive this super weird exception:</p> <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Expected</span> <span class="no">SomeData</span> <span class="n">but</span> <span class="n">received</span> <span class="nb">Array</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure> <p>So, now you know what that mean. I wasted A LOT of hours trying to debug that.</p> <h3>Spring</h3> <p>Spring is app preloader, which is built in Rails core now. It allows you to speed up running task (such as Rails console), which is very nice. Installation is simple:</p> <figure class='code'><figcaption><span>Gemfile </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;spring&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure> <figure class='code'><figcaption><span>Terminal </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>bundle
+</span><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>spring binstub --all
+</span></code></pre></td></tr></table></div></figure> <p>After that you can install binstubs for cucumber and rspec. You know, just for fun (even if you don&rsquo;t have them, ha):</p> <figure class='code'><figcaption><span>Gemfile </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;spring-commands-rspec&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;spring-commands-cucumber&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure> <figure class='code'><figcaption><span>Terminal </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>spring binstub cucumber
+</span><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>spring binstub rspec
+</span><span class='line'><span class="nv">$ </span>spring stop
+</span></code></pre></td></tr></table></div></figure> <p>Now you can run your tests. Don&rsquo;t forger to run them via <code>bin/rspec</code> and <code>bin/cucumber</code> to use Spring. There is one gotcha with Spring, which you can read about in the next section.</p> <h3>Parallel_tests</h3> <p>Here is the gotcha. It doesn&rsquo;t work with Spring. It&rsquo;s very, very sad. Why? Because parallel_test is big help for you tests. Read <a href="https://github.com/grosser/parallel_tests">here more why it awesome</a>.</p> <p>So, you&rsquo;ll get such exceptions:</p> <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Failure</span><span class="o">/</span><span class="ss">Error</span><span class="p">:</span> <span class="no">Unable</span> <span class="n">to</span> <span class="n">find</span> <span class="n">matching</span> <span class="n">line</span> <span class="n">from</span> <span class="n">backtrace</span>
+</span><span class='line'>     <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:StatementInvalid</span><span class="p">:</span>
+</span><span class='line'>       <span class="ss">PG</span><span class="p">:</span><span class="ss">:TRDeadlockDetected</span><span class="p">:</span> <span class="ss">ERROR</span><span class="p">:</span>  <span class="n">deadlock</span> <span class="n">detected</span>
+</span><span class='line'>       <span class="no">LINE</span> <span class="mi">1</span><span class="p">:</span> <span class="no">SELECT</span>  <span class="s2">&quot;contact_types&quot;</span><span class="o">.</span><span class="n">*</span> <span class="no">FROM</span> <span class="s2">&quot;contact_types&quot;</span>  <span class="no">WHERE</span> <span class="s2">&quot;conta...</span>
+</span><span class='line'><span class="s2">                                              ^</span>
+</span><span class='line'><span class="s2">       DETAIL:  Process 70359 waits for AccessShareLock on relation 24882218 of database 7594218; blocked by process 70358.</span>
+</span><span class='line'><span class="s2">       Process 70358 waits for AccessExclusiveLock on relation 24888649 of database 7594218; blocked by process 70359.</span>
+</span><span class='line'><span class="s2">       HINT:  See server log for query details.</span>
+</span></code></pre></td></tr></table></div></figure> <p>But there is workaround! Open <code>config/spring.rb</code> and paste:</p> <figure class='code'><figcaption><span>config/spring.rb </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s2">&quot;active_support/core_ext/module/aliasing&quot;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s2">&quot;spring/application&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Spring</span><span class="o">::</span><span class="no">Application</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">connect_database_with_reconfigure_database</span>
+</span><span class='line'>    <span class="n">disconnect_database</span>
+</span><span class='line'>    <span class="n">reconfigure_database</span>
+</span><span class='line'>    <span class="n">connect_database_without_reconfigure_database</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">alias_method_chain</span> <span class="ss">:connect_database</span><span class="p">,</span> <span class="ss">:reconfigure_database</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">reconfigure_database</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">active_record_configured?</span>
+</span><span class='line'>      <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span><span class="o">.</span><span class="n">configurations</span> <span class="o">=</span> <span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">database_configuration</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure> <p>Then stop the spring, so he could see these code above:</p> <figure class='code'><figcaption><span>Terminal </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>spring stop
+</span></code></pre></td></tr></table></div></figure> <p>And now you run tests in parallel.</p> <h3>Strong Params</h3> <p>I don&rsquo;t know how many people may meet my situation, but anyway. If you make your nested attributes hash in form manually then (and only then) there is possible situation when keys in your hash may contain hashes and/or integer. For example:</p> <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">{</span><span class="ss">:service</span> <span class="o">=&gt;</span>
+</span><span class='line'>  <span class="p">{</span><span class="ss">:shipping_locations_attributes</span> <span class="o">=&gt;</span>
+</span><span class='line'>    <span class="p">{</span><span class="err">“</span><span class="n">w234pxc453</span><span class="err">”</span><span class="o">=&gt;</span>
+</span><span class='line'>      <span class="p">{</span><span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">&quot;LA, USA&quot;</span><span class="p">,</span>
+</span><span class='line'>       <span class="ss">:longitude</span> <span class="o">=&gt;</span> <span class="s2">&quot;37.6173&quot;</span><span class="p">,</span>
+</span><span class='line'>       <span class="ss">:latitude</span> <span class="o">=&gt;</span> <span class="s2">&quot;32.755826&quot;</span><span class="p">},</span>
+</span><span class='line'>    <span class="s2">&quot;0&quot;</span><span class="o">=&gt;</span>
+</span><span class='line'>      <span class="p">{</span><span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">&quot;LC, USA&quot;</span><span class="p">,</span>
+</span><span class='line'>       <span class="ss">:longitude</span> <span class="o">=&gt;</span> <span class="s2">&quot;12.6173&quot;</span><span class="p">,</span>
+</span><span class='line'>       <span class="ss">:latitude</span> <span class="o">=&gt;</span> <span class="s2">&quot;58.755826&quot;</span><span class="p">}</span>
+</span><span class='line'>       <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure> <p>In my case there is 3 possible situation:</p> <ol> <li>All keys are integers.</li> <li>All keys are hashes.</li> <li>Keys are hashes AND integers.</li> </ol> <p>You may think that this would work:</p> <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">params</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:service</span><span class="p">)</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:type_professional</span><span class="p">)</span><span class="o">.</span><span class="n">tap</span> <span class="k">do</span> <span class="o">|</span><span class="n">whitelist</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">whitelist</span><span class="o">[</span><span class="ss">:shipping_locations_attributes</span><span class="o">]</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="ss">:service</span><span class="o">][</span><span class="ss">:shipping_locations_attributes</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure> <p>Unfortunately, it didn&rsquo;t help me. That is why I created special method, which knows all these 3 possible situations and generate array with this data dynamically, so you just insert this data in <code>permit</code>.</p> <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># Pair keys (which StronParams doesn&#39;t allow to use for nested attributes) with data to permit.</span>
+</span><span class='line'>  <span class="c1"># Input:</span>
+</span><span class='line'>  <span class="c1">#   keys - Array - keys, which need to be appear in result.</span>
+</span><span class='line'>  <span class="c1">#   data_to_permit - Array/Integer/String/etc - data, which need to be in result as value.</span>
+</span><span class='line'>  <span class="c1">#</span>
+</span><span class='line'>  <span class="c1"># Return:</span>
+</span><span class='line'>  <span class="c1">#   1) Array with hash, where keys is input keys and values are duplicated data_to_permit IF all keys are not integers.</span>
+</span><span class='line'>  <span class="c1">#   2) data_to_permit - if all keys are integer (otherwise data will not be permitted).</span>
+</span><span class='line'>  <span class="c1">#</span>
+</span><span class='line'>  <span class="c1"># Example:</span>
+</span><span class='line'>  <span class="c1">#   pair_random_keys_with_data_to_permit([&quot;1a0f08fcbc&quot;, &quot;345rec32c1&quot;], [:id, :desc, :number])</span>
+</span><span class='line'>  <span class="c1">#   # =&gt; [{:&quot;1a0f08fcbc&quot;=&gt;[:id, :desc, :number], :&quot;345rec32c1&quot;=&gt;[:id, :desc, :number]}]</span>
+</span><span class='line'>  <span class="c1">#</span>
+</span><span class='line'>  <span class="c1">#   pair_random_keys_with_data_to_permit([&quot;0&quot;, &quot;1&quot;], [:id, :desc, :number])</span>
+</span><span class='line'>  <span class="c1">#   # =&gt; [:id, :desc, :number]</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">pair_random_keys_with_data_to_permit</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">data_to_permit</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="o">[]</span> <span class="k">if</span> <span class="n">keys</span><span class="o">.</span><span class="n">nil?</span> <span class="o">||</span> <span class="n">data_to_permit</span><span class="o">.</span><span class="n">nil?</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">keys_integers</span> <span class="o">=</span> <span class="n">keys</span><span class="o">.</span><span class="n">all?</span><span class="p">{</span> <span class="o">|</span><span class="n">key</span><span class="o">|</span> <span class="n">key</span><span class="o">.</span><span class="n">to_i</span><span class="o">.</span><span class="n">to_s</span> <span class="o">==</span> <span class="n">key</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># When keys are all integers, then we should return data_to_permit, Rails&#39;s StrongParams</span>
+</span><span class='line'>    <span class="c1"># will take care of it.</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">keys_integers</span>
+</span><span class='line'>      <span class="n">data_to_permit</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="n">array_for_hash_to_permit</span> <span class="o">=</span> <span class="n">keys</span><span class="o">.</span><span class="n">map</span><span class="p">{</span> <span class="o">|</span><span class="n">key</span><span class="o">|</span> <span class="o">[</span><span class="n">key</span><span class="p">,</span> <span class="n">data_to_permit</span><span class="o">]</span> <span class="p">}</span>                          <span class="c1"># Pair each key with data to permit.</span>
+</span><span class='line'>      <span class="o">[</span><span class="no">Hash</span><span class="o">[</span><span class="n">array_for_hash_to_permit</span><span class="o">].</span><span class="n">symbolize_keys</span><span class="o">]</span>                                             <span class="c1"># Array with hash where keys are symbols (if they may be symbols).</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure> <p>This is how you use this method, you just pass data to the method and then use it&rsquo;s results to permit it.</p> <figure class='code'><figcaption><span>app/controllers/services_controller.rb </span></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">def</span> <span class="nf">service_params</span>
+</span><span class='line'>    <span class="n">shipping_locations_keys</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="ss">:service</span><span class="o">][</span><span class="ss">:shipping_locations_attributes</span><span class="o">].</span><span class="n">try</span><span class="p">(</span><span class="ss">:keys</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">shipping_locations_allowed_attributes</span> <span class="o">=</span> <span class="o">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:longitude</span><span class="p">,</span> <span class="ss">:latitude</span><span class="o">]</span>
+</span><span class='line'>    <span class="n">shipping_locations_attrs</span> <span class="o">=</span> <span class="n">pair_random_keys_with_data_to_permit</span><span class="p">(</span><span class="n">shipping_locations_keys</span><span class="p">,</span> <span class="n">shipping_locations_allowed_attributes</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">params</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:service</span><span class="p">)</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:type_professional</span><span class="p">,</span> <span class="n">shipping_locations_attributes</span><span class="p">:</span> <span class="n">shipping_locations_attrs</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure> <p>I hope it&rsquo;ll help somebody.</p> <h3>Last words</h3> <p>Check out <a href="http://railsdiff.org/diff/v4.0.5/v4.1.2/">railsdiff</a> to view changes in the code. Don&rsquo;t forget to bump you gems. Make sure that all tests are green. Have a good test coverage and don&rsquo;t bump your app without it.</p> </div> <footer> <p class="meta"> <span class="byline author vcard">Posted by <span class="fn">Serj L aka Loremaster</span></span> <time datetime="2014-08-01T16:03:05+04:00" pubdate data-updated="true">Aug 1<span>st</span>, 2014</time> </p> <div class="sharing"> <a href="//twitter.com/share" class="twitter-share-button" data-url="http://bloginius.com/blog/2014/08/01/another-guide-to-upgrade-to-rails-4-dot-1/" data-via="" data-counturl="http://bloginius.com/blog/2014/08/01/another-guide-to-upgrade-to-rails-4-dot-1/">Tweet</a> </div> <p class="meta"> <a class="basic-alignment left" href="/blog/2014/05/12/how-thor-can-help-you-with-your-tests-or-integration-of-parallel-tests-and-cucumber/" title="Previous Post: How thor can help you with your tests (or integration of parallel_tests and cucumber)">&laquo; How thor can help you with your tests (or integration of parallel_tests and cucumber)</a> </p> </footer> </article> <section> <h1>Comments</h1> <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> </div> </section> </div> <aside class="sidebar"> <section> <h1>Recent Posts</h1> <ul id="recent_posts"> <li class="post"> <a href="/blog/2014/08/01/another-guide-to-upgrade-to-rails-4-dot-1/">Another Guide to Upgrade to Rails 4.1</a> </li> <li class="post"> <a href="/blog/2014/05/12/how-thor-can-help-you-with-your-tests-or-integration-of-parallel-tests-and-cucumber/">How Thor Can Help You With Your Tests (or Integration of Parallel_tests and Cucumber)</a> </li> <li class="post"> <a href="/blog/2014/04/18/useful-gems-for-rails-developer-part-1-development/">Useful Gems for Rails Developer. Part 1: Development</a> </li> <li class="post"> <a href="/blog/2014/02/24/enlarge-your-capistrano/">Enlarge Your Capistrano</a> </li> <li class="post"> <a href="/blog/2014/01/28/another-guide-to-upgrade-to-rails-4/">Another Guide to Upgrade to Rails 4</a> </li> <li class="post"> <a href="/blog/2014/01/10/how-install-thinking-sphinx-with-postgresqls-support-on-mac-os-x/">How Install Thinking Sphinx With PostgreSQL's Support on Mac OS X</a> </li> <li class="post"> <a href="/blog/2013/12/31/how-integrate-acts-as-taggable-on-with-jquery-token-input-with-rails-3/">How Integrate ActsAsTaggableOn With Jquery Token Input (With Rails 3)</a> </li> </ul> </section> <section> <h1>GitHub Repos</h1> <ul id="gh_repos"> <li class="loading">Status updating...</li> </ul> <a href="https://github.com/Loremaster">@Loremaster</a> on GitHub <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'Loremaster',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script> <script src="/javascripts/github.js" type="text/javascript"> </script> </section> </aside> </div> </div> <footer role="contentinfo"><p> Copyright &copy; 2014 - Serj L aka Loremaster - <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> </p> </footer> <script type="text/javascript">
+      var disqus_shortname = 'httploremastergithubio';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://bloginius.com/blog/2014/08/01/another-guide-to-upgrade-to-rails-4-dot-1/';
+        var disqus_url = 'http://bloginius.com/blog/2014/08/01/another-guide-to-upgrade-to-rails-4-dot-1/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script> <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script> </body> </html>
