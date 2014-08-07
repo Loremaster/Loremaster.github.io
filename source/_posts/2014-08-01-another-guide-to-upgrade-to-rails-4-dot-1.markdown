@@ -6,9 +6,9 @@ comments: true
 categories:
 ---
 
-Rails 4.1 is pretty nice release, but upgrade to this version may be pain. In this post I'll try to help you.
+Rails 4.1 is pretty nice release, but upgrade to this version may be painful. In this post I'll try to help you.
 
-First of all, you need to install the latest version of Rails. Here I'll describe situation for `4.1.2`, because I couldn't bump app higher (and yes, upgrade from `4.1.1` to `4.1.2` may be pain too).
+First of all, you need to install the latest version of Rails. Here I'll describe situation for `4.1.2`, because I couldn't bump app higher (and yes, upgrade from `4.1.1` to `4.1.2` may be painful too, welcome to Rails world).
 
 {% codeblock Gemfile lang:ruby %}
 gem 'rails', '4.1.2'
@@ -21,7 +21,7 @@ After that read [official rails guide to upgrade to rails 4.1](http://guides.rub
 
 ###Shoulda-matchers
 
-After upgrade if you run your specs then you would see errors there if you use shoulda-matchers. To make shoulda-matchers work properly you need to install at least this version:
+If you use `shoulda-matchers`, then you may see errors in your specs. To make shoulda-matchers work properly you need to install at least this version:
 
 {% codeblock Gemfile lang:ruby %}
 gem 'shoulda-matchers', '~> 2.6.1', require: false
@@ -46,11 +46,11 @@ require "shoulda/matchers"
 require "shoulda/matchers/integrations/rspec"
 {% endcodeblock %}
 
-This fixed should be enough.
+This fix should be enough.
 
 ###Bullet
 
-Bullet also generates some errors. Fix is very easy:
+Bullet also generates some errors. Solution is very easy:
 
 {% codeblock Gemfile lang:ruby %}
 gem 'bullet', '~> 4.9.0'
@@ -58,7 +58,7 @@ gem 'bullet', '~> 4.9.0'
 
 ###Squel
 
-Well, by the time when I was doing the upgrade everything was [baaaaaaad](https://github.com/activerecord-hackery/squeel/issues/307). So I decided to remove it to exclude this dependency and to finally make the upgrade. Nowadays Squeel [supports](https://github.com/activerecord-hackery/squeel/pull/317) Rails 4.1 (and as I know Rails 4.2 alpha). Yep, I am so lucky that when I removed Squeel from my project then it has received Rails 4.1 support. Such fail. So 'lucky'. Wow.
+Well, by the time when I was doing the upgrade everything was [baaaaaaad](https://github.com/activerecord-hackery/squeel/issues/307). So I decided to remove the Squeel to exclude this dependency and to finally make the upgrade. Nowadays Squeel [supports](https://github.com/activerecord-hackery/squeel/pull/317) Rails 4.1 (and as I know Rails 4.2 alpha). Yep, I am so lucky that when I has removed Squeel from the project, then it received Rails 4.1 support. Such fail. So 'lucky'. Wow.
 
 ###Acts As Taggable
 
@@ -82,7 +82,7 @@ $ rake db:migrate
 
 ###Thinking Sphinx
 
-Comment thinking sphinx after upgrade and install gems:
+Comment the thinking sphinx gem after the upgrade and bundle:
 
 {% codeblock Gemfile lang:ruby %}
 #gem 'thinking-sphinx'
@@ -98,17 +98,17 @@ Then install this specific version from the brunch on github:
 gem 'thinking-sphinx', '~> 3.1.1', git: 'git://github.com/pat/thinking-sphinx.git', branch: 'develop', ref: 'c8f549f689'
 {% endcodeblock %}
 
-This version includes many fixes for Rails 4.1, including fixes for polymorphic associations (yep, I found few bugs and posted them to Pat, he fixed everything, which is awesome).
+This version includes many fixes for Rails 4.1, including fixes for polymorphic associations (yep, I found few bugs and posted them to Pat, he fixed everything. And this is awesome!).
 
 ###Rails-admin
 
-If you use `0.6.2` version and Rails 4.1.2 then you'll meet this exception if you'll try to create record in admin panel:
+If you use `0.6.2` version and Rails 4.1.2 then you'll meet this exception if you'll try to create record in admin's panel:
 
 ```
 ActiveModel::ForbiddenAttributesError
 ```
 
-Because new version hasn't been released yet you need to install specific version from master:
+Because new version hasn't been released yet, you need to install specific version from master:
 
 {% codeblock Gemfile lang:ruby %}
 gem 'rails_admin', '0.6.2', git: 'git://github.com/sferik/rails_admin.git', branch: 'master', ref: '02ba1dab32d'
@@ -116,7 +116,7 @@ gem 'rails_admin', '0.6.2', git: 'git://github.com/sferik/rails_admin.git', bran
 
 ###_attributes
 
-Well, I think a lot of people used nested attributes. So, if you ever create nested params in form manually then it may be interested for you. The thing is that you can't pass data like:
+Well, I think a lot of people have ever used nested attributes. So, if you'll create nested params in form manually then this topic may be interesting for you. The thing is that you can't pass data like in that way:
 
 ```ruby
 {some_data: {...}}
@@ -218,7 +218,7 @@ And now you run tests in parallel.
 
 ###Strong Params
 
-I don't know how many people may meet my situation, but anyway. If you make your nested attributes hash in form manually then (and only then) there is possible situation when keys in your hash may contain hashes and/or integer. For example:
+I don't know how many people may meet my situation, but anyway. If you make your nested attributes hash in form manually, then (and only then) there is possible situation when keys in your hash may contain hashes and/or integer. For example:
 
 ```ruby
 {:service =>
@@ -250,7 +250,7 @@ params.require(:service).permit(:type_professional).tap do |whitelist|
 end
 ```
 
-Unfortunately, it didn't help me. That is why I created special method, which knows all these 3 possible situations and generate array with this data dynamically, so you just insert this data in `permit`.
+Unfortunately, it didn't help me. That is why I have created special method, which knows about these 3 possible situations and generate array with this data dynamically, so you just insert this data in `permit`.
 
 ```ruby
   # Pair keys (which StronParams doesn't allow to use for nested attributes) with data to permit.
