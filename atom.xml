@@ -4,7 +4,7 @@
   <title><![CDATA[Serj L aka Loremaster]]></title>
   <link href="http://bloginius.com/atom.xml" rel="self"/>
   <link href="http://bloginius.com/"/>
-  <updated>2014-08-01T17:08:21+04:00</updated>
+  <updated>2014-08-07T12:23:37+04:00</updated>
   <id>http://bloginius.com/</id>
   <author>
     <name><![CDATA[Serj L aka Loremaster]]></name>
@@ -18,9 +18,9 @@
     <link href="http://bloginius.com/blog/2014/08/01/another-guide-to-upgrade-to-rails-4-dot-1/"/>
     <updated>2014-08-01T16:03:05+04:00</updated>
     <id>http://bloginius.com/blog/2014/08/01/another-guide-to-upgrade-to-rails-4-dot-1</id>
-    <content type="html"><![CDATA[<p>Rails 4.1 is pretty nice release, but upgrade to this version may be pain. In this post I&rsquo;ll try to help you.</p>
+    <content type="html"><![CDATA[<p>Rails 4.1 is pretty nice release, but upgrade to this version may be painful. In this post I&rsquo;ll try to help you.</p>
 
-<p>First of all, you need to install the latest version of Rails. Here I&rsquo;ll describe situation for <code>4.1.2</code>, because I couldn&rsquo;t bump app higher (and yes, upgrade from <code>4.1.1</code> to <code>4.1.2</code> may be pain too).</p>
+<p>First of all, you need to install the latest version of Rails. Here I&rsquo;ll describe situation for <code>4.1.2</code>, because I couldn&rsquo;t bump app higher (and yes, upgrade from <code>4.1.1</code> to <code>4.1.2</code> may be painful too, welcome to Rails world).</p>
 
 <figure class='code'><figcaption><span>Gemfile </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -37,7 +37,7 @@
 
 <h3>Shoulda-matchers</h3>
 
-<p>After upgrade if you run your specs then you would see errors there if you use shoulda-matchers. To make shoulda-matchers work properly you need to install at least this version:</p>
+<p>If you use <code>shoulda-matchers</code>, then you may see errors in your specs. To make shoulda-matchers work properly you need to install at least this version:</p>
 
 <figure class='code'><figcaption><span>Gemfile </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -71,11 +71,11 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>This fixed should be enough.</p>
+<p>This fix should be enough.</p>
 
 <h3>Bullet</h3>
 
-<p>Bullet also generates some errors. Fix is very easy:</p>
+<p>Bullet also generates some errors. Solution is very easy:</p>
 
 <figure class='code'><figcaption><span>Gemfile </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -85,7 +85,7 @@
 
 <h3>Squel</h3>
 
-<p>Well, by the time when I was doing the upgrade everything was <a href="https://github.com/activerecord-hackery/squeel/issues/307">baaaaaaad</a>. So I decided to remove it to exclude this dependency and to finally make the upgrade. Nowadays Squeel <a href="https://github.com/activerecord-hackery/squeel/pull/317">supports</a> Rails 4.1 (and as I know Rails 4.2 alpha). Yep, I am so lucky that when I removed Squeel from my project then it has received Rails 4.1 support. Such fail. So &lsquo;lucky&rsquo;. Wow.</p>
+<p>Well, by the time when I was doing the upgrade everything was <a href="https://github.com/activerecord-hackery/squeel/issues/307">baaaaaaad</a>. So I decided to remove the Squeel to exclude this dependency and to finally make the upgrade. Nowadays Squeel <a href="https://github.com/activerecord-hackery/squeel/pull/317">supports</a> Rails 4.1 (and as I know Rails 4.2 alpha). Yep, I am so lucky that when I has removed Squeel from the project, then it received Rails 4.1 support. Such fail. So &lsquo;lucky&rsquo;. Wow.</p>
 
 <h3>Acts As Taggable</h3>
 
@@ -117,7 +117,7 @@
 
 <h3>Thinking Sphinx</h3>
 
-<p>Comment thinking sphinx after upgrade and install gems:</p>
+<p>Comment the thinking sphinx gem after the upgrade and bundle:</p>
 
 <figure class='code'><figcaption><span>Gemfile </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -141,17 +141,17 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>This version includes many fixes for Rails 4.1, including fixes for polymorphic associations (yep, I found few bugs and posted them to Pat, he fixed everything, which is awesome).</p>
+<p>This version includes many fixes for Rails 4.1, including fixes for polymorphic associations (yep, I found few bugs and posted them to Pat, he fixed everything. And this is awesome!).</p>
 
 <h3>Rails-admin</h3>
 
-<p>If you use <code>0.6.2</code> version and Rails 4.1.2 then you&rsquo;ll meet this exception if you&rsquo;ll try to create record in admin panel:</p>
+<p>If you use <code>0.6.2</code> version and Rails 4.1.2 then you&rsquo;ll meet this exception if you&rsquo;ll try to create record in admin&rsquo;s panel:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>ActiveModel::ForbiddenAttributesError</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Because new version hasn&rsquo;t been released yet you need to install specific version from master:</p>
+<p>Because new version hasn&rsquo;t been released yet, you need to install specific version from master:</p>
 
 <figure class='code'><figcaption><span>Gemfile </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -161,7 +161,7 @@
 
 <h3>_attributes</h3>
 
-<p>Well, I think a lot of people used nested attributes. So, if you ever create nested params in form manually then it may be interested for you. The thing is that you can&rsquo;t pass data like:</p>
+<p>Well, I think a lot of people have ever used nested attributes. So, if you&rsquo;ll create nested params in form manually then this topic may be interesting for you. The thing is that you can&rsquo;t pass data like in that way:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">{</span><span class="n">some_data</span><span class="p">:</span> <span class="p">{</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">}}</span>
@@ -315,7 +315,7 @@
 
 <h3>Strong Params</h3>
 
-<p>I don&rsquo;t know how many people may meet my situation, but anyway. If you make your nested attributes hash in form manually then (and only then) there is possible situation when keys in your hash may contain hashes and/or integer. For example:</p>
+<p>I don&rsquo;t know how many people may meet my situation, but anyway. If you make your nested attributes hash in form manually, then (and only then) there is possible situation when keys in your hash may contain hashes and/or integer. For example:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -366,7 +366,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Unfortunately, it didn&rsquo;t help me. That is why I created special method, which knows all these 3 possible situations and generate array with this data dynamically, so you just insert this data in <code>permit</code>.</p>
+<p>Unfortunately, it didn&rsquo;t help me. That is why I have created special method, which knows about these 3 possible situations and generate array with this data dynamically, so you just insert this data in <code>permit</code>.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
