@@ -4,7 +4,7 @@
   <title><![CDATA[Serj L aka Loremaster]]></title>
   <link href="http://bloginius.com/atom.xml" rel="self"/>
   <link href="http://bloginius.com/"/>
-  <updated>2014-08-07T12:23:37+04:00</updated>
+  <updated>2014-09-04T16:52:37+04:00</updated>
   <id>http://bloginius.com/</id>
   <author>
     <name><![CDATA[Serj L aka Loremaster]]></name>
@@ -20,7 +20,7 @@
     <id>http://bloginius.com/blog/2014/08/01/another-guide-to-upgrade-to-rails-4-dot-1</id>
     <content type="html"><![CDATA[<p>Rails 4.1 is pretty nice release, but upgrade to this version may be painful. In this post I&rsquo;ll try to help you.</p>
 
-<p>First of all, you need to install the latest version of Rails. Here I&rsquo;ll describe situation for <code>4.1.2</code>, because I couldn&rsquo;t bump app higher (and yes, upgrade from <code>4.1.1</code> to <code>4.1.2</code> may be painful too, welcome to Rails world).</p>
+<p>First of all, you need to install the latest version of Rails.</p>
 
 <figure class='code'><figcaption><span>Gemfile </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -450,6 +450,308 @@
 
 
 <p>I hope it&rsquo;ll help somebody.</p>
+
+<h3>Rails 4.1.5 notes</h3>
+
+<p>When you&rsquo;ll upgrade to Rails 4.1.5 and you use Devise for authentication then you can met this problem when user tries to resend password:</p>
+
+<figure class='code'><figcaption><span>Terminal </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ActiveModel::ForbiddenAttributesError - ActiveModel::ForbiddenAttributesError:
+</span><span class='line'>  activemodel <span class="o">(</span>4.1.5<span class="o">)</span> lib/active_model/forbidden_attributes_protection.rb:21:in <span class="sb">`</span>sanitize_for_mass_assignment<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  activerecord (4.1.5) lib/active_record/relation/query_methods.rb:568:in `where!&#39;</span>
+</span><span class='line'>  activerecord <span class="o">(</span>4.1.5<span class="o">)</span> lib/active_record/relation/query_methods.rb:559:in <span class="sb">`</span>where<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  activerecord (4.1.5) lib/active_record/querying.rb:10:in `where&#39;</span>
+</span><span class='line'>  app/models/user.rb:83:in <span class="sb">`</span>find_first_by_auth_conditions<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  devise (3.2.4) lib/devise/models/authenticatable.rb:260:in `find_or_initialize_with_errors&#39;</span>
+</span><span class='line'>  devise <span class="o">(</span>3.2.4<span class="o">)</span> lib/devise/models/recoverable.rb:99:in <span class="sb">`</span>send_reset_password_instructions<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  app/controllers/passwords_controller.rb:4:in `create&#39;</span>
+</span><span class='line'>  actionpack <span class="o">(</span>4.1.5<span class="o">)</span> lib/action_controller/metal/implicit_render.rb:4:in <span class="sb">`</span>send_action<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  actionpack (4.1.5) lib/abstract_controller/base.rb:189:in `process_action&#39;</span>
+</span><span class='line'>  actionpack <span class="o">(</span>4.1.5<span class="o">)</span> lib/action_controller/metal/rendering.rb:10:in <span class="sb">`</span>process_action<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  actionpack (4.1.5) lib/abstract_controller/callbacks.rb:20:in `block in process_action&#39;</span>
+</span><span class='line'>  activesupport <span class="o">(</span>4.1.5<span class="o">)</span> lib/active_support/callbacks.rb:113:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  activesupport (4.1.5) lib/active_support/callbacks.rb:149:in `block in halting_and_conditional&#39;</span>
+</span><span class='line'>  activesupport <span class="o">(</span>4.1.5<span class="o">)</span> lib/active_support/callbacks.rb:229:in <span class="sb">`</span>block in halting<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  activesupport (4.1.5) lib/active_support/callbacks.rb:166:in `block in halting&#39;</span>
+</span><span class='line'>  activesupport <span class="o">(</span>4.1.5<span class="o">)</span> lib/active_support/callbacks.rb:166:in <span class="sb">`</span>block in halting<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  activesupport (4.1.5) lib/active_support/callbacks.rb:166:in `block in halting&#39;</span>
+</span><span class='line'>  activesupport <span class="o">(</span>4.1.5<span class="o">)</span> lib/active_support/callbacks.rb:166:in <span class="sb">`</span>block in halting<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  activesupport (4.1.5) lib/active_support/callbacks.rb:229:in `block in halting&#39;</span>
+</span><span class='line'>  activesupport <span class="o">(</span>4.1.5<span class="o">)</span> lib/active_support/callbacks.rb:166:in <span class="sb">`</span>block in halting<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  activesupport (4.1.5) lib/active_support/callbacks.rb:166:in `block in halting&#39;</span>
+</span><span class='line'>  activesupport <span class="o">(</span>4.1.5<span class="o">)</span> lib/active_support/callbacks.rb:166:in <span class="sb">`</span>block in halting<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  activesupport (4.1.5) lib/active_support/callbacks.rb:166:in `block in halting&#39;</span>
+</span><span class='line'>  activesupport <span class="o">(</span>4.1.5<span class="o">)</span> lib/active_support/callbacks.rb:166:in <span class="sb">`</span>block in halting<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  activesupport (4.1.5) lib/active_support/callbacks.rb:166:in `block in halting&#39;</span>
+</span><span class='line'>  activesupport <span class="o">(</span>4.1.5<span class="o">)</span> lib/active_support/callbacks.rb:166:in <span class="sb">`</span>block in halting<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  activesupport (4.1.5) lib/active_support/callbacks.rb:166:in `block in halting&#39;</span>
+</span><span class='line'>  activesupport <span class="o">(</span>4.1.5<span class="o">)</span> lib/active_support/callbacks.rb:86:in <span class="sb">`</span>run_callbacks<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  actionpack (4.1.5) lib/abstract_controller/callbacks.rb:19:in `process_action&#39;</span>
+</span><span class='line'>  actionpack <span class="o">(</span>4.1.5<span class="o">)</span> lib/action_controller/metal/rescue.rb:29:in <span class="sb">`</span>process_action<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  actionpack (4.1.5) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action&#39;</span>
+</span><span class='line'>  activesupport <span class="o">(</span>4.1.5<span class="o">)</span> lib/active_support/notifications.rb:159:in <span class="sb">`</span>block in instrument<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  activesupport (4.1.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument&#39;</span>
+</span><span class='line'>  activesupport <span class="o">(</span>4.1.5<span class="o">)</span> lib/active_support/notifications.rb:159:in <span class="sb">`</span>instrument<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  actionpack (4.1.5) lib/action_controller/metal/instrumentation.rb:30:in `process_action&#39;</span>
+</span><span class='line'>  actionpack <span class="o">(</span>4.1.5<span class="o">)</span> lib/action_controller/metal/params_wrapper.rb:250:in <span class="sb">`</span>process_action<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  activerecord (4.1.5) lib/active_record/railties/controller_runtime.rb:18:in `process_action&#39;</span>
+</span><span class='line'>  actionpack <span class="o">(</span>4.1.5<span class="o">)</span> lib/abstract_controller/base.rb:136:in <span class="sb">`</span>process<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  actionview (4.1.5) lib/action_view/rendering.rb:30:in `process&#39;</span>
+</span><span class='line'>  actionpack <span class="o">(</span>4.1.5<span class="o">)</span> lib/action_controller/metal.rb:196:in <span class="sb">`</span>dispatch<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  actionpack (4.1.5) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch&#39;</span>
+</span><span class='line'>  actionpack <span class="o">(</span>4.1.5<span class="o">)</span> lib/action_controller/metal.rb:232:in <span class="sb">`</span>block in action<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  actionpack (4.1.5) lib/action_dispatch/routing/route_set.rb:82:in `dispatch&#39;</span>
+</span><span class='line'>  actionpack <span class="o">(</span>4.1.5<span class="o">)</span> lib/action_dispatch/routing/route_set.rb:50:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  actionpack (4.1.5) lib/action_dispatch/routing/mapper.rb:45:in `call&#39;</span>
+</span><span class='line'>  actionpack <span class="o">(</span>4.1.5<span class="o">)</span> lib/action_dispatch/journey/router.rb:71:in <span class="sb">`</span>block in call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  actionpack (4.1.5) lib/action_dispatch/journey/router.rb:59:in `call&#39;</span>
+</span><span class='line'>  actionpack <span class="o">(</span>4.1.5<span class="o">)</span> lib/action_dispatch/routing/route_set.rb:678:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  rack-pjax (0.7.0) lib/rack/pjax.rb:12:in `call&#39;</span>
+</span><span class='line'>  newrelic_rpm <span class="o">(</span>3.8.1.221<span class="o">)</span> lib/new_relic/rack/error_collector.rb:55:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  newrelic_rpm (3.8.1.221) lib/new_relic/rack/agent_hooks.rb:32:in `call&#39;</span>
+</span><span class='line'>  newrelic_rpm <span class="o">(</span>3.8.1.221<span class="o">)</span> lib/new_relic/rack/browser_monitoring.rb:27:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  newrelic_rpm (3.8.1.221) lib/new_relic/rack/developer_mode.rb:45:in `call&#39;</span>
+</span><span class='line'>  meta_request <span class="o">(</span>0.3.0<span class="o">)</span> lib/meta_request/middlewares/app_request_handler.rb:13:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  rack-contrib (1.1.0) lib/rack/contrib/response_headers.rb:17:in `call&#39;</span>
+</span><span class='line'>  meta_request <span class="o">(</span>0.3.0<span class="o">)</span> lib/meta_request/middlewares/headers.rb:16:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  meta_request (0.3.0) lib/meta_request/middlewares/meta_request_handler.rb:13:in `call&#39;</span>
+</span><span class='line'>  bullet <span class="o">(</span>4.10.0<span class="o">)</span> lib/bullet/rack.rb:12:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  simple_captcha2 (0.3.2) lib/simple_captcha/middleware.rb:26:in `call&#39;</span>
+</span><span class='line'>  warden <span class="o">(</span>1.2.3<span class="o">)</span> lib/warden/manager.rb:35:in <span class="sb">`</span>block in call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  warden (1.2.3) lib/warden/manager.rb:34:in `call&#39;</span>
+</span><span class='line'>  rack <span class="o">(</span>1.5.2<span class="o">)</span> lib/rack/etag.rb:23:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  rack (1.5.2) lib/rack/conditionalget.rb:35:in `call&#39;</span>
+</span><span class='line'>  rack <span class="o">(</span>1.5.2<span class="o">)</span> lib/rack/head.rb:11:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  remotipart (1.2.1) lib/remotipart/middleware.rb:27:in `call&#39;</span>
+</span><span class='line'>  actionpack <span class="o">(</span>4.1.5<span class="o">)</span> lib/action_dispatch/middleware/params_parser.rb:27:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  actionpack (4.1.5) lib/action_dispatch/middleware/flash.rb:254:in `call&#39;</span>
+</span><span class='line'>  rack <span class="o">(</span>1.5.2<span class="o">)</span> lib/rack/session/abstract/id.rb:225:in <span class="sb">`</span>context<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call&#39;</span>
+</span><span class='line'>  actionpack <span class="o">(</span>4.1.5<span class="o">)</span> lib/action_dispatch/middleware/cookies.rb:560:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  activerecord (4.1.5) lib/active_record/query_cache.rb:36:in `call&#39;</span>
+</span><span class='line'>  activerecord <span class="o">(</span>4.1.5<span class="o">)</span> lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  activerecord (4.1.5) lib/active_record/migration.rb:380:in `call&#39;</span>
+</span><span class='line'>  actionpack <span class="o">(</span>4.1.5<span class="o">)</span> lib/action_dispatch/middleware/callbacks.rb:29:in <span class="sb">`</span>block in call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  activesupport (4.1.5) lib/active_support/callbacks.rb:82:in `run_callbacks&#39;</span>
+</span><span class='line'>  actionpack <span class="o">(</span>4.1.5<span class="o">)</span> lib/action_dispatch/middleware/callbacks.rb:27:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  actionpack (4.1.5) lib/action_dispatch/middleware/reloader.rb:73:in `call&#39;</span>
+</span><span class='line'>  actionpack <span class="o">(</span>4.1.5<span class="o">)</span> lib/action_dispatch/middleware/remote_ip.rb:76:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  better_errors (1.1.0) lib/better_errors/middleware.rb:84:in `protected_app_call&#39;</span>
+</span><span class='line'>  better_errors <span class="o">(</span>1.1.0<span class="o">)</span> lib/better_errors/middleware.rb:79:in <span class="sb">`</span>better_errors_call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  better_errors (1.1.0) lib/better_errors/middleware.rb:56:in `call&#39;</span>
+</span><span class='line'>  actionpack <span class="o">(</span>4.1.5<span class="o">)</span> lib/action_dispatch/middleware/debug_exceptions.rb:17:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call&#39;</span>
+</span><span class='line'>  railties <span class="o">(</span>4.1.5<span class="o">)</span> lib/rails/rack/logger.rb:38:in <span class="sb">`</span>call_app<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  railties (4.1.5) lib/rails/rack/logger.rb:20:in `block in call&#39;</span>
+</span><span class='line'>  activesupport <span class="o">(</span>4.1.5<span class="o">)</span> lib/active_support/tagged_logging.rb:68:in <span class="sb">`</span>block in tagged<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  activesupport (4.1.5) lib/active_support/tagged_logging.rb:26:in `tagged&#39;</span>
+</span><span class='line'>  activesupport <span class="o">(</span>4.1.5<span class="o">)</span> lib/active_support/tagged_logging.rb:68:in <span class="sb">`</span>tagged<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  railties (4.1.5) lib/rails/rack/logger.rb:20:in `call&#39;</span>
+</span><span class='line'>  quiet_assets <span class="o">(</span>1.0.3<span class="o">)</span> lib/quiet_assets.rb:23:in <span class="sb">`</span>call_with_quiet_assets<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call&#39;</span>
+</span><span class='line'>  request_store <span class="o">(</span>1.0.6<span class="o">)</span> lib/request_store/middleware.rb:8:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call&#39;</span>
+</span><span class='line'>  rack <span class="o">(</span>1.5.2<span class="o">)</span> lib/rack/runtime.rb:17:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call&#39;</span>
+</span><span class='line'>  rack <span class="o">(</span>1.5.2<span class="o">)</span> lib/rack/lock.rb:17:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call&#39;</span>
+</span><span class='line'>  rack <span class="o">(</span>1.5.2<span class="o">)</span> lib/rack/sendfile.rb:112:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  railties (4.1.5) lib/rails/engine.rb:514:in `call&#39;</span>
+</span><span class='line'>  railties <span class="o">(</span>4.1.5<span class="o">)</span> lib/rails/application.rb:144:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  rack (1.5.2) lib/rack/content_length.rb:14:in `call&#39;</span>
+</span><span class='line'>  thin <span class="o">(</span>1.6.2<span class="o">)</span> lib/thin/connection.rb:86:in <span class="sb">`</span>block in pre_process<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  thin (1.6.2) lib/thin/connection.rb:84:in `pre_process&#39;</span>
+</span><span class='line'>  thin <span class="o">(</span>1.6.2<span class="o">)</span> lib/thin/connection.rb:53:in <span class="sb">`</span>process<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  thin (1.6.2) lib/thin/connection.rb:39:in `receive_data&#39;</span>
+</span><span class='line'>  eventmachine <span class="o">(</span>1.0.3<span class="o">)</span> lib/eventmachine.rb:187:in <span class="sb">`</span>run<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  thin (1.6.2) lib/thin/backends/base.rb:73:in `start&#39;</span>
+</span><span class='line'>  thin <span class="o">(</span>1.6.2<span class="o">)</span> lib/thin/server.rb:162:in <span class="sb">`</span>start<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  rack (1.5.2) lib/rack/handler/thin.rb:16:in `run&#39;</span>
+</span><span class='line'>  rack <span class="o">(</span>1.5.2<span class="o">)</span> lib/rack/server.rb:264:in <span class="sb">`</span>start<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  railties (4.1.5) lib/rails/commands/server.rb:69:in `start&#39;</span>
+</span><span class='line'>  railties <span class="o">(</span>4.1.5<span class="o">)</span> lib/rails/commands/commands_tasks.rb:81:in <span class="sb">`</span>block in server<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  railties (4.1.5) lib/rails/commands/commands_tasks.rb:76:in `server&#39;</span>
+</span><span class='line'>  railties <span class="o">(</span>4.1.5<span class="o">)</span> lib/rails/commands/commands_tasks.rb:40:in <span class="sb">`</span>run_command!<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  railties (4.1.5) lib/rails/commands.rb:17:in `&lt;top (required)&gt;&#39;</span>
+</span><span class='line'>  bin/rails:8:in <span class="sb">`</span>&lt;top <span class="o">(</span>required<span class="o">)</span>&gt;<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  spring (1.1.3) lib/spring/client/rails.rb:27:in `call&#39;</span>
+</span><span class='line'>  spring <span class="o">(</span>1.1.3<span class="o">)</span> lib/spring/client/command.rb:7:in <span class="sb">`</span>call<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  spring (1.1.3) lib/spring/client.rb:26:in `run&#39;</span>
+</span><span class='line'>  spring <span class="o">(</span>1.1.3<span class="o">)</span> bin/spring:48:in <span class="sb">`</span>&lt;top <span class="o">(</span>required<span class="o">)</span>&gt;<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  spring (1.1.3) lib/spring/binstub.rb:11:in `&lt;top (required)&gt;&#39;</span>
+</span><span class='line'>  bin/spring:16:in <span class="sb">`</span>&lt;top <span class="o">(</span>required<span class="o">)</span>&gt;<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  bin/rails:3:in `&lt;main&gt;&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In my case I had overridden Devise&rsquo;s controller:</p>
+
+<figure class='code'><figcaption><span>app/controllers/passwords_controller.rb </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">PasswordsController</span> <span class="o">&lt;</span> <span class="ss">Devise</span><span class="p">:</span><span class="ss">:PasswordsController</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">create</span>
+</span><span class='line'>    <span class="vi">@user</span> <span class="o">=</span> <span class="n">resource_class</span><span class="o">.</span><span class="n">send_reset_password_instructions</span><span class="p">(</span><span class="n">resource_params</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+</span><span class='line'>      <span class="nb">format</span><span class="o">.</span><span class="n">js</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Fix is pretty easy:</p>
+
+<figure class='code'><figcaption><span>app/controllers/passwords_controller.rb </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">PasswordsController</span> <span class="o">&lt;</span> <span class="ss">Devise</span><span class="p">:</span><span class="ss">:PasswordsController</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">create</span>
+</span><span class='line'>    <span class="vi">@user</span> <span class="o">=</span> <span class="n">resource_class</span><span class="o">.</span><span class="n">send_reset_password_instructions</span><span class="p">(</span><span class="n">resource_params</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:email</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># ...</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <h3>Last words</h3>
 
