@@ -8,7 +8,7 @@ categories:
 
 Rails 4.1 is pretty nice release, but upgrade to this version may be painful. In this post I'll try to help you.
 
-First of all, you need to install the latest version of Rails. Here I'll describe situation for `4.1.2`, because I couldn't bump app higher (and yes, upgrade from `4.1.1` to `4.1.2` may be painful too, welcome to Rails world).
+First of all, you need to install the latest version of Rails.
 
 {% codeblock Gemfile lang:ruby %}
 gem 'rails', '4.1.2'
@@ -297,6 +297,164 @@ This is how you use this method, you just pass data to the method and then use i
 {% endcodeblock %}
 
 I hope it'll help somebody.
+
+###Rails 4.1.5 notes
+
+When you'll upgrade to Rails 4.1.5 and you use Devise for authentication then you can met this problem when user tries to resend password:
+
+{% codeblock Terminal lang:bash %}
+ActiveModel::ForbiddenAttributesError - ActiveModel::ForbiddenAttributesError:
+  activemodel (4.1.5) lib/active_model/forbidden_attributes_protection.rb:21:in `sanitize_for_mass_assignment'
+  activerecord (4.1.5) lib/active_record/relation/query_methods.rb:568:in `where!'
+  activerecord (4.1.5) lib/active_record/relation/query_methods.rb:559:in `where'
+  activerecord (4.1.5) lib/active_record/querying.rb:10:in `where'
+  app/models/user.rb:83:in `find_first_by_auth_conditions'
+  devise (3.2.4) lib/devise/models/authenticatable.rb:260:in `find_or_initialize_with_errors'
+  devise (3.2.4) lib/devise/models/recoverable.rb:99:in `send_reset_password_instructions'
+  app/controllers/passwords_controller.rb:4:in `create'
+  actionpack (4.1.5) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.1.5) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.1.5) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.1.5) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:113:in `call'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:149:in `block in halting_and_conditional'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:86:in `run_callbacks'
+  actionpack (4.1.5) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.1.5) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.1.5) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.1.5) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.5) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.1.5) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.1.5) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.1.5) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.1.5) lib/abstract_controller/base.rb:136:in `process'
+  actionview (4.1.5) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.1.5) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.1.5) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.1.5) lib/action_controller/metal.rb:232:in `block in action'
+  actionpack (4.1.5) lib/action_dispatch/routing/route_set.rb:82:in `dispatch'
+  actionpack (4.1.5) lib/action_dispatch/routing/route_set.rb:50:in `call'
+  actionpack (4.1.5) lib/action_dispatch/routing/mapper.rb:45:in `call'
+  actionpack (4.1.5) lib/action_dispatch/journey/router.rb:71:in `block in call'
+  actionpack (4.1.5) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.5) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  rack-pjax (0.7.0) lib/rack/pjax.rb:12:in `call'
+  newrelic_rpm (3.8.1.221) lib/new_relic/rack/error_collector.rb:55:in `call'
+  newrelic_rpm (3.8.1.221) lib/new_relic/rack/agent_hooks.rb:32:in `call'
+  newrelic_rpm (3.8.1.221) lib/new_relic/rack/browser_monitoring.rb:27:in `call'
+  newrelic_rpm (3.8.1.221) lib/new_relic/rack/developer_mode.rb:45:in `call'
+  meta_request (0.3.0) lib/meta_request/middlewares/app_request_handler.rb:13:in `call'
+  rack-contrib (1.1.0) lib/rack/contrib/response_headers.rb:17:in `call'
+  meta_request (0.3.0) lib/meta_request/middlewares/headers.rb:16:in `call'
+  meta_request (0.3.0) lib/meta_request/middlewares/meta_request_handler.rb:13:in `call'
+  bullet (4.10.0) lib/bullet/rack.rb:12:in `call'
+  simple_captcha2 (0.3.2) lib/simple_captcha/middleware.rb:26:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:35:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  remotipart (1.2.1) lib/remotipart/middleware.rb:27:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.1.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.5) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.5) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (1.1.0) lib/better_errors/middleware.rb:56:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  request_store (1.0.6) lib/request_store/middleware.rb:8:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  thin (1.6.2) lib/thin/connection.rb:86:in `block in pre_process'
+  thin (1.6.2) lib/thin/connection.rb:84:in `pre_process'
+  thin (1.6.2) lib/thin/connection.rb:53:in `process'
+  thin (1.6.2) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.3) lib/eventmachine.rb:187:in `run'
+  thin (1.6.2) lib/thin/backends/base.rb:73:in `start'
+  thin (1.6.2) lib/thin/server.rb:162:in `start'
+  rack (1.5.2) lib/rack/handler/thin.rb:16:in `run'
+  rack (1.5.2) lib/rack/server.rb:264:in `start'
+  railties (4.1.5) lib/rails/commands/server.rb:69:in `start'
+  railties (4.1.5) lib/rails/commands/commands_tasks.rb:81:in `block in server'
+  railties (4.1.5) lib/rails/commands/commands_tasks.rb:76:in `server'
+  railties (4.1.5) lib/rails/commands/commands_tasks.rb:40:in `run_command!'
+  railties (4.1.5) lib/rails/commands.rb:17:in `<top (required)>'
+  bin/rails:8:in `<top (required)>'
+  spring (1.1.3) lib/spring/client/rails.rb:27:in `call'
+  spring (1.1.3) lib/spring/client/command.rb:7:in `call'
+  spring (1.1.3) lib/spring/client.rb:26:in `run'
+  spring (1.1.3) bin/spring:48:in `<top (required)>'
+  spring (1.1.3) lib/spring/binstub.rb:11:in `<top (required)>'
+  bin/spring:16:in `<top (required)>'
+  bin/rails:3:in `<main>'
+{% endcodeblock %}
+
+In my case I had overridden Devise's controller:
+
+{% codeblock app/controllers/passwords_controller.rb lang:ruby %}
+class PasswordsController < Devise::PasswordsController
+  def create
+    @user = resource_class.send_reset_password_instructions(resource_params)
+
+    respond_to do |format|
+      format.js
+    end
+  end
+end
+{% endcodeblock %}
+
+Fix is pretty easy:
+
+{% codeblock app/controllers/passwords_controller.rb lang:ruby %}
+class PasswordsController < Devise::PasswordsController
+  def create
+    @user = resource_class.send_reset_password_instructions(resource_params.permit(:email))
+
+    # ...
+  end
+end
+{% endcodeblock %}
 
 ###Last words
 
