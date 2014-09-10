@@ -4,7 +4,7 @@
   <title><![CDATA[Serj L aka Loremaster]]></title>
   <link href="http://bloginius.com/atom.xml" rel="self"/>
   <link href="http://bloginius.com/"/>
-  <updated>2014-09-10T14:27:22+04:00</updated>
+  <updated>2014-09-10T14:38:05+04:00</updated>
   <id>http://bloginius.com/</id>
   <author>
     <name><![CDATA[Serj L aka Loremaster]]></name>
@@ -733,7 +733,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Fix is pretty easy:</p>
+<p>Fix is pretty easy. We need to permit email:</p>
 
 <figure class='code'><figcaption><span>app/controllers/passwords_controller.rb </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
