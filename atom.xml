@@ -4,7 +4,7 @@
   <title><![CDATA[Serj L aka Loremaster]]></title>
   <link href="http://bloginius.com/atom.xml" rel="self"/>
   <link href="http://bloginius.com/"/>
-  <updated>2014-09-04T16:52:37+04:00</updated>
+  <updated>2014-09-10T14:27:22+04:00</updated>
   <id>http://bloginius.com/</id>
   <author>
     <name><![CDATA[Serj L aka Loremaster]]></name>
@@ -755,7 +755,7 @@
 
 <h3>Last words</h3>
 
-<p>Check out <a href="http://railsdiff.org/diff/v4.0.5/v4.1.2/">railsdiff</a> to view changes in the code. Don&rsquo;t forget to bump you gems. Make sure that all tests are green. Have a good test coverage and don&rsquo;t bump your app without it.</p>
+<p>Check out <a href="http://railsdiff.org/diff/v4.0.5/v4.1.5/">railsdiff</a> to view changes in the code. Don&rsquo;t forget to bump you gems. Make sure that all tests are green. Have a good test coverage and don&rsquo;t bump your app without it.</p>
 ]]></content>
   </entry>
   
