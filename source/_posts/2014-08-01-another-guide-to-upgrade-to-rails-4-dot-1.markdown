@@ -444,7 +444,7 @@ class PasswordsController < Devise::PasswordsController
 end
 {% endcodeblock %}
 
-Fix is pretty easy:
+Fix is pretty easy. We need to permit email:
 
 {% codeblock app/controllers/passwords_controller.rb lang:ruby %}
 class PasswordsController < Devise::PasswordsController
