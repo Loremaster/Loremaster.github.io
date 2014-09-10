@@ -458,4 +458,4 @@ end
 
 ###Last words
 
-Check out [railsdiff](http://railsdiff.org/diff/v4.0.5/v4.1.2/) to view changes in the code. Don't forget to bump you gems. Make sure that all tests are green. Have a good test coverage and don't bump your app without it.
+Check out [railsdiff](http://railsdiff.org/diff/v4.0.5/v4.1.5/) to view changes in the code. Don't forget to bump you gems. Make sure that all tests are green. Have a good test coverage and don't bump your app without it.
