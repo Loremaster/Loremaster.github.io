@@ -4,7 +4,7 @@
   <title><![CDATA[Serj L aka Loremaster]]></title>
   <link href="http://bloginius.com/atom.xml" rel="self"/>
   <link href="http://bloginius.com/"/>
-  <updated>2014-09-10T14:38:05+04:00</updated>
+  <updated>2014-09-12T19:18:12+04:00</updated>
   <id>http://bloginius.com/</id>
   <author>
     <name><![CDATA[Serj L aka Loremaster]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 4.1 Enums: Tips and Tricks]]></title>
+    <link href="http://bloginius.com/blog/2014/09/10/rails-4-dot-1-enums-tips-and-tricks/"/>
+    <updated>2014-09-10T15:34:06+04:00</updated>
+    <id>http://bloginius.com/blog/2014/09/10/rails-4-dot-1-enums-tips-and-tricks</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Another Guide to Upgrade to Rails 4.1]]></title>
@@ -315,7 +324,7 @@
 
 <h3>Strong Params</h3>
 
-<p>I don&rsquo;t know how many people may meet my situation, but anyway. If you make your nested attributes hash in form manually, then (and only then) there is possible situation when keys in your hash may contain hashes and/or integer. For example:</p>
+<p>I don&rsquo;t know how many people may meet my situation, but anyway. If you build your nested attributes hash in form manually, then (and only then) there is possible situation when keys in your hash may contain hashes and/or integer. For example:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -346,7 +355,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>In my case there is 3 possible situation:</p>
+<p>In my case there is 3 possible situations:</p>
 
 <ol>
 <li>All keys are integers.</li>
@@ -366,7 +375,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Unfortunately, it didn&rsquo;t help me. That is why I have created special method, which knows about these 3 possible situations and generate array with this data dynamically, so you just insert this data in <code>permit</code>.</p>
+<p>Unfortunately, it didn&rsquo;t help me (but it may help you). That is why I have created special method, which knows about these 3 possible situations and it generates array with this data dynamically, so you just insert this data in <code>permit</code>.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -429,7 +438,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>This is how you use this method, you just pass data to the method and then use it&rsquo;s results to permit it.</p>
+<p>Here is the example how to use this method. You just pass a data to the method and then you should use it&rsquo;s results to permit it.</p>
 
 <figure class='code'><figcaption><span>app/controllers/services_controller.rb </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -453,7 +462,7 @@
 
 <h3>Rails 4.1.5 notes</h3>
 
-<p>When you&rsquo;ll upgrade to Rails 4.1.5 and you use Devise for authentication then you can met this problem when user tries to resend password:</p>
+<p>When you upgrade your app to Rails 4.1.5 and you use Devise for authentication, then you can met this problem, when user tries to resend password:</p>
 
 <figure class='code'><figcaption><span>Terminal </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
