@@ -218,7 +218,7 @@ And now you run tests in parallel.
 
 ###Strong Params
 
-I don't know how many people may meet my situation, but anyway. If you make your nested attributes hash in form manually, then (and only then) there is possible situation when keys in your hash may contain hashes and/or integer. For example:
+I don't know how many people may meet my situation, but anyway. If you build your nested attributes hash in form manually, then (and only then) there is possible situation when keys in your hash may contain hashes and/or integer. For example:
 
 ```ruby
 {:service =>
@@ -236,7 +236,7 @@ I don't know how many people may meet my situation, but anyway. If you make your
 }
 ```
 
-In my case there is 3 possible situation:
+In my case there is 3 possible situations:
 
 1. All keys are integers.
 2. All keys are hashes.
@@ -250,7 +250,7 @@ params.require(:service).permit(:type_professional).tap do |whitelist|
 end
 ```
 
-Unfortunately, it didn't help me. That is why I have created special method, which knows about these 3 possible situations and generate array with this data dynamically, so you just insert this data in `permit`.
+Unfortunately, it didn't help me (but it may help you). That is why I have created special method, which knows about these 3 possible situations and it generates array with this data dynamically, so you just insert this data in `permit`.
 
 ```ruby
   # Pair keys (which StronParams doesn't allow to use for nested attributes) with data to permit.
@@ -284,7 +284,7 @@ Unfortunately, it didn't help me. That is why I have created special method, whi
   end
 ```
 
-This is how you use this method, you just pass data to the method and then use it's results to permit it.
+Here is the example how to use this method. You just pass a data to the method and then you should use it's results to permit it.
 
 {% codeblock app/controllers/services_controller.rb lang:ruby %}
   def service_params
@@ -300,7 +300,7 @@ I hope it'll help somebody.
 
 ###Rails 4.1.5 notes
 
-When you'll upgrade to Rails 4.1.5 and you use Devise for authentication then you can met this problem when user tries to resend password:
+When you upgrade your app to Rails 4.1.5 and you use Devise for authentication, then you can met this problem, when user tries to resend password:
 
 {% codeblock Terminal lang:bash %}
 ActiveModel::ForbiddenAttributesError - ActiveModel::ForbiddenAttributesError:
