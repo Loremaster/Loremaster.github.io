@@ -4,7 +4,7 @@
   <title><![CDATA[Serj L aka Loremaster]]></title>
   <link href="http://bloginius.com/atom.xml" rel="self"/>
   <link href="http://bloginius.com/"/>
-  <updated>2014-09-12T19:18:12+04:00</updated>
+  <updated>2014-09-15T14:30:35+04:00</updated>
   <id>http://bloginius.com/</id>
   <author>
     <name><![CDATA[Serj L aka Loremaster]]></name>
@@ -12,15 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Rails 4.1 Enums: Tips and Tricks]]></title>
-    <link href="http://bloginius.com/blog/2014/09/10/rails-4-dot-1-enums-tips-and-tricks/"/>
-    <updated>2014-09-10T15:34:06+04:00</updated>
-    <id>http://bloginius.com/blog/2014/09/10/rails-4-dot-1-enums-tips-and-tricks</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Another Guide to Upgrade to Rails 4.1]]></title>
