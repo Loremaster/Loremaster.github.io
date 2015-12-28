@@ -4,7 +4,7 @@
   <title><![CDATA[Serj L aka Loremaster]]></title>
   <link href="http://bloginius.com/atom.xml" rel="self"/>
   <link href="http://bloginius.com/"/>
-  <updated>2015-03-05T15:16:35+03:00</updated>
+  <updated>2015-12-28T19:38:45+03:00</updated>
   <id>http://bloginius.com/</id>
   <author>
     <name><![CDATA[Serj L aka Loremaster]]></name>
@@ -12,6 +12,90 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Restart Failing Tests in Rspec 3]]></title>
+    <link href="http://bloginius.com/blog/2015/12/28/rspec-restart-failing-tests/"/>
+    <updated>2015-12-28T19:16:29+03:00</updated>
+    <id>http://bloginius.com/blog/2015/12/28/rspec-restart-failing-tests</id>
+    <content type="html"><![CDATA[<p>As good developers we write code. Since ruby is so dynamic we need a good test coverage to make sure that our app works. Part of our test suit for web apps is features or integration tests.</p>
+
+<p>Unfortunately integration tests can fail from time to time. It&rsquo;s quite hard to fix such tests. It doesn&rsquo;t mean that we shouldn&rsquo;t fix them but sometimes we need to deal with them in some other way. I like rspec and I use it for the whole test suite. Here I want to show you how can you <strong>restart failed tests</strong>.</p>
+
+<!-- more -->
+
+
+<p>Developers of rspec recently added this very nice feature which allows you to restart failed specs. First of all make sure that you have Rspec 3.4 or higher:</p>
+
+<figure class='code'><figcaption><span>Gemfile </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;rspec-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.4.0&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now open your spec_helper and add this line:</p>
+
+<figure class='code'><figcaption><span>spec/spec_helper.rb </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">RSpec</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">example_status_persistence_file_path</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="s2">/spec/specs_with_statuses.txt&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You need to specify file which will store tests statuses. I recommend to add this file to gitignore:</p>
+
+<figure class='code'><figcaption><span>.gitignore </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/spec/specs_with_statuses.txt
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now after running your specs you can run your failing tests:</p>
+
+<figure class='code'><figcaption><span>Terminal </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>rspec
+</span><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>rspec --only-failures
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Running spec suit will fill file from example_status_persistence_file_path with tests and their statuses.</p>
+
+<p>You can create simple shell script to run your test suit and rerun failed tests. Here it is:</p>
+
+<figure class='code'><figcaption><span>run_tests.sh </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$ bundle exec rake db:test:prepare&quot;</span>
+</span><span class='line'>bundle <span class="nb">exec </span>rake db:test:prepare
+</span><span class='line'>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$ bundle exec rspec&quot;</span>
+</span><span class='line'>bundle <span class="nb">exec </span>rspec
+</span><span class='line'>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;$ bundle exec rspec --only-failures&quot;</span>
+</span><span class='line'>bundle <span class="nb">exec </span>rspec --only-failures
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It can be useful if you use CI server where you can just point to run this shell script. It can be also quite useful to use locally to re-rerun failures automatically instead of typing command to every time.</p>
+
+<p>I hope this article was useful for you!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Another Guide to Upgrade to Rails 4.1]]></title>
