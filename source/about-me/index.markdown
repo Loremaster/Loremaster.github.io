@@ -9,9 +9,9 @@ footer: true
 
 My name is Serj L and I've been ruby developer since 2012. I love Ruby and Ruby on Rails, because they provide such elegant ways to solve my problems and problems of my clients.
 
-I have contributed to the [Rails](https://github.com/rails/rails), [Cancancan](https://github.com/CanCanCommunity/cancancan), [Rails-18n](https://github.com/svenfuchs/rails-i18n) and a lot of other gems. Also I helped [ready4rails4](http://www.ready4rails4.net/) project (I did a lot of researches to get statuses for a lot of gems)!
+I have contributed to the [Rails](https://github.com/rails/rails), [Cancancan](https://github.com/CanCanCommunity/cancancan), [Rails-18n](https://github.com/svenfuchs/rails-i18n), [Forem](https://github.com/rubysherpas/forem), [Activevalidators](https://github.com/franckverrot/activevalidators) and other gems as well as [ready4rails](http://www.ready4rails.net).
 
-My skills by single line: **Ruby on Rails, Ruby, PostgreSQL, MySQL, Git, Elastix Search, Thinking Sphinx, Rspec, Capybara, Webkit, Poltergeist, I18n, HTML, Haml, Slim, CSS, SASS, JQuery, Javascript, CofeeScript, Github, Capistrano, Heroku, Delayed jobs, Twitter Bootstrap, MongoDB, Mac OS X.**
+My skills by single line: **Ruby on Rails, Ruby, PostgreSQL, MySQL, Git, Elastix Search, Thinking Sphinx, Rspec, Capybara, Webkit, Poltergeist,, HTML, Haml, Slim, CSS, SASS, JQuery, Javascript, CofeeScript, Github, Capistrano, Heroku, Delayed jobs, Twitter Bootstrap, MongoDB.**
 
 Would you like to write me directly? Awesome! I'd love to hear from you! Please, drop me a line: hello@bloginius.com
 
